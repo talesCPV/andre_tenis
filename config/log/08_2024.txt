@@ -1,0 +1,114 @@
+08/08/2024 14:37 adm@museu.com.br : Menu Alterado (Museu, menu, pop-up, Cadastro de Museus)
+08/08/2024 14:45 adm@museu.com.br : Menu Alterado (Itens, menu, pop-up, Cadastro de Itens)
+08/08/2024 14:47 adm@museu.com.br : Insercao de novo usuarios, email:undefined -> gilberto@teste.com.br, acesso:undefined -> 1
+08/08/2024 14:52 adm@museu.com.br : Insercao de novo usuarios, email:undefined -> gilberto@teste.com.br, acesso:undefined -> 1
+08/08/2024 14:53 adm@museu.com.br : Insercao de novo usuarios, email:undefined -> gilberto@teste.com.br, acesso:undefined -> 1
+08/08/2024 14:57 adm@museu.com.br : Insercao de novo usuarios, email:undefined -> gilberto@teste.com.br, acesso:undefined -> 1
+08/08/2024 20:22 adm@museu.com.br : Menu Alterado (Museu, adm_museu.html, pop-up, Cadastro de Museus)
+08/08/2024 21:18 adm@museu.com.br : Museu Cadastrado  -> Museu do Automovel de Cacapava
+08/08/2024 21:19 adm@museu.com.br : Museu Cadastrado  -> Museu do Automovel de cacapava
+08/08/2024 21:24 adm@museu.com.br : Museu Cadastrado  -> Museu do Automovel de Cacapava
+08/08/2024 21:26 adm@museu.com.br : Museu Editado Museu do Automovel de Cacapava -> Museu do Automovel de Cacapava
+08/08/2024 21:28 adm@museu.com.br : Museu Editado Museu do Automovel de Cacapava -> Museu do Automovel de Cacapava
+09/08/2024 14:42 adm@museu.com.br : Menu Alterado (Acervos, adm_museu.html, pop-up, Cadastro de Acervos)
+09/08/2024 14:53 adm@museu.com.br : Menu Alterado (Acervos, adm_acervo.html, pop-up, Cadastro de Acervos)
+09/08/2024 15:02 adm@museu.com.br : Acervo Cadastrado  -> MUSEU PAULISTA DE ANTIGUIDADES MECANICAS ROBERTO LEE
+09/08/2024 15:02 adm@museu.com.br : Acervo Editado MUSEU PAULISTA DE ANTIGUIDADES MECANICAS ROBERTO LEE -> MUSEU PAULISTA DE ANTIGUIDADES MECANICAS ROBERTO LEE
+09/08/2024 15:05 adm@museu.com.br : Acervo Editado MUSEU PAULISTA DE ANTIGUIDADES MECANICAS ROBERTO LEE -> MUSEU PAULISTA DE ANTIGUIDADES MECANICAS ROBERTO LEE
+09/08/2024 15:06 adm@museu.com.br : Acervo Editado MUSEU PAULISTA DE ANTIGUIDADES MECANICAS ROBERTO LEE -> MUSEU PAULISTA DE ANTIGUIDADES MECANICAS ROBERTO LEE
+09/08/2024 15:08 adm@museu.com.br : Acervo Editado MUSEU PAULISTA DE ANTIGUIDADES MECANICAS ROBERTO LEE -> MUSEU PAULISTA DE ANTIGUIDADES MECANICAS ROBERTO LEE
+09/08/2024 15:10 adm@museu.com.br : Acervo Cadastrado  -> 
+09/08/2024 15:10 adm@museu.com.br : Acervo Deletado -> 
+09/08/2024 16:09 adm@museu.com.br : Menu Alterado (Itens, adm_itens.html, pop-up, Cadastro de Itens)
+09/08/2024 20:27 adm@museu.com.br : Item Cadastrado  teste, VCL
+09/08/2024 20:28 adm@museu.com.br : Item Cadastrado  teste, VCL
+09/08/2024 20:31 adm@museu.com.br : Item Cadastrado  Studebaker, VCL
+09/08/2024 20:45 adm@museu.com.br : Item Cadastrado  Studebaker Commander, VCL
+09/08/2024 20:52 adm@museu.com.br : Item Cadastrado  Alfa Romeo RL Torpedo 1923, VCL
+10/08/2024 02:37 gilberto@teste.com.br : Item Cadastrado  Studebaker Commander, VCL
+10/08/2024 02:38 gilberto@teste.com.br : Item Cadastrado  Studebaker, VCL
+10/08/2024 02:39 gilberto@teste.com.br : Item Cadastrado  Studebaler, VCL
+10/08/2024 02:40 gilberto@teste.com.br : Item Cadastrado  Studebaker, VCL
+10/08/2024 02:44 gilberto@teste.com.br : Item Editado Studebaker -> , VCL
+10/08/2024 02:46 gilberto@teste.com.br : Item Deletado Studebaler -> , VCL
+10/08/2024 02:46 gilberto@teste.com.br : Item Editado Studebaker Commander -> Studebaker Commander, VCL
+10/08/2024 02:47 gilberto@teste.com.br : Item Editado Studebaker Commander -> Studebaker Commander, VCL
+10/08/2024 02:49 gilberto@teste.com.br : Item Editado Studebaker Commander -> Studebaker Commander, VCL
+10/08/2024 02:51 gilberto@teste.com.br : Item Cadastrado  Studebaker Commander, VCL
+10/08/2024 02:51 gilberto@teste.com.br : Item Editado Studebaker Commander -> Studebaker Commander, VCL
+10/08/2024 02:53 gilberto@teste.com.br : Item Editado Studebaker Commander -> Studebaker Commander, VCL
+10/08/2024 02:56 gilberto@teste.com.br : Item Deletado Studebaker Commander -> , VCL
+10/08/2024 03:02 gilberto@teste.com.br : Item Cadastrado  Studebaker, VCL
+10/08/2024 03:03 gilberto@teste.com.br : Item Editado Studebaker -> Studebaker, VCL
+10/08/2024 03:04 gilberto@teste.com.br : Item Editado Studebaker -> Studebaker, VCL
+10/08/2024 03:06 gilberto@teste.com.br : Item Editado Studebaker -> Studebaker, VCL
+10/08/2024 03:37 gilberto@teste.com.br : Item Editado Studebaker -> Studebaker, VCL
+10/08/2024 03:37 gilberto@teste.com.br : Item Editado Studebaker -> Studebaker, VCL
+10/08/2024 03:38 gilberto@teste.com.br : Item Editado Studebaker -> Studebaker Commander 1939, VCL
+10/08/2024 03:40 gilberto@teste.com.br : Acervo Cadastrado  -> Museu teste
+10/08/2024 03:41 gilberto@teste.com.br : Acervo Editado Museu teste -> Museu teste
+10/08/2024 03:42 gilberto@teste.com.br : Item Cadastrado  teste, VCL
+10/08/2024 03:43 gilberto@teste.com.br : Item Editado teste -> Novo Polo, VCL
+10/08/2024 05:09 adm@museu.com.br : Imagem Adicionada -> : Novo Polo
+10/08/2024 05:11 adm@museu.com.br : Imagem Adicionada -> : Novo Polo
+10/08/2024 05:14 adm@museu.com.br : Imagem Adicionada -> : Novo Polo
+10/08/2024 05:15 adm@museu.com.br : Imagem Adicionada -> : Novo Polo
+10/08/2024 05:15 adm@museu.com.br : Imagem Adicionada -> : Novo Polo
+10/08/2024 05:15 adm@museu.com.br : Imagem Adicionada -> : Novo Polo
+10/08/2024 05:15 adm@museu.com.br : Imagem Adicionada -> : Novo Polo
+10/08/2024 05:40 adm@museu.com.br : Imagem Adicionada -> : Studebaker Commander 1939
+10/08/2024 05:42 adm@museu.com.br : Imagem Adicionada -> : Studebaker Commander 1939
+10/08/2024 05:59 adm@museu.com.br : Imagem Adicionada -> : Studebaker Commander 1939
+10/08/2024 18:38 adm@museu.com.br : Imagem Adicionada -> : Novo Polo
+10/08/2024 18:42 adm@museu.com.br : Imagem Adicionada -> : Novo Polo
+10/08/2024 19:09 adm@museu.com.br : Imagem Adicionada -> : Novo Polo
+10/08/2024 19:14 adm@museu.com.br : Imagem Adicionada -> : Novo Polo
+10/08/2024 19:15 adm@museu.com.br : Imagem Adicionada -> : Novo Polo
+10/08/2024 19:34 adm@museu.com.br : Imagem Adicionada -> : Novo Polo
+10/08/2024 23:12 adm@museu.com.br : Menu Deletado (Ferramentas)
+10/08/2024 23:13 adm@museu.com.br : Menu Incluido (Tokens)
+10/08/2024 23:14 adm@museu.com.br : Menu Alterado (Tokens, sys_token.html, pop-up, Tokens de Acesso)
+10/08/2024 23:57 adm@museu.com.br : Item Cadastrado  2024-08-3100:00:00, Acervo:3
+10/08/2024 23:58 adm@museu.com.br : Item Cadastrado  00:00:00, Acervo:3
+11/08/2024 00:01 adm@museu.com.br : Item Cadastrado  2024-08-3000:00:00, Acervo:3
+11/08/2024 00:17 adm@museu.com.br : Item Cadastrado  30, Acervo:3
+11/08/2024 00:18 adm@museu.com.br : Item Cadastrado  30, Acervo:3
+11/08/2024 03:23 adm@museu.com.br : Item Cadastrado  20, Acervo:3
+11/08/2024 03:25 adm@museu.com.br : Item Cadastrado  30, Acervo:3
+11/08/2024 03:32 adm@museu.com.br : Item Cadastrado  , Acervo:3
+11/08/2024 03:33 adm@museu.com.br : Item Cadastrado  20, Acervo:3
+11/08/2024 03:34 adm@museu.com.br : Item Cadastrado  20, Acervo:3
+11/08/2024 03:36 adm@museu.com.br : Item Cadastrado  20, Acervo:3
+11/08/2024 03:51 adm@museu.com.br : Item Editado 2024-08-30 22:36:17 -> 20, Acervo:3
+11/08/2024 03:53 adm@museu.com.br : Item Editado 2024-08-30 22:36:17 -> 25, Acervo:3
+11/08/2024 03:57 adm@museu.com.br : Item Cadastrado  30, Acervo:3
+11/08/2024 03:57 adm@museu.com.br : Item Cadastrado  25, Acervo:3
+11/08/2024 03:59 adm@museu.com.br : Item Editado 2024-09-04 22:57:55 -> 25, Acervo:3
+11/08/2024 04:02 adm@museu.com.br : Item Editado 2024-09-09 22:57:41 -> 30, Acervo:3
+11/08/2024 04:02 adm@museu.com.br : Item Editado 2024-09-09 22:57:41 -> 30, Acervo:3
+11/08/2024 04:04 adm@museu.com.br : Item Editado 2024-09-04 22:57:55 -> 25, Acervo:3
+11/08/2024 04:18 adm@museu.com.br : Item Editado 2024-09-09 23:18:14 -> 10, Acervo:3
+11/08/2024 04:19 adm@museu.com.br : Item Editado 2024-08-20 23:18:45 -> 5, Acervo:3
+11/08/2024 04:22 adm@museu.com.br : Item Deletado 2024-08-15 23:19:08 -> 5, Acervo:0
+11/08/2024 04:23 adm@museu.com.br : Item Editado 2024-09-04 22:57:55 -> 90, Acervo:3
+11/08/2024 04:29 adm@museu.com.br : Item Editado 2024-11-08 23:23:11 -> 90, Acervo:3
+11/08/2024 04:49 adm@museu.com.br : Item Cadastrado  60, Acervo:1
+11/08/2024 05:07 adm@museu.com.br : TOKEN Editado, Acervo:Museu teste, Expira 15/09/2024
+11/08/2024 05:07 adm@museu.com.br : TOKEN Editado, Acervo:Museu teste, Expira 12/09/2024
+11/08/2024 05:10 adm@museu.com.br : TOKEN Editado, Acervo:MUSEU PAULISTA DE ANTIGUIDADES MECANICAS ROBERTO LEE, Expira 10/10/2024 (1,1,0,0) 
+11/08/2024 05:11 adm@museu.com.br : TOKEN Editado, Acervo:MUSEU PAULISTA DE ANTIGUIDADES MECANICAS ROBERTO LEE, Expira 10/10/2024 (1,1,1,1) 
+11/08/2024 21:10 adm@museu.com.br : Item Cadastrado  Segundo Item, VCL
+11/08/2024 21:11 adm@museu.com.br : Imagem Adicionada -> : Segundo Item
+20/08/2024 03:57 adm@museu.com.br : Imagem Adicionada -> : Novo Polo
+21/08/2024 04:00 adm@museu.com.br : Menu Incluido (Alunos)
+21/08/2024 04:01 adm@museu.com.br : Menu Incluido (Aulas)
+21/08/2024 04:04 admin@backhand.com.br : Menu Deletado (RAIZera)
+21/08/2024 04:04 admin@backhand.com.br : Menu Deletado (RAIZera)
+21/08/2024 04:04 admin@backhand.com.br : Menu Alterado (Config, none, pop-up, )
+21/08/2024 04:04 admin@backhand.com.br : Menu Deletado (Config)
+21/08/2024 04:05 admin@backhand.com.br : Menu Incluido (Alunos)
+21/08/2024 04:05 admin@backhand.com.br : Menu Incluido (Aulas)
+21/08/2024 04:05 admin@backhand.com.br : Menu Alterado (Cadastros, none, pop-up, )
+21/08/2024 04:06 admin@backhand.com.br : Menu Alterado (Alunos, adm_aluno.html, pop-up, Alunos)
+21/08/2024 04:07 admin@backhand.com.br : Menu Alterado (Aulas, adm_aulas.html, pop-up, Aulas)
+21/08/2024 04:11 admin@backhand.com.br : Inclusao de novo Perfil de usuario (PROFESSOR)
