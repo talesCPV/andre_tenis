@@ -52,8 +52,8 @@ CREATE TABLE tb_clube (
     nome varchar(70),
 	rua varchar(60) DEFAULT NULL,
     num varchar(6) DEFAULT NULL,
-    cidade varchar(30) DEFAULT NULL,
-    bairro varchar(40) DEFAULT NULL,
+    cidade varchar(50) DEFAULT NULL,
+    bairro varchar(50) DEFAULT NULL,
     uf varchar(2) DEFAULT NULL,
     cep varchar(10) DEFAULT NULL,
     FOREIGN KEY (id_usuario) REFERENCES tb_usuario(id),
@@ -63,13 +63,13 @@ CREATE TABLE tb_clube (
  DROP TABLE IF EXISTS tb_aluno;
 CREATE TABLE tb_aluno (
     id int(11) NOT NULL AUTO_INCREMENT,
-    id_usuario int(11),
-    id_clube int(11),
-    nome varchar(70),
+    id_usuario int(11) NOT NULL,
+    id_clube int(11) NOT NULL,
+    nome varchar(70) NOT NULL,
     rua varchar(60) DEFAULT NULL,
     num varchar(6) DEFAULT NULL,
-    cidade varchar(30) DEFAULT NULL,
-    bairro varchar(40) DEFAULT NULL,
+    cidade varchar(50) DEFAULT NULL,
+    bairro varchar(50) DEFAULT NULL,
     uf varchar(2) DEFAULT NULL,
     cep varchar(10) DEFAULT NULL,    
     data_adm datetime DEFAULT CURRENT_TIMESTAMP,
@@ -77,6 +77,19 @@ CREATE TABLE tb_aluno (
 	email varchar(90) DEFAULT NULL,
     ativo boolean DEFAULT 1,
 	obs varchar(255) DEFAULT NULL,
+    FOREIGN KEY (id_usuario) REFERENCES tb_usuario(id),
+    FOREIGN KEY (id_clube) REFERENCES tb_clube(id),
+    PRIMARY KEY (id)
+) ENGINE=MyISAM AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
+
+ DROP TABLE IF EXISTS tb_valor;
+CREATE TABLE tb_valor (
+    id int(11) NOT NULL AUTO_INCREMENT,
+    id_usuario int(11) NOT NULL,
+    id_clube int(11) NOT NULL,
+    descricao varchar(70) NOT NULL,
+    valor double NOT NULL DEFAULT 0,
+    obs varchar(255) DEFAULT NULL,
     FOREIGN KEY (id_usuario) REFERENCES tb_usuario(id),
     FOREIGN KEY (id_clube) REFERENCES tb_clube(id),
     PRIMARY KEY (id)

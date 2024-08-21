@@ -41,11 +41,18 @@
         const myPromisse = queryDB(params,'ADM-2');
         myPromisse.then((resolve)=>{
             const json = JSON.parse(resolve)
-console.log(json)            
             tbl.style.display = json.length > 0 ? 'inline-table' : 'none'
-            tbl.head('Nome,UF,Cidade')
+            if(localStorage.getItem('access')=='0'){
+                tbl.head('Nome,Clube,Prof.')
+            }else{
+                tbl.head('Nome,Clube')
+            }
             for(let i=0; i<json.length;i++){
-                tbl.plot(json[i],'nome,uf,cidade','Upp,Upp,Upp')
+                if(localStorage.getItem('access')=='0'){
+                    tbl.plot(json[i],'nome,clube,prof','Upp,Upp,Upp')
+                }else{
+                    tbl.plot(json[i],'nome,clube','Upp,Upp')
+                }
             }         
         });
     }

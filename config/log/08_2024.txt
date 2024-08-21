@@ -124,3 +124,42 @@
 21/08/2024 15:43 admin@backhand.com.br : Permissao alterada, Modulo: Cadastros, Acesso:[[0,1]])
 21/08/2024 15:43 admin@backhand.com.br : Permissao alterada, Modulo: Sistema, Acesso:[[0,1]])
 21/08/2024 15:44 andre@teste.com.br : CLUBE Cadastrado  -> Clube Recreativo Jequitiba
+21/08/2024 19:15 andre@teste.com.br : CLUBE Cadastrado  -> Clube Recreativo Jequitiba
+21/08/2024 19:15 andre@teste.com.br : CLUBE Cadastrado  -> Clube Teste SJC
+21/08/2024 19:43 andre@teste.com.br : Aluno Cadastrado  -> Tales
+21/08/2024 19:44 andre@teste.com.br : Aluno Cadastrado  -> Tales
+21/08/2024 19:45 andre@teste.com.br : Aluno Cadastrado  -> Tales
+21/08/2024 19:55 andre@teste.com.br : Aluno Editado Tales -> Tales
+21/08/2024 19:56 andre@teste.com.br : Aluno Editado Tales -> Tales
+21/08/2024 19:58 andre@teste.com.br : Aluno Editado Tales -> Tales
+21/08/2024 19:59 andre@teste.com.br : Aluno Editado Tales -> Tales
+21/08/2024 20:00 andre@teste.com.br : Aluno Editado Tales -> Tales
+21/08/2024 20:03 andre@teste.com.br : Aluno Editado Tales -> Tales
+21/08/2024 20:07 andre@teste.com.br : Aluno Editado Tales -> Tales
+21/08/2024 20:07 andre@teste.com.br : Aluno Editado Tales -> Tales
+21/08/2024 20:15 andre@teste.com.br : Permissao alterada, Modulo: Sistema, Acesso:[[0,1]])
+21/08/2024 20:15 andre@teste.com.br : Permissao alterada, Modulo: Cadastros, Acesso:[[0,1]])
+21/08/2024 20:15 andre@teste.com.br : Permissao alterada, Modulo: Sistema, Acesso:[[0,1]])
+21/08/2024 20:15 andre@teste.com.br : Permissao alterada, Modulo: Cadastros, Acesso:[[0,1]])
+21/08/2024 20:15 andre@teste.com.br : Permissao alterada, Modulo: Cadastros, Acesso:[[0,1]])
+21/08/2024 20:15 andre@teste.com.br : Permissao alterada, Modulo: Sistema, Acesso:[[0,1]])
+21/08/2024 20:16 admin@backhand.com.br : Permissao alterada, Modulo: Sistema, Acesso:[[0,1]])
+21/08/2024 20:16 admin@backhand.com.br : Permissao alterada, Modulo: Cadastros, Acesso:[[0,1]])
+21/08/2024 20:16 admin@backhand.com.br : Permissao alterada, Modulo: Sistema, Acesso:[[0,1]])
+21/08/2024 20:16 admin@backhand.com.br : Permissao alterada, Modulo: Cadastros, Acesso:[[0,1]])
+21/08/2024 20:16 admin@backhand.com.br : Permissao alterada, Modulo: Sistema, Acesso:[[0]])
+21/08/2024 20:16 admin@backhand.com.br : Permissao alterada, Modulo: Cadastros, Acesso:[[0,1]])
+21/08/2024 20:17 admin@backhand.com.br : Menu Incluido (Valores)
+21/08/2024 20:18 admin@backhand.com.br : Menu Alterado (Valores, adm_valor.html, pop-up, Valores Aula)
+21/08/2024 20:25 admin@backhand.com.br : Menu Alterado (Valores, adm_valor.html, pop-up, Valores Aula)
+21/08/2024 21:09 admin@backhand.com.br : Valor Aula Cadastrado  Aula SImples Tenis R$100.00
+21/08/2024 21:09 admin@backhand.com.br : Valor Aula Cadastrado  teste R$100
+21/08/2024 21:27 admin@backhand.com.br : Valor Aula Editado undefined -> teste 2 R$100.00
+21/08/2024 21:27 admin@backhand.com.br : Valor Aula Editado undefined -> teste 3 R$100.00
+21/08/2024 21:28 admin@backhand.com.br : Valor Aula Cadastrado  kjh R$150.00
+21/08/2024 21:30 admin@backhand.com.br : Valor Aula Editado undefined -> jsajskjsj R$50
+21/08/2024 21:32 admin@backhand.com.br : Valor Aula Editado undefined -> Tales R$120
+21/08/2024 21:34 admin@backhand.com.br : Valor Aula Deletado undefined ->  R$150.00
+21/08/2024 21:34 admin@backhand.com.br : Valor Aula Editado undefined -> Tenis de Quadra - 1 Aluno R$100
+21/08/2024 21:35 admin@backhand.com.br : Valor Aula Editado undefined -> Beach Tenis - 4 Alunos R$50
+21/08/2024 21:35 admin@backhand.com.br : Valor Aula Editado undefined -> Tenis de Quadra - 1 Aluno R$100.00
