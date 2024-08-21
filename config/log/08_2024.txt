@@ -163,3 +163,7 @@
 21/08/2024 21:34 admin@backhand.com.br : Valor Aula Editado undefined -> Tenis de Quadra - 1 Aluno R$100
 21/08/2024 21:35 admin@backhand.com.br : Valor Aula Editado undefined -> Beach Tenis - 4 Alunos R$50
 21/08/2024 21:35 admin@backhand.com.br : Valor Aula Editado undefined -> Tenis de Quadra - 1 Aluno R$100.00
+21/08/2024 21:37 admin@backhand.com.br : Permissao alterada, Modulo: Sistema, Acesso:[[0]])
+21/08/2024 21:37 admin@backhand.com.br : Permissao alterada, Modulo: Cadastros, Acesso:[[0,1]])
+21/08/2024 21:39 andre@teste.com.br : Valor Aula Cadastrado  Quadra - Aula SImples R$100
+21/08/2024 21:40 andre@teste.com.br : Valor Aula Cadastrado  Quadra - Dupla R$80.00

@@ -2,11 +2,10 @@
     <style>
         .frm-post{
             display: flex;
-            flex-direction: row;
+            flex-direction: row;            
         }
 
-        .frm-post select{
-            max-width: 30%;
+        .frm-post select{            
             overflow-y: scroll;
         }
 
@@ -17,6 +16,16 @@
 
         .data-post textarea{
             height: 150px
+        }
+
+        @media all and (max-width : 768px) {
+            .frm-post{
+                flex-direction: column;
+            }
+
+            .frm-post button{
+                width: 92%;
+            }
         }
 
     </style>
@@ -113,7 +122,6 @@
                 params.desc = del ? '' : pageScreen.querySelector('#edtDesc').value.trim()
                 params.valor = pageScreen.querySelector('#edtValor').value.trim()
                 params.obs = pageScreen.querySelector('#edtObs').value.trim()
-console.log(params)                
             const myPromisse = queryDB(params,'ADM-5');
             myPromisse.then((resolve)=>{
                 setLog(`Valor Aula ${newValor ? 'Cadastrado':(del ? 'Deletado' : 'Editado')} ${ !newValor ? pageData.descricao +' ->' :''} ${params.desc} R$${params.valor}`)
