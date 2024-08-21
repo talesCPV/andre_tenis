@@ -38,9 +38,10 @@
             params.field = query[0]
             params.signal = query[1]
             params.value = query[2]
-        const myPromisse = queryDB(params,'ALU-0');
+        const myPromisse = queryDB(params,'ADM-2');
         myPromisse.then((resolve)=>{
             const json = JSON.parse(resolve)
+console.log(json)            
             tbl.style.display = json.length > 0 ? 'inline-table' : 'none'
             tbl.head('Nome,UF,Cidade')
             for(let i=0; i<json.length;i++){
@@ -57,7 +58,7 @@
         openHTML('adm_view_aluno.html','pop-up','Novo Aluno')
     })
 
-    pageScreen.querySelector('#tblAcervo').addEventListener('click',(e)=>{
+    pageScreen.querySelector('#tblAluno').addEventListener('click',(e)=>{
         data = e.target.parentNode.data
         data != undefined ? openHTML('adm_view_aluno.html','pop-up',`Edição de dados - ${data.nome.toUpperCase()}`,data) : null
     })

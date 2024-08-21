@@ -297,3 +297,137 @@ DELIMITER $$
 DELIMITER ;
 
 /* FIM PADRÂO */
+
+/* BUSCAS E CADASTROS */
+
+ DROP PROCEDURE IF EXISTS sp_view_clube;
+DELIMITER $$
+	CREATE PROCEDURE sp_view_clube(
+		IN Iallow varchar(80),
+		IN Ihash varchar(64),
+		IN Ifield varchar(30),
+        IN Isignal varchar(4),
+		IN Ivalue varchar(50)
+    )
+	BEGIN
+		CALL sp_allow(Iallow,Ihash);
+		IF(@allow)THEN
+			SET @id_call = (SELECT IFNULL(id,0) FROM tb_usuario WHERE hash COLLATE utf8_general_ci = Ihash COLLATE utf8_general_ci LIMIT 1);
+			SET @root = (SELECT IF(access=0,1,0) FROM tb_usuario WHERE hash COLLATE utf8_general_ci = Ihash COLLATE utf8_general_ci LIMIT 1);
+
+            IF(@root)THEN
+				SET @quer =CONCAT('SELECT * FROM vw_clube WHERE ',Ifield,' ',Isignal,' ',Ivalue,' ORDER BY ',Ifield,';');
+            ELSE
+				SET @quer =CONCAT('SELECT * FROM vw_clube WHERE ',Ifield,' ',Isignal,' ',Ivalue,'AND id_usuario = "',@id_call,'" ORDER BY ',Ifield,';');
+            END IF;
+			PREPARE stmt1 FROM @quer;
+			EXECUTE stmt1;
+        END IF;
+	END $$
+	DELIMITER ;
+
+ DROP PROCEDURE IF EXISTS sp_set_clube;
+DELIMITER $$
+	CREATE PROCEDURE sp_set_clube(	
+		IN Iallow varchar(80),
+		IN Ihash varchar(64),
+        IN Iid int(11),        
+		IN Inome varchar(70),
+		IN Irua varchar(60),
+		IN Inum varchar(6),
+		IN Icidade varchar(30),
+		IN Ibairro varchar(40),
+		IN Iuf varchar(2),
+		IN Icep varchar(10)
+    )
+	BEGIN    
+		CALL sp_allow(Iallow,Ihash);
+		IF(@allow)THEN
+			SET @id_call = (SELECT IFNULL(id,0) FROM tb_usuario WHERE hash COLLATE utf8_general_ci = Ihash COLLATE utf8_general_ci LIMIT 1);
+			IF(@id_call >0)THEN
+				IF(Iid=0)THEN
+					INSERT INTO tb_clube (id_usuario,nome,rua,num,cidade,bairro,uf,cep) 
+                    VALUES (@id_call,Inome,Irua,Inum,Icidade,Ibairro,Iuf,Icep);
+				ELSE
+					IF(Inome = "")THEN
+						DELETE FROM tb_clube 
+                        WHERE id=Iid;
+                    ELSE
+						UPDATE tb_clube SET nome=Inome, rua=Irua,num=Inum,cidade=Icidade,bairro=Ibairro,uf=Iuf,cep=Icep
+                        WHERE id=Iid; 
+                    END IF;
+                END IF;
+			END IF;
+		END IF;
+	END $$
+DELIMITER ;
+
+/* ALUNO */
+
+ DROP PROCEDURE IF EXISTS sp_view_aluno;
+DELIMITER $$
+	CREATE PROCEDURE sp_view_aluno(
+		IN Iallow varchar(80),
+		IN Ihash varchar(64),
+		IN Ifield varchar(30),
+        IN Isignal varchar(4),
+		IN Ivalue varchar(50)
+    )
+	BEGIN
+		CALL sp_allow(Iallow,Ihash);
+		IF(@allow)THEN
+			SET @id_call = (SELECT IFNULL(id,0) FROM tb_usuario WHERE hash COLLATE utf8_general_ci = Ihash COLLATE utf8_general_ci LIMIT 1);
+			SET @root = (SELECT IF(access=0,1,0) FROM tb_usuario WHERE hash COLLATE utf8_general_ci = Ihash COLLATE utf8_general_ci LIMIT 1);
+            IF(@root)THEN
+				SET @quer =CONCAT('SELECT * FROM vw_aluno WHERE ',Ifield,' ',Isignal,' ',Ivalue,' ORDER BY ',Ifield,';');
+            ELSE
+				SET @quer =CONCAT('SELECT * FROM vw_aluno WHERE ',Ifield,' ',Isignal,' ',Ivalue,'AND id_usuario = "',@id_call,'" ORDER BY ',Ifield,';');
+            END IF;
+			PREPARE stmt1 FROM @quer;
+			EXECUTE stmt1;
+        END IF;
+	END $$
+	DELIMITER ;
+
+ DROP PROCEDURE IF EXISTS sp_set_aluno;
+DELIMITER $$
+	CREATE PROCEDURE sp_set_aluno(	
+		IN Iallow varchar(80),
+		IN Ihash varchar(64),
+        IN Iid int(11),
+        IN Iid_clube int(11),
+		IN Inome varchar(70),
+		IN email varchar(90),
+		IN Irua varchar(60),
+		IN Inum varchar(6),
+		IN Icidade varchar(30),
+		IN Ibairro varchar(40),
+		IN Iuf varchar(2),
+		IN Icep varchar(10),
+		IN Idata_adm datetime,
+		IN Icel varchar(15),
+		IN Iativo boolean,
+		IN Iobs varchar(255)
+    )
+	BEGIN    
+		CALL sp_allow(Iallow,Ihash);
+		IF(@allow)THEN
+			SET @id_call = (SELECT IFNULL(id,0) FROM tb_usuario WHERE hash COLLATE utf8_general_ci = Ihash COLLATE utf8_general_ci LIMIT 1);
+			IF(@id_call >0)THEN
+				IF(Iid=0)THEN
+					INSERT INTO tb_aluno (id_usuario,id_clube,nome,nasc,rua,num,cidade,bairro,uf,cep,data_adm,cel,obs) 
+                    VALUES (@id_call,Iid_clube,Inome,Inasc,Irua,Inum,Icidade,Ibairro,Iuf,Icep,Idata_adm,Icel,Iobs);
+				ELSE
+					IF(Inome = "")THEN
+						DELETE FROM tb_aluno 
+                        WHERE id=Iid;
+                    ELSE
+						UPDATE tb_aluno SET nome=Inome,nasc=Inasc,rua=Irua,num=Inum,cidade=Icidade,bairro=Ibairro,uf=Iuf,
+                        cep=Icep,data_adm=Idata_adm,cel=Icel,obs=Iobs,ativo=Iativo
+                        WHERE id=Iid; 
+                    END IF;
+                END IF;
+			END IF;
+		END IF;
+	END $$
+DELIMITER ;

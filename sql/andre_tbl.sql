@@ -45,3 +45,39 @@ CREATE TABLE tb_calendario (
 
 /* FIM PADRÂO */
 
+ DROP TABLE IF EXISTS tb_clube;
+CREATE TABLE tb_clube (
+    id int(11) NOT NULL AUTO_INCREMENT,
+    id_usuario int(11),
+    nome varchar(70),
+	rua varchar(60) DEFAULT NULL,
+    num varchar(6) DEFAULT NULL,
+    cidade varchar(30) DEFAULT NULL,
+    bairro varchar(40) DEFAULT NULL,
+    uf varchar(2) DEFAULT NULL,
+    cep varchar(10) DEFAULT NULL,
+    FOREIGN KEY (id_usuario) REFERENCES tb_usuario(id),
+    PRIMARY KEY (id)
+) ENGINE=MyISAM AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
+
+ DROP TABLE IF EXISTS tb_aluno;
+CREATE TABLE tb_aluno (
+    id int(11) NOT NULL AUTO_INCREMENT,
+    id_usuario int(11),
+    id_clube int(11),
+    nome varchar(70),
+    rua varchar(60) DEFAULT NULL,
+    num varchar(6) DEFAULT NULL,
+    cidade varchar(30) DEFAULT NULL,
+    bairro varchar(40) DEFAULT NULL,
+    uf varchar(2) DEFAULT NULL,
+    cep varchar(10) DEFAULT NULL,    
+    data_adm datetime DEFAULT CURRENT_TIMESTAMP,
+    cel varchar(15) DEFAULT NULL,
+	email varchar(90) DEFAULT NULL,
+    ativo boolean DEFAULT 1,
+	obs varchar(255) DEFAULT NULL,
+    FOREIGN KEY (id_usuario) REFERENCES tb_usuario(id),
+    FOREIGN KEY (id_clube) REFERENCES tb_clube(id),
+    PRIMARY KEY (id)
+) ENGINE=MyISAM AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;

@@ -5,10 +5,10 @@
 
 
     :root{
-        --top-bar : #98bbe4;
+        --top-bar : #8ff0a4f1;
         --top-bar-font : #000000FF;
-        --top-bar-hover : #3672cf;
-        --top-font-hover : #f6f5f4ff;
+        --top-bar-hover : #33d17af1;
+        --top-font-hover : #000000FF;
     
         --win-back : #f0fbe5f1;
         --win-font : #202c2aFF;

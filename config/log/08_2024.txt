@@ -114,3 +114,13 @@
 21/08/2024 04:11 admin@backhand.com.br : Inclusao de novo Perfil de usuario (PROFESSOR)
 21/08/2024 04:25 admin@backhand.com.br : Menu Incluido (Clubes)
 21/08/2024 04:29 admin@backhand.com.br : Menu Alterado (Clubes, adm_clube.html, pop-up, Clubes)
+21/08/2024 15:28 admin@backhand.com.br : CLUBE Cadastrado  -> Clube Recreativo Jequitiba
+21/08/2024 15:37 admin@backhand.com.br : CLUBE Editado Clube Recreativo Jequitiba -> Clube Recreativo Jequitiba
+21/08/2024 15:37 admin@backhand.com.br : Insercao de novo usuarios, email:undefined -> andre@teste.com.br, acesso:undefined -> 1
+21/08/2024 15:43 admin@backhand.com.br : Permissao alterada, Modulo: Sistema, Acesso:[[0,1]])
+21/08/2024 15:43 admin@backhand.com.br : Permissao alterada, Modulo: Cadastros, Acesso:[[0,1]])
+21/08/2024 15:43 admin@backhand.com.br : Permissao alterada, Modulo: Sistema, Acesso:[[0,1]])
+21/08/2024 15:43 admin@backhand.com.br : Permissao alterada, Modulo: Cadastros, Acesso:[[0,1]])
+21/08/2024 15:43 admin@backhand.com.br : Permissao alterada, Modulo: Cadastros, Acesso:[[0,1]])
+21/08/2024 15:43 admin@backhand.com.br : Permissao alterada, Modulo: Sistema, Acesso:[[0,1]])
+21/08/2024 15:44 andre@teste.com.br : CLUBE Cadastrado  -> Clube Recreativo Jequitiba
