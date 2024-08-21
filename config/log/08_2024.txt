@@ -112,3 +112,5 @@
 21/08/2024 04:06 admin@backhand.com.br : Menu Alterado (Alunos, adm_aluno.html, pop-up, Alunos)
 21/08/2024 04:07 admin@backhand.com.br : Menu Alterado (Aulas, adm_aulas.html, pop-up, Aulas)
 21/08/2024 04:11 admin@backhand.com.br : Inclusao de novo Perfil de usuario (PROFESSOR)
+21/08/2024 04:25 admin@backhand.com.br : Menu Incluido (Clubes)
+21/08/2024 04:29 admin@backhand.com.br : Menu Alterado (Clubes, adm_clube.html, pop-up, Clubes)
