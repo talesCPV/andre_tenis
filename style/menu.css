@@ -239,6 +239,7 @@ ul>li>label>span, #logout_btn {
 
     #sidebar{
         left: -82px;
+        border-radius: 0px 0 18px 0px;
     }
 
     #sidebar.open-sidebar{
@@ -246,8 +247,10 @@ ul>li>label>span, #logout_btn {
     }
 
     #open_btn{
-        top: 45px;
+        top: 0;
         right: -50px;
+        border-radius: 0 50% 50% 0;
+        background-color: var(--top-bar);
     }
 
 }

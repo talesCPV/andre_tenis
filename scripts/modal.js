@@ -60,7 +60,7 @@ function newModal(title, content, width, id){
 
     if(pages[upper_page.i] == undefined){
         upper_page.zIndex = mod_main.querySelectorAll('.modal-content').length +1          
-        upper_page.top = 15
+        upper_page.top = 50
     }else{
         upper_page.zIndex = parseInt(pages[upper_page.i].style.zIndex)+1
         upper_page.top = parseInt(pages[upper_page.i].style.top)+15

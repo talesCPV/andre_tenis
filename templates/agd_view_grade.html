@@ -29,7 +29,8 @@
 
         <div class="line">
             <button id="btnSave">Salvar</button>
-            <button id="btnDel">Limpar</button>
+            <button id="btnClear">Limpar</button>
+            <button id="btnCancel">Cancelar</button>
         </div>
 
 
@@ -46,16 +47,16 @@
 
     function setAula(obj,del=0){
         const params = new Object;
-            params.id_aluno = obj.id
+            params.id_aluno = obj.id_aluno
             params.id_aula = pageScreen.querySelector('#cmbTipos').value
             params.dia = pageData.day
             params.hora = pageData.time
             params.del = del
         const myPromisse = queryDB(params,'AGD-1');
-        myPromisse.then((resolve)=>{
+        return myPromisse.then((resolve)=>{
             setLog(`Aula ${del ? 'Deletada' : 'Cadastrada'} ${obj.nome} dia ${week[pageData.day]} as ${pageData.time.toString().padStart(2,0)}:00`)
             main_data.agd_grade.func.make_grid()
-            closeModal('agd_view_grade')
+//            closeModal('agd_view_grade')
         })
     }
 
@@ -100,6 +101,8 @@
             opt.innerHTML = data.nome
             opt.data = data
             pageScreen.querySelector('#cmbAluno').appendChild(opt)
+            data.id_aluno = data.id
+            setAula(data)
     }
 
     pageScreen.querySelector('#btnBuscaAluno').addEventListener('click',()=>{
@@ -109,17 +112,37 @@
 
     pageScreen.querySelector('#cmbAluno').addEventListener('dblclick',(e)=>{
         if(confirm(`Remover ${e.target.data.nome} desta aula?`)){
+            const obj = new Object(e.target.data)
+            setAula(obj,1)
             e.target.remove()
-            setAula(e.target.data,1)
+
         }
     })
 
     pageScreen.querySelector('#btnSave').addEventListener('click',()=>{
         const alunos = pageScreen.querySelector('#cmbAluno').options
-
         for(let i=0; i<alunos.length; i++){
             setAula(alunos[i].data)
+            .then((response)=>{
+                closeModal('agd_view_grade')
+            })
         }
+    })
+
+    pageScreen.querySelector('#btnClear').addEventListener('click',()=>{
+        if(confirm('Deseja remover todas as aulas neste horário?')){
+            const alunos = pageScreen.querySelector('#cmbAluno').options
+            for(let i=0; i<alunos.length; i++){
+                setAula(alunos[i].data,1)
+                .then((response)=>{
+                    closeModal('agd_view_grade')
+                })
+            }
+        }
+    })
+
+    pageScreen.querySelector('#btnCancel').addEventListener('click',()=>{
+        closeModal('agd_view_grade')
     })
 
     pageFunc.pageStart()

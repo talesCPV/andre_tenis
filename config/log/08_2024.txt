@@ -207,3 +207,55 @@
 22/08/2024 16:46 andre@teste.com.br : Aula Cadastrada Aluno Teste 2 dia Sex as 13:00
 22/08/2024 16:46 andre@teste.com.br : Aula Cadastrada Aluno Teste 2 dia Sex as 13:00
 22/08/2024 16:46 andre@teste.com.br : Aula Cadastrada Tales dia Sex as 13:00
+22/08/2024 20:45 andre@teste.com.br : Aula Deletada Tales dia Qua as 09:00
+22/08/2024 20:46 andre@teste.com.br : Aula Deletada Tales dia Qua as 09:00
+22/08/2024 20:49 andre@teste.com.br : Aula Cadastrada Tales dia Qua as 09:00
+22/08/2024 20:49 andre@teste.com.br : Aula Deletada Tales dia Qua as 09:00
+22/08/2024 20:51 andre@teste.com.br : Aula Deletada Tales dia Qua as 09:00
+22/08/2024 20:52 andre@teste.com.br : Aula Deletada Tales dia Qua as 09:00
+22/08/2024 20:52 andre@teste.com.br : Aula Deletada Tales dia Qua as 10:00
+22/08/2024 20:53 andre@teste.com.br : Aula Deletada Tales dia Qua as 09:00
+22/08/2024 20:53 andre@teste.com.br : Aula Deletada Tales dia Qua as 09:00
+22/08/2024 20:54 andre@teste.com.br : Aula Deletada Tales dia Qua as 09:00
+22/08/2024 20:54 andre@teste.com.br : Aula Cadastrada Tales dia Qua as 10:00
+22/08/2024 20:54 andre@teste.com.br : Aula Cadastrada Aluno Teste 2 dia Qua as 10:00
+22/08/2024 20:56 andre@teste.com.br : Aula Cadastrada Aluno Teste 2 dia Qua as 08:00
+22/08/2024 20:56 andre@teste.com.br : Aula Cadastrada Tales dia Qua as 13:00
+22/08/2024 20:56 andre@teste.com.br : Aula Cadastrada Tales dia Qua as 04:00
+22/08/2024 20:58 andre@teste.com.br : Aula Cadastrada Tales dia Qua as 09:00
+22/08/2024 20:58 andre@teste.com.br : Aula Cadastrada Aluno Teste 2 dia Qua as 09:00
+22/08/2024 20:58 andre@teste.com.br : Aula Cadastrada Tales dia Qua as 09:00
+22/08/2024 20:59 andre@teste.com.br : Aula Deletada Aluno Teste 2 dia Qua as 09:00
+22/08/2024 20:59 andre@teste.com.br : Aula Cadastrada Aluno Teste 2 dia Qua as 08:00
+22/08/2024 21:00 andre@teste.com.br : Aula Cadastrada Tales dia Qua as 09:00
+22/08/2024 21:02 andre@teste.com.br : Aula Deletada Aluno Teste 2 dia Qua as 08:00
+22/08/2024 21:02 andre@teste.com.br : Aula Deletada Aluno Teste 2 dia Sex as 13:00
+22/08/2024 21:02 andre@teste.com.br : Aula Deletada Tales dia Sex as 13:00
+22/08/2024 21:03 andre@teste.com.br : Aula Deletada Aluno Teste 2 dia Sex as 03:00
+22/08/2024 21:03 andre@teste.com.br : Aula Cadastrada Tales dia Ter as 06:00
+22/08/2024 21:05 andre@teste.com.br : Aula Cadastrada Aluno Teste 2 dia Sex as 12:00
+22/08/2024 21:05 andre@teste.com.br : Aula Cadastrada Aluno Teste 2 dia Sex as 12:00
+22/08/2024 21:06 andre@teste.com.br : Aula Cadastrada Aluno Teste 2 dia Qua as 11:00
+22/08/2024 21:06 andre@teste.com.br : Aula Cadastrada Tales dia Qua as 11:00
+22/08/2024 21:06 andre@teste.com.br : Aula Cadastrada Tales dia Qua as 11:00
+22/08/2024 21:06 andre@teste.com.br : Aula Cadastrada Aluno Teste 2 dia Qua as 11:00
+22/08/2024 21:08 andre@teste.com.br : Aula Cadastrada Tales dia Ter as 06:00
+22/08/2024 21:08 andre@teste.com.br : Aula Cadastrada Tales dia Ter as 06:00
+22/08/2024 21:11 andre@teste.com.br : Aula Cadastrada Tales dia Qua as 09:00
+22/08/2024 21:11 andre@teste.com.br : Aula Cadastrada Tales dia Qua as 10:00
+22/08/2024 21:11 andre@teste.com.br : Aula Cadastrada Tales dia Qua as 10:00
+22/08/2024 21:11 andre@teste.com.br : Aula Cadastrada Tales dia Qua as 10:00
+22/08/2024 21:13 andre@teste.com.br : Aula Cadastrada Tales dia Qua as 09:00
+22/08/2024 21:13 andre@teste.com.br : Aula Cadastrada Tales dia Qua as 09:00
+22/08/2024 21:13 andre@teste.com.br : Aula Cadastrada Tales dia Qua as 09:00
+22/08/2024 21:13 andre@teste.com.br : Aula Cadastrada Tales dia Qua as 09:00
+22/08/2024 21:17 andre@teste.com.br : Aula Cadastrada Aluno Teste 2 dia Qui as 14:00
+22/08/2024 21:17 andre@teste.com.br : Aula Cadastrada Aluno Teste 2 dia Sex as 08:00
+22/08/2024 21:17 andre@teste.com.br : Aula Cadastrada Tales dia Sex as 08:00
+22/08/2024 21:17 andre@teste.com.br : Aula Cadastrada Aluno Teste 2 dia Sex as 08:00
+22/08/2024 21:21 admin@backhand.com.br : Menu Incluido (Lancar Aula)
+22/08/2024 21:21 admin@backhand.com.br : Menu Alterado (Lancar Aula, agd_aula.html, pop-up, Lancar Aula)
+22/08/2024 21:27 admin@backhand.com.br : Menu Alterado (Lancar Aula, agd_aula.html, pop-up, Lancar Aula)
+22/08/2024 21:31 admin@backhand.com.br : Permissao alterada, Modulo: Sistema, Acesso:[[0]])
+22/08/2024 21:31 admin@backhand.com.br : Permissao alterada, Modulo: Cadastros, Acesso:[[0,1]])
+22/08/2024 21:31 admin@backhand.com.br : Permissao alterada, Modulo: Agenda, Acesso:[[0,1]])

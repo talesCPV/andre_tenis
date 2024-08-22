@@ -2,8 +2,9 @@
     <style>
 
         .cell{
-            min-width: 140px;
-            border-left: solid 1px;
+/*            min-width: 140px;*/
+            width: 15%;
+            border-left: solid 1px;            
         }
 
         th.cell, #edtCal{
@@ -36,6 +37,44 @@
         .c6{background-color: rgb(176, 56, 180);}
         .c7{background-color: rgb(255, 204, 127);}
         
+
+        @media all and (max-width : 768px) {
+
+            tr{
+                display: inline-flex;
+            }
+
+            .line-lgd {
+                margin-left: 10px;
+            }
+
+            .time{
+                width: 60px;
+            }
+
+            .cell{
+                width: 50px;
+                height: 50px;
+                min-width: 50px;
+                max-width: 50px;
+                overflow: hidden;
+                padding:0 ;
+            }
+
+            .mob-sqr{
+                display: block;
+                max-height: 50px;
+            }
+
+            .mob-sqr::before{
+                content: "";
+                width: 50px;
+                height: 50px;                
+                position: relative;
+                display: block;
+            }
+        }
+
     </style>
 
     <div class="legenda"></div>
@@ -57,7 +96,7 @@
         const myPromisse = queryDB({},'AGD-0')
         myPromisse.then((resolve)=>{
             const legenda = pageScreen.querySelector('.legenda')
-            legenda.innerHTML = ''
+            legenda.innerHTML = ''            
             pageData.clubes = []
             const json = JSON.parse(resolve)
             for(let i=0; i<json.length;i++){
@@ -69,19 +108,21 @@
                 if(cell != null){
                     cell.innerHTML = json[i].descricao
                     cell.data.push(json[i])
-                    cell.className = 'c'+pageData.clubes.indexOf(json[i].id_clube)
+                    cell.classList.add('c'+pageData.clubes.indexOf(json[i].id_clube))
+                    cell.classList.add('mob-sqr')
                 }
             }
         })
     }
 
     pageFunc.make_grid = ()=>{
-
+/*
         const day = new Date(today.getFormatDate()+' 00:00:00')
         while(day.getDay() > 0){
             day.change(-1)
         }
-
+*/
+        const week_day = ['','Seg','Ter','Qua','Qui','Sex','Sab','Dom']
         const week = pageScreen.querySelector('.week')
         week.innerHTML = ''
         for(let y=-1; y<24; y++){
@@ -90,8 +131,8 @@
 
             for(let x=0; x<8; x++){            
                 const cell = document.createElement(y>=0 & x>0 ? 'td' : 'th')
-                cell.innerHTML =  y>=0 ? (x==0 ? y.toString().padStart(2,0)+':00' : '') : (x>0 ?  day.getWeekDay() : '')
-                cell.className = x==0 ? '' : 'cell'
+                cell.innerHTML =  y>=0 ? (x==0 ? y.toString().padStart(2,0)+':00' : '') :  week_day[x] 
+                cell.className = x==0 ? 'time' : 'cell'
                 x>0 ? cell.id = `w-${x==7 ? 0 : x}-${y}` : null  
                 cell.data = []
                 cell.addEventListener('click',(e)=>{
@@ -104,7 +145,7 @@
                 })              
                 line.appendChild(cell)
 
-                day.change()
+//                day.change()
             }
             week.appendChild(line)
         }

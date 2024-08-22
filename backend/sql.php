@@ -35,7 +35,7 @@
 
         /*AGENDA*/
         "AGD-0" => 'CALL sp_view_agenda(@hash);',
-        "AGD-1" => 'CALL sp_set_agenda(@access,@hash,x00,x01,x02,x03,x04);',
+        "AGD-1" => 'CALL sp_set_agenda(@access,@hash,x00,x01,x02,x03,x04);', // id_aluno, id_aula, dia, hora, del
     );
 
 ?>
