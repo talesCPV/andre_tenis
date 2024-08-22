@@ -173,3 +173,37 @@
 22/08/2024 00:59 admin@backhand.com.br : Menu Alterado (Agenda, menu, pop-up, )
 22/08/2024 04:45 admin@backhand.com.br : Menu Deletado (Cadastros)
 22/08/2024 04:46 admin@backhand.com.br : Menu Alterado (Aulas, adm_valor.html, pop-up, Tipos de Aulas)
+22/08/2024 14:26 admin@backhand.com.br : Aluno Cadastrado  -> Aluno Teste 1
+22/08/2024 14:58 admin@backhand.com.br : Permissao alterada, Modulo: Sistema, Acesso:[[0]])
+22/08/2024 14:58 admin@backhand.com.br : Permissao alterada, Modulo: Cadastros, Acesso:[[0,1]])
+22/08/2024 14:58 admin@backhand.com.br : Permissao alterada, Modulo: Agenda, Acesso:[[0,1]])
+22/08/2024 14:58 andre@teste.com.br : Valor Aula Cadastrado  Quadra - 1 Aluno (Jeq) R$100
+22/08/2024 14:59 andre@teste.com.br : Valor Aula Cadastrado  Quadra - 2 Alunos R$60
+22/08/2024 14:59 andre@teste.com.br : Valor Aula Editado undefined -> Quadra - 2 Alunos (Jeq) R$60.00
+22/08/2024 14:59 andre@teste.com.br : Valor Aula Cadastrado  Beach - 1 Aluno R$60.00
+22/08/2024 15:00 andre@teste.com.br : Valor Aula Editado undefined -> Beach - 1 Aluno R$100
+22/08/2024 15:01 andre@teste.com.br : Aluno Cadastrado  -> Aluno Teste 2
+22/08/2024 15:17 andre@teste.com.br : Aula Cadastrada Tales dia Ter as 06:00
+22/08/2024 15:18 andre@teste.com.br : Aula Cadastrada Aluno Teste 2 dia Qui as 06:00
+22/08/2024 15:20 andre@teste.com.br : Aula Cadastrada Aluno Teste 2 dia Sex as 11:00
+22/08/2024 15:20 andre@teste.com.br : Aula Cadastrada Tales dia Sex as 11:00
+22/08/2024 15:23 andre@teste.com.br : Valor Aula Editado undefined -> Quadra - 1 Aluno R$100.00
+22/08/2024 15:23 andre@teste.com.br : Valor Aula Editado undefined -> Quadra - 2 Alunos R$60.00
+22/08/2024 15:24 andre@teste.com.br : Valor Aula Cadastrado  Quadra -  1 aluno R$90
+22/08/2024 15:24 andre@teste.com.br : Valor Aula Editado undefined -> Quadra -  1  Aluno R$90.00
+22/08/2024 15:30 andre@teste.com.br : Aula Cadastrada Tales dia Ter as 13:00
+22/08/2024 15:33 andre@teste.com.br : Aula Cadastrada Aluno Teste 2 dia Sab as 06:00
+22/08/2024 16:03 andre@teste.com.br : Aula Cadastrada Tales dia Ter as 06:00
+22/08/2024 16:13 andre@teste.com.br : Aula Cadastrada Aluno Teste 2 dia Sex as 03:00
+22/08/2024 16:14 andre@teste.com.br : Aula Cadastrada Aluno Teste 2 dia Qua as 13:00
+22/08/2024 16:18 andre@teste.com.br : Aula Cadastrada Tales dia Sex as 08:00
+22/08/2024 16:27 andre@teste.com.br : Aula Cadastrada Tales dia Qua as 09:00
+22/08/2024 16:28 andre@teste.com.br : Aula Cadastrada Tales dia Qua as 10:00
+22/08/2024 16:29 andre@teste.com.br : Valor Aula Editado undefined -> Beach - Simples R$100.00
+22/08/2024 16:29 andre@teste.com.br : Valor Aula Editado undefined -> Quadra -  Simples R$90.00
+22/08/2024 16:30 andre@teste.com.br : Valor Aula Editado undefined -> Quadra - Simples R$100.00
+22/08/2024 16:30 andre@teste.com.br : Valor Aula Editado undefined -> Quadra - Dupla R$60.00
+22/08/2024 16:45 andre@teste.com.br : Aula Cadastrada Tales dia Qua as 10:00
+22/08/2024 16:46 andre@teste.com.br : Aula Cadastrada Aluno Teste 2 dia Sex as 13:00
+22/08/2024 16:46 andre@teste.com.br : Aula Cadastrada Aluno Teste 2 dia Sex as 13:00
+22/08/2024 16:46 andre@teste.com.br : Aula Cadastrada Tales dia Sex as 13:00

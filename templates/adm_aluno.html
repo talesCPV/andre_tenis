@@ -30,6 +30,12 @@
     const pageFunc = main_data.adm_aluno.func
     const pageScreen = document.querySelector('#card-adm_aluno')
 
+    pageFunc.pageStart = ()=>{
+        if(main_data.hasOwnProperty(pageData.org)){
+            pageFunc.fillAluno()
+        }
+    }
+
     pageFunc.fillAluno = ()=>{      
         const tbl = pageScreen.querySelector('#tblAluno')
         tbl.innerHTML = ''
@@ -73,9 +79,10 @@
         }else{            
             data != undefined ? openHTML('adm_view_aluno.html','pop-up',`Edição de dados - ${data.nome.toUpperCase()}`,data) : null
         }
-            
-
 
     })
+
+
+    pageFunc.pageStart()
 
 </script>

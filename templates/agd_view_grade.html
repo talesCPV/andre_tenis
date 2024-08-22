@@ -44,10 +44,35 @@
     const pageScreen = document.querySelector('#card-agd_view_grade')
     const week = ['Dom','Seg','Ter','Qua','Qui','Sex','Sab']
 
+    function setAula(obj,del=0){
+        const params = new Object;
+            params.id_aluno = obj.id
+            params.id_aula = pageScreen.querySelector('#cmbTipos').value
+            params.dia = pageData.day
+            params.hora = pageData.time
+            params.del = del
+        const myPromisse = queryDB(params,'AGD-1');
+        myPromisse.then((resolve)=>{
+            setLog(`Aula ${del ? 'Deletada' : 'Cadastrada'} ${obj.nome} dia ${week[pageData.day]} as ${pageData.time.toString().padStart(2,0)}:00`)
+            main_data.agd_grade.func.make_grid()
+            closeModal('agd_view_grade')
+        })
+    }
+
     pageFunc.pageStart = ()=>{
         pageScreen.querySelector('#lgn').innerHTML = `${week[pageData.day]} as ${pageData.time.toString().padStart(2,0)}:00`
- 
-        pageFunc.fillValor()
+        pageFunc.fillValor().then((response)=>{
+            const alunos = pageScreen.querySelector('#cmbAluno')
+            alunos.innerHTML = ''
+            for(let i=0; i<pageData.aulas.length; i++){
+                pageScreen.querySelector('#cmbTipos').value = pageData.aulas[i].id_aula
+                const opt = document.createElement('option')
+                opt.value = pageData.aulas[i].id_aluno
+                opt.innerHTML = pageData.aulas[i].nome
+                opt.data = pageData.aulas[i]
+                alunos.appendChild(opt)
+            }
+        })
     }
 
     pageFunc.fillValor = ()=>{
@@ -56,12 +81,12 @@
         cmb.innerHTML = ''
 
         const myPromisse = queryDB({},'ADM-4');
-        myPromisse.then((resolve)=>{
+        return myPromisse.then((resolve)=>{
             const json = JSON.parse(resolve)
             for(let i=0; i<json.length;i++){               
                 const opt = document.createElement('option')
                 opt.value = json[i].id
-                opt.innerHTML = json[i].descricao
+                opt.innerHTML = json[i].descricao+' - '+json[i].clube
                 opt.selected = pageData.access == json[i].id
                 opt.data = json[i]
                 cmb.appendChild(opt)
@@ -70,7 +95,6 @@
     }
 
     pageFunc.buscaAluno = (data)=>{
-        console.log(data)
         const opt = document.createElement('option')
             opt.value = data.id
             opt.innerHTML = data.nome
@@ -83,6 +107,20 @@
         openHTML('adm_aluno.html','pop-up','Selecione o Aluno',{'org':'agd_view_grade'})
     })
 
+    pageScreen.querySelector('#cmbAluno').addEventListener('dblclick',(e)=>{
+        if(confirm(`Remover ${e.target.data.nome} desta aula?`)){
+            e.target.remove()
+            setAula(e.target.data,1)
+        }
+    })
+
+    pageScreen.querySelector('#btnSave').addEventListener('click',()=>{
+        const alunos = pageScreen.querySelector('#cmbAluno').options
+
+        for(let i=0; i<alunos.length; i++){
+            setAula(alunos[i].data)
+        }
+    })
 
     pageFunc.pageStart()
 

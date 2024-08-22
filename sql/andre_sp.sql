@@ -431,27 +431,27 @@ DELIMITER $$
 	END $$
 DELIMITER ;
 
-/* VALORES */
+/* TIPOS DE AULAS */
 
- DROP PROCEDURE IF EXISTS sp_view_valor;
+ DROP PROCEDURE IF EXISTS sp_view_aula;
 DELIMITER $$
-	CREATE PROCEDURE sp_view_valor(
+	CREATE PROCEDURE sp_view_aula(
 		IN Ihash varchar(64)
     )
 	BEGIN
 		SET @root = (SELECT IF(access=0,1,0) FROM tb_usuario WHERE hash COLLATE utf8_general_ci = Ihash COLLATE utf8_general_ci LIMIT 1);
 		IF(@root)THEN
-			SELECT * FROM vw_valor;
+			SELECT * FROM vw_aula;
 		ELSE
 			SET @id_call = (SELECT IFNULL(id,0) FROM tb_usuario WHERE hash COLLATE utf8_general_ci = Ihash COLLATE utf8_general_ci LIMIT 1);
-			SELECT * FROM vw_valor WHERE id_usuario = @id_call;
+			SELECT * FROM vw_aula WHERE id_usuario = @id_call;
 		END IF;
 	END $$
 	DELIMITER ;
 
- DROP PROCEDURE IF EXISTS sp_set_valor;
+ DROP PROCEDURE IF EXISTS sp_set_aula;
 DELIMITER $$
-	CREATE PROCEDURE sp_set_valor(	
+	CREATE PROCEDURE sp_set_aula(	
 		IN Iallow varchar(80),
 		IN Ihash varchar(64),
         IN Iid int(11),
@@ -466,14 +466,14 @@ DELIMITER $$
 			SET @id_call = (SELECT IFNULL(id,0) FROM tb_usuario WHERE hash COLLATE utf8_general_ci = Ihash COLLATE utf8_general_ci LIMIT 1);
 			IF(@id_call >0)THEN
 				IF(Iid=0)THEN
-					INSERT INTO tb_valor (id_usuario,id_clube,descricao,valor,obs) 
+					INSERT INTO tb_aula (id_usuario,id_clube,descricao,valor,obs) 
                     VALUES (@id_call,Iid_clube,Idesc,Ivalor,Iobs);
 				ELSE
 					IF(Idesc = "")THEN
-						DELETE FROM tb_valor 
+						DELETE FROM tb_aula 
                         WHERE id=Iid;
                     ELSE
-						UPDATE tb_valor SET descricao=Idesc,valor=Ivalor,obs=Iobs,id_clube=Iid_clube
+						UPDATE tb_aula SET descricao=Idesc,valor=Ivalor,obs=Iobs,id_clube=Iid_clube
                         WHERE id=Iid; 
                     END IF;
                 END IF;
@@ -484,13 +484,24 @@ DELIMITER ;
 
 /* AGENDA */
 
+ DROP PROCEDURE IF EXISTS sp_view_agenda;
+DELIMITER $$
+	CREATE PROCEDURE sp_view_agenda(
+		IN Ihash varchar(64)
+    )
+	BEGIN
+		SET @id_call = (SELECT IFNULL(id,0) FROM tb_usuario WHERE hash COLLATE utf8_general_ci = Ihash COLLATE utf8_general_ci LIMIT 1);
+		SELECT * FROM vw_agenda WHERE id_usuario = @id_call;
+	END $$
+	DELIMITER ;
+
  DROP PROCEDURE IF EXISTS sp_set_agenda;
 DELIMITER $$
 	CREATE PROCEDURE sp_set_agenda(	
 		IN Iallow varchar(80),
 		IN Ihash varchar(64),
         IN Iid_aluno int(11),
-		IN Iid_valor int(11),
+		IN Iid_aula int(11),
 		IN Idia int,
 		IN Ihora int,
         IN del bool
@@ -504,9 +515,9 @@ DELIMITER $$
 					DELETE FROM tb_agenda 
 					WHERE id_usuario=@id_call AND id_aluno=Iid_aluno AND dia=Idia AND hora=Ihora;
 				ELSE
-					INSERT INTO tb_agenda (id_usuario,id_aluno,id_valor,dia,hora) 
-                    VALUES (@id_call,Iid_aluno,Iid_valor,Idia,Ihora)
-                    ON DUPLICATE KEY UPDATE id_valor = Iid_valor;
+					INSERT INTO tb_agenda (id_usuario,id_aluno,id_aula,dia,hora) 
+                    VALUES (@id_call,Iid_aluno,Iid_aula,Idia,Ihora)
+                    ON DUPLICATE KEY UPDATE id_aula = Iid_aula;
                 END IF;
 			END IF;
 		END IF;

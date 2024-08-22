@@ -81,7 +81,7 @@
             for(let i=0; i<json.length;i++){               
                 const opt = document.createElement('option')
                 opt.value = json[i].id
-                opt.innerHTML = json[i].descricao
+                opt.innerHTML = json[i].descricao+' | '+json[i].clube
                 opt.selected = pageData.access == json[i].id
                 opt.data = json[i]
                 cmb.appendChild(opt)

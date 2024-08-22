@@ -20,14 +20,29 @@ SELECT * FROM vw_clube;
     
 SELECT * FROM vw_aluno;
 
-  DROP VIEW IF EXISTS vw_valor;
- CREATE VIEW vw_valor AS
-	SELECT USR.nome AS prof, CLB.nome AS clube, VLR.*
-	FROM tb_valor AS VLR
+  DROP VIEW IF EXISTS vw_aula;
+ CREATE VIEW vw_aula AS
+	SELECT USR.nome AS prof, CLB.nome AS clube, AUL.*
+	FROM tb_aula AS AUL
     INNER JOIN tb_usuario AS USR
     INNER JOIN tb_clube AS CLB
-    ON VLR.id_usuario = USR.id
-    AND VLR.id_clube = CLB.id
-    ORDER BY VLR.descricao;
+    ON AUL.id_usuario = USR.id
+    AND AUL.id_clube = CLB.id
+    ORDER BY AUL.descricao;
     
-SELECT * FROM vw_valor;
+SELECT * FROM vw_aula;
+
+	DROP VIEW IF EXISTS vw_agenda;
+ 	CREATE VIEW vw_agenda AS
+		SELECT AGD.*, ALN.nome, AUL.descricao, CLB.nome AS clube,
+        CLB.id AS id_clube, CONCAT("w-",AGD.dia,"-",AGD.hora) AS id_call
+		FROM tb_agenda AS AGD
+		INNER JOIN tb_aluno AS ALN
+		INNER JOIN tb_aula AS AUL
+		INNER JOIN tb_clube AS CLB
+		ON AGD.id_aluno = ALN.id
+		AND AGD.id_aula = AUL.id
+		AND AUL.id_clube = CLB.id
+		ORDER BY AGD.hora,AGD.dia;
+        
+SELECT * FROM vw_agenda;        
