@@ -481,3 +481,34 @@ DELIMITER $$
 		END IF;
 	END $$
 DELIMITER ;
+
+/* AGENDA */
+
+ DROP PROCEDURE IF EXISTS sp_set_agenda;
+DELIMITER $$
+	CREATE PROCEDURE sp_set_agenda(	
+		IN Iallow varchar(80),
+		IN Ihash varchar(64),
+        IN Iid_aluno int(11),
+		IN Iid_valor int(11),
+		IN Idia int,
+		IN Ihora int,
+        IN del bool
+    )
+	BEGIN    
+		CALL sp_allow(Iallow,Ihash);
+		IF(@allow)THEN
+			SET @id_call = (SELECT IFNULL(id,0) FROM tb_usuario WHERE hash COLLATE utf8_general_ci = Ihash COLLATE utf8_general_ci LIMIT 1);
+			IF(@id_call >0)THEN
+				IF(del)THEN
+					DELETE FROM tb_agenda 
+					WHERE id_usuario=@id_call AND id_aluno=Iid_aluno AND dia=Idia AND hora=Ihora;
+				ELSE
+					INSERT INTO tb_agenda (id_usuario,id_aluno,id_valor,dia,hora) 
+                    VALUES (@id_call,Iid_aluno,Iid_valor,Idia,Ihora)
+                    ON DUPLICATE KEY UPDATE id_valor = Iid_valor;
+                END IF;
+			END IF;
+		END IF;
+	END $$
+DELIMITER ;

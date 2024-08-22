@@ -53,6 +53,8 @@
         width: 100%;
         padding: 10px;
         gap: 10px;
+        justify-content: center;
+        align-items: center;
       }
 
       .edtbtn *{
@@ -154,6 +156,7 @@
         max-width: 60px;
         line-height: 1em;
         padding-top: 8px;
+        text-align: center;
     }
 
 /* BADGES */

@@ -94,3 +94,16 @@ CREATE TABLE tb_valor (
     FOREIGN KEY (id_clube) REFERENCES tb_clube(id),
     PRIMARY KEY (id)
 ) ENGINE=MyISAM AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
+
+ DROP TABLE IF EXISTS tb_agenda;
+CREATE TABLE tb_agenda (
+    id_usuario int(11) NOT NULL,
+    id_aluno int(11) NOT NULL,
+    id_valor int(11),
+    dia int NOT NULL,
+    hora int NOT NULL,
+    FOREIGN KEY (id_usuario) REFERENCES tb_usuario(id),
+    FOREIGN KEY (id_aluno) REFERENCES tb_aluno(id),
+    FOREIGN KEY (id_valor) REFERENCES tb_valor(id),
+    PRIMARY KEY (id_usuario,id_aluno,dia,hora)
+) ENGINE=MyISAM AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;

@@ -167,3 +167,9 @@
 21/08/2024 21:37 admin@backhand.com.br : Permissao alterada, Modulo: Cadastros, Acesso:[[0,1]])
 21/08/2024 21:39 andre@teste.com.br : Valor Aula Cadastrado  Quadra - Aula SImples R$100
 21/08/2024 21:40 andre@teste.com.br : Valor Aula Cadastrado  Quadra - Dupla R$80.00
+22/08/2024 00:57 admin@backhand.com.br : Menu Incluido (Agenda)
+22/08/2024 00:57 admin@backhand.com.br : Menu Incluido (Grade Semanal)
+22/08/2024 00:58 admin@backhand.com.br : Menu Alterado (Grade Semanal, agd_grade.html, pop-up, Grade Semanal)
+22/08/2024 00:59 admin@backhand.com.br : Menu Alterado (Agenda, menu, pop-up, )
+22/08/2024 04:45 admin@backhand.com.br : Menu Deletado (Cadastros)
+22/08/2024 04:46 admin@backhand.com.br : Menu Alterado (Aulas, adm_valor.html, pop-up, Tipos de Aulas)

@@ -1,0 +1,89 @@
+<template>
+    <style>
+
+
+
+        @media all and (max-width : 768px) {
+
+        }
+
+    </style>
+  
+    <fieldset>
+        <legend id="lgn"></legend>
+
+
+        <fieldset>
+            <legend>Tipo de Aula</legend>
+            <select id="cmbTipos"></select>
+        </fieldset>
+
+        <fieldset>
+            <legend>Alunos</legend>
+            <div class="edtbtn">
+                <select id="cmbAluno" size="4"></select>
+                <button id="btnBuscaAluno" class="only-view btn-round"><span class="mdi mdi-magnify"></span></button>
+            </div>
+            
+        </fieldset>
+
+        <div class="line">
+            <button id="btnSave">Salvar</button>
+            <button id="btnDel">Limpar</button>
+        </div>
+
+
+    </fieldset>
+
+
+</template>
+<script>
+
+    const pageData = main_data.agd_view_grade.data
+    const pageFunc = main_data.agd_view_grade.func
+    const pageScreen = document.querySelector('#card-agd_view_grade')
+    const week = ['Dom','Seg','Ter','Qua','Qui','Sex','Sab']
+
+    pageFunc.pageStart = ()=>{
+        pageScreen.querySelector('#lgn').innerHTML = `${week[pageData.day]} as ${pageData.time.toString().padStart(2,0)}:00`
+ 
+        pageFunc.fillValor()
+    }
+
+    pageFunc.fillValor = ()=>{
+
+        const cmb = pageScreen.querySelector('#cmbTipos')
+        cmb.innerHTML = ''
+
+        const myPromisse = queryDB({},'ADM-4');
+        myPromisse.then((resolve)=>{
+            const json = JSON.parse(resolve)
+            for(let i=0; i<json.length;i++){               
+                const opt = document.createElement('option')
+                opt.value = json[i].id
+                opt.innerHTML = json[i].descricao
+                opt.selected = pageData.access == json[i].id
+                opt.data = json[i]
+                cmb.appendChild(opt)
+            }
+        });
+    }
+
+    pageFunc.buscaAluno = (data)=>{
+        console.log(data)
+        const opt = document.createElement('option')
+            opt.value = data.id
+            opt.innerHTML = data.nome
+            opt.data = data
+            pageScreen.querySelector('#cmbAluno').appendChild(opt)
+    }
+
+    pageScreen.querySelector('#btnBuscaAluno').addEventListener('click',()=>{
+        closeModal('adm_aluno')
+        openHTML('adm_aluno.html','pop-up','Selecione o Aluno',{'org':'agd_view_grade'})
+    })
+
+
+    pageFunc.pageStart()
+
+</script>

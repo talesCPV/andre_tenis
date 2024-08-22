@@ -67,7 +67,15 @@
 
     pageScreen.querySelector('#tblAluno').addEventListener('click',(e)=>{
         data = e.target.parentNode.data
-        data != undefined ? openHTML('adm_view_aluno.html','pop-up',`Edição de dados - ${data.nome.toUpperCase()}`,data) : null
+        if(main_data.hasOwnProperty(pageData.org)){
+            data != undefined ?  main_data[pageData.org].func.buscaAluno(data) : null   
+            closeModal('adm_aluno')            
+        }else{            
+            data != undefined ? openHTML('adm_view_aluno.html','pop-up',`Edição de dados - ${data.nome.toUpperCase()}`,data) : null
+        }
+            
+
+
     })
 
 </script>

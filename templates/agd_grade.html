@@ -1,0 +1,70 @@
+<template>
+    <style>
+
+        .cell{
+            min-width: 140px;
+            border-left: solid 1px;
+        }
+
+        th.cell, #edtCal{
+            text-align: center;
+        }
+     
+        td.cell:hover{
+            background-color: yellowgreen;
+            color: black;
+        }
+
+    </style>
+    <div class="week"></div>
+
+
+</template>
+<script>
+
+    const pageData = main_data.agd_grade.data
+    const pageFunc = main_data.agd_grade.func
+    const pageScreen = document.querySelector('#card-agd_grade')
+
+    pageFunc.pageStart = ()=>{
+        make_grid()
+    }
+
+    function make_grid(){
+        const day = new Date(today.getFormatDate()+' 00:00:00')
+        while(day.getDay() > 0){
+            day.change(-1)
+        }
+
+        const week = pageScreen.querySelector('.week')
+        week.innerHTML = ''
+        for(let y=-1; y<24; y++){
+            const line = document.createElement('tr')
+            const head = y==0 ? document.createElement('tr') : null
+
+            for(let x=0; x<8; x++){            
+                const cell = document.createElement(y>=0 & x>0 ? 'td' : 'th')
+                cell.innerHTML =  y>=0 ? (x==0 ? y.toString().padStart(2,0)+':00' : '') : (x>0 ?  day.getWeekDay() : '')
+                cell.className = x==0 ? '' : 'cell'
+                x>0 ? cell.id = `w-${x==7 ? 0 : x}_${y.toString().padStart(2,0)}` : null  
+                cell.addEventListener('click',(e)=>{
+                    const obj = new Object
+                    obj.day = Number(e.target.id.substr(2,1))
+                    obj.time = Number(e.target.id.substr(4,2))
+                    closeModal('agd_view_grade')
+                    openHTML('agd_view_grade.html','pop-up','Edição de Agenda',obj,600)
+                })              
+                line.appendChild(cell)
+
+                day.change()
+            }
+            week.appendChild(line)
+        }
+    }
+
+
+
+
+    pageFunc.pageStart()
+
+</script>
