@@ -45,4 +45,13 @@ SELECT * FROM vw_aula;
 		AND AUL.id_clube = CLB.id
 		ORDER BY AGD.hora,AGD.dia;
         
-SELECT * FROM vw_agenda;        
+SELECT * FROM vw_agenda;
+
+	DROP VIEW IF EXISTS vw_agenda_dia;
+ 	CREATE VIEW vw_agenda_dia AS
+		SELECT id_usuario,dia, GROUP_CONCAT(DISTINCT CONCAT(hora,"|",id_aluno,"|",nome,"|",id_aula,"|", descricao,"|",id_clube,"|",clube) SEPARATOR "*#*") AS aulas  
+		FROM vw_agenda
+		GROUP BY dia
+		ORDER BY dia,hora;
+        
+SELECT * FROM vw_agenda_dia;        

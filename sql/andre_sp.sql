@@ -523,3 +523,14 @@ DELIMITER $$
 		END IF;
 	END $$
 DELIMITER ;
+
+ DROP PROCEDURE IF EXISTS sp_view_agenda_dia;
+DELIMITER $$
+	CREATE PROCEDURE sp_view_agenda_dia(
+		IN Ihash varchar(64)
+    )
+	BEGIN
+		SET @id_call = (SELECT IFNULL(id,0) FROM tb_usuario WHERE hash COLLATE utf8_general_ci = Ihash COLLATE utf8_general_ci LIMIT 1);
+		SELECT * FROM vw_agenda_dia WHERE id_usuario = @id_call;
+	END $$
+	DELIMITER ;

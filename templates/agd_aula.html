@@ -10,6 +10,10 @@
             border-left: solid 1px;
         }
 
+        .has_class{
+            background-color: rgb(223, 140, 140);
+        }
+
         th.cell, #edtCal{
             text-align: center;
         }
@@ -36,28 +40,63 @@
 
     pageFunc.pageStart = ()=>{
         pageScreen.querySelector('#edtCal').value = today.getFormatDate()
-        make_grid()
+        const myPromisse = queryDB({},'AGD-2')
+            myPromisse.then((resolve)=>{
+                const agd = JSON.parse(resolve)
+                pageData.agenda = []
+                for(let i=0; i<7; i++){
+                    const obj = new Object
+                    obj.dia = i//agd[i].dia
+                    obj.aulas = []
+                    try{
+                        const index =  agd.findIndex(x => x.dia ===i.toString());
+                        if(index>=0){
+                            const aulas = agd[index].aulas.split('*#*')
+                            for(let j=0; j<aulas.length; j++){
+                                const aula = aulas[j].split('|')
+                                const aluno = new Object
+                                aluno.hora = aula[0].padStart(2,0)+':00'
+                                aluno.id_aluno = aula[1]
+                                aluno.aluno = aula[2]
+                                aluno.id_aula = aula[3]
+                                aluno.aula = aula[4]
+                                aluno.id_clube = aula[5]
+                                aluno.clube = aula[6]
+                                
+                                obj.aulas.push(aluno)
+                            }   
+                        }
+                    }catch{console.error('Dia Inexistente')}
+                    pageData.agenda.push(obj)
+                }
+                make_grid()
+            })
+
     }
 
     function make_grid(){
         const day = new Date(pageScreen.querySelector('#edtCal').value+' 00:00:00')
-
         const week = pageScreen.querySelector('.day')
         week.innerHTML = ''
+
         for(let y=-2; y<24; y++){
             const line = document.createElement('tr')
             const head = y==0 ? document.createElement('tr') : null
+            const hora = y.toString().padStart(2,0)+':00'
+            const aulas = pageData.agenda[day.getDay()].aulas.filter(x => x.hora === hora)
             for(let x=0; x<2; x++){            
                 const cell = document.createElement(y>=0 & x>0 ? 'td' : 'th')
-                cell.innerHTML =  y>=0 ? (x==0 ? y.toString().padStart(2,0)+':00' : '') : (x>0 ? (y==-2 ? day.getWeekDay() : day.getFormatBR()) : '')
-                cell.className = x==0 ? 'time' : 'cell'
+                cell.innerHTML =  y>=0 ? (x==0 ? hora : (aulas.length>0 ? aulas[0].aula : '')) : (x>0 ? (y==-2 ? day.getWeekDay() : day.getFormatBR()) : '')
+                cell.className = `${x==0 ? 'time' : 'cell'} ${aulas.length>0 ? 'has_class' : ''}`
+                cell.aulas = aulas
                 x>0 ? cell.id = `d-${day.getFormatDate()}_${y.toString().padStart(2,0)}:00` : null  
                 cell.addEventListener('click',(e)=>{
-                    const day = e.target.id.substr(2,10)
-                    const time = e.target.id.substr(13,5)
+                    openHTML('agd_view_aula.html','pop-up','Confirmar Presença',e.target.aulas,800)
+//console.log(e.target.aulas)
+                })
 
-                    console.log(day,time)
-                })              
+
+
                 line.appendChild(cell)
             }
             week.appendChild(line)

@@ -259,3 +259,5 @@
 22/08/2024 21:31 admin@backhand.com.br : Permissao alterada, Modulo: Sistema, Acesso:[[0]])
 22/08/2024 21:31 admin@backhand.com.br : Permissao alterada, Modulo: Cadastros, Acesso:[[0,1]])
 22/08/2024 21:31 admin@backhand.com.br : Permissao alterada, Modulo: Agenda, Acesso:[[0,1]])
+23/08/2024 15:08 andre@teste.com.br : Aula Cadastrada Tales dia Dom as 02:00
+23/08/2024 15:08 andre@teste.com.br : Aula Deletada Aluno Teste 2 dia Qui as 14:00
