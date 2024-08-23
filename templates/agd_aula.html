@@ -11,7 +11,7 @@
         }
 
         .has_class{
-            background-color: rgb(223, 140, 140);
+            background-color: #dba3a3 !important;
         }
 
         th.cell, #edtCal{
@@ -37,11 +37,11 @@
     const pageData = main_data.agd_aula.data
     const pageFunc = main_data.agd_aula.func
     const pageScreen = document.querySelector('#card-agd_aula')
+    pageData.agenda = []
 
-    pageFunc.pageStart = ()=>{
-        pageScreen.querySelector('#edtCal').value = today.getFormatDate()
+    function getAgenda(){
         const myPromisse = queryDB({},'AGD-2')
-            myPromisse.then((resolve)=>{
+        return myPromisse.then((resolve)=>{
                 const agd = JSON.parse(resolve)
                 pageData.agenda = []
                 for(let i=0; i<7; i++){
@@ -69,13 +69,37 @@
                     }catch{console.error('Dia Inexistente')}
                     pageData.agenda.push(obj)
                 }
-                make_grid()
             })
+    }
+
+    pageFunc.fillAgenda = ()=>{
+        const aula = pageData.agenda[pageData.dia].aulas
+        for(let i=0; i<aula.length; i++){
+
+            try{
+                const row = document.querySelector('#row-'+aula[i].hora.substr(0,2))
+                const cell = document.querySelector('#cell-'+aula[i].hora.substr(0,2))
+                row.classList.add('has_class')
+                row.data = aula.filter(x => x.hora === aula[i].hora)
+                cell.innerHTML = aula[i].aula
+            }catch{console.error('error')}
+
+        }
+    }
+
+    pageFunc.pageStart = ()=>{
+        pageScreen.querySelector('#edtCal').value = today.getFormatDate()
+        make_grid()
+        getAgenda().then(()=>{
+            pageFunc.fillAgenda()
+        })
 
     }
 
     function make_grid(){
         const day = new Date(pageScreen.querySelector('#edtCal').value+' 00:00:00')
+        pageData.dia = day.getDay()
+        pageData.f_dia = day.getFormatDate()
         const week = pageScreen.querySelector('.day')
         week.innerHTML = ''
 
@@ -83,16 +107,21 @@
             const line = document.createElement('tr')
             const head = y==0 ? document.createElement('tr') : null
             const hora = y.toString().padStart(2,0)+':00'
-            const aulas = pageData.agenda[day.getDay()].aulas.filter(x => x.hora === hora)
+            line.id = 'row-'+hora.substr(0,2)
+            line.data = []
+
+//            const aulas = pageData.agenda[day.getDay()].aulas.filter(x => x.hora === hora)
             for(let x=0; x<2; x++){            
                 const cell = document.createElement(y>=0 & x>0 ? 'td' : 'th')
-                cell.innerHTML =  y>=0 ? (x==0 ? hora : (aulas.length>0 ? aulas[0].aula : '')) : (x>0 ? (y==-2 ? day.getWeekDay() : day.getFormatBR()) : '')
-                cell.className = `${x==0 ? 'time' : 'cell'} ${aulas.length>0 ? 'has_class' : ''}`
-                cell.aulas = aulas
-                x>0 ? cell.id = `d-${day.getFormatDate()}_${y.toString().padStart(2,0)}:00` : null  
+                cell.innerHTML =  y>=0 ? (x==0 ? hora : '') : (x>0 ? (y==-2 ? day.getWeekDay() : day.getFormatBR()) : '')
+                cell.className = x==0 ? 'time' : 'cell'                
+                x>0 ? cell.id = `cell-${hora.substr(0,2)}` : null  
                 cell.addEventListener('click',(e)=>{
-                    openHTML('agd_view_aula.html','pop-up','Confirmar Presença',e.target.aulas,800)
-//console.log(e.target.aulas)
+                    const data = new Object
+                    data.dia = pageData.dia
+                    data.date = pageData.f_dia
+                    data.alunos = e.target.parentNode.data
+                    openHTML('agd_view_aula.html','pop-up','Confirmar Presença',data,800)
                 })
 
 
@@ -105,6 +134,7 @@
 
     pageScreen.querySelector('#edtCal').addEventListener('change',()=>{
         make_grid()
+        pageFunc.fillAgenda()
     })
 
 

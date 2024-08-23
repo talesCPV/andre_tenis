@@ -45,6 +45,9 @@
     const pageScreen = document.querySelector('#card-agd_view_aula')
     const week = ['Dom','Seg','Ter','Qua','Qui','Sex','Sab']
 
+    console.log(pageData) 
+
+
 /*    
     function setAula(obj,del=0){
         const params = new Object;
@@ -68,9 +71,8 @@
         .then((response)=>{
             const alunos = pageScreen.querySelector('#cmbAluno')
             alunos.innerHTML = ''
-            for(let i=0; i<pageData.length; i++){
-                console.log(pageData[i])
-                pageScreen.querySelector('#cmbTipos').value = pageData[i].id_aula
+            for(let i=0; i<pageData.alunos.length; i++){
+                pageScreen.querySelector('#cmbTipos').value = pageData.alunos[i].id_aula
             }
 
 /*            
