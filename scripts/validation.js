@@ -40,7 +40,7 @@ function checkRepass(fields){
     return true
 }
 
-function valInt(edt){
+function valInt(edt){    
     edt.value = getNum(edt.value)
 }
 
@@ -347,7 +347,8 @@ function horario(edt){
     edt.value = out;
 }
 
-function phone(param){ 
+function phone(param){
+    param.inputMode = 'decimal'
     param.value = getFone(param.value)
 }
 

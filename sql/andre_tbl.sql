@@ -77,6 +77,7 @@ CREATE TABLE tb_aluno (
 	email varchar(90) DEFAULT NULL,
     ativo boolean DEFAULT 1,
 	obs varchar(255) DEFAULT NULL,
+    UNIQUE (id_usuario,nome),
     FOREIGN KEY (id_usuario) REFERENCES tb_usuario(id),
     FOREIGN KEY (id_clube) REFERENCES tb_clube(id),
     PRIMARY KEY (id)
@@ -106,4 +107,18 @@ CREATE TABLE tb_agenda (
     FOREIGN KEY (id_aluno) REFERENCES tb_aluno(id),
     FOREIGN KEY (id_aula) REFERENCES tb_aula(id),
     PRIMARY KEY (id_usuario,id_aluno,dia,hora)
+) ENGINE=MyISAM AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
+
+ DROP TABLE IF EXISTS tb_aula_dada;
+CREATE TABLE tb_aula_dada (
+    id_usuario int(11) NOT NULL,
+    id_aluno int(11) NOT NULL,
+    id_aula int(11),
+    data_hora datetime NOT NULL,
+    valor double NOT NULL DEFAULT 0,
+    pg boolean DEFAULT 0,
+    FOREIGN KEY (id_usuario) REFERENCES tb_usuario(id),
+    FOREIGN KEY (id_aluno) REFERENCES tb_aluno(id),
+    FOREIGN KEY (id_aula) REFERENCES tb_aula(id),
+    PRIMARY KEY (id_usuario,id_aluno,data_hora)
 ) ENGINE=MyISAM AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;

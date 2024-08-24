@@ -261,3 +261,10 @@
 22/08/2024 21:31 admin@backhand.com.br : Permissao alterada, Modulo: Agenda, Acesso:[[0,1]])
 23/08/2024 15:08 andre@teste.com.br : Aula Cadastrada Tales dia Dom as 02:00
 23/08/2024 15:08 andre@teste.com.br : Aula Deletada Aluno Teste 2 dia Qui as 14:00
+23/08/2024 22:02 andre@teste.com.br : Aluno Deletado Andre Torres -> 
+23/08/2024 22:04 andre@teste.com.br : Aula Cadastrada Andre Torres dia Seg as 08:00
+24/08/2024 06:45 andre@teste.com.br : Aula Efetuada Tales dia 23/08/2024 as 08:00
+24/08/2024 06:45 andre@teste.com.br : Aula Efetuada Aluno Teste 2 dia 23/08/2024 as 08:00
+24/08/2024 06:45 andre@teste.com.br : Aula Efetuada Andre Torres dia 23/08/2024 as 08:00
+24/08/2024 06:47 andre@teste.com.br : Aula Efetuada Aluno Teste 2 dia 23/08/2024 as 12:00
+24/08/2024 06:47 andre@teste.com.br : Aula Efetuada Aluno Teste 2 dia 23/08/2024 as 12:00

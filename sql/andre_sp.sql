@@ -504,7 +504,7 @@ DELIMITER $$
 		IN Iid_aula int(11),
 		IN Idia int,
 		IN Ihora int,
-        IN del bool
+        IN del boolean
     )
 	BEGIN    
 		CALL sp_allow(Iallow,Ihash);
@@ -534,3 +534,33 @@ DELIMITER $$
 		SELECT * FROM vw_agenda_dia WHERE id_usuario = @id_call;
 	END $$
 	DELIMITER ;
+    
+ DROP PROCEDURE IF EXISTS sp_set_aula_dada;
+DELIMITER $$
+	CREATE PROCEDURE sp_set_aula_dada(	
+		IN Iallow varchar(80),
+		IN Ihash varchar(64),
+        IN Iid_aluno int(11),
+		IN Iid_aula int(11),
+		IN Idata_hora datetime,
+		IN Ivalor double,
+        IN Ipg boolean,
+        IN del boolean
+    )
+	BEGIN    
+		CALL sp_allow(Iallow,Ihash);
+		IF(@allow)THEN
+			SET @id_call = (SELECT IFNULL(id,0) FROM tb_usuario WHERE hash COLLATE utf8_general_ci = Ihash COLLATE utf8_general_ci LIMIT 1);
+			IF(@id_call >0)THEN
+				IF(del)THEN
+					DELETE FROM tb_aula_dada 
+					WHERE id_usuario=@id_call AND id_aluno=Iid_aluno AND data_hora=Idata_hora;
+				ELSE
+					INSERT INTO tb_aula_dada (id_usuario,id_aluno,id_aula,data_hora,valor) 
+                    VALUES (@id_call,Iid_aluno,Iid_aula,Idata_hora,Ivalor)
+                    ON DUPLICATE KEY UPDATE id_aula = Iid_aula, valor=Ivalor, pg=Ipg;
+                END IF;
+			END IF;
+		END IF;
+	END $$
+DELIMITER ;    

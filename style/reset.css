@@ -76,6 +76,7 @@
     fieldset{
         border-radius: 10px;
         margin: 10px;
+        border: solid 1px #c4c2c2;
     }
 
     legend{
