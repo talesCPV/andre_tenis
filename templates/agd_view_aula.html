@@ -95,7 +95,9 @@
             btn.innerHTML = '<span class="mdi mdi-eraser"></span>'
             btn.addEventListener('click',(e)=>{
                 if(confirm('Remover este aluno desta aula?')){
+                    const aula = e.target.parentNode.parentNode.parentNode.data
                     e.target.parentNode.parentNode.parentNode.remove()
+                     setAula(aula,1)                    
                 }
             })
             edt_btn.appendChild(btn)
@@ -112,6 +114,7 @@
             const alunos = pageScreen.querySelector('.row-aluno')
             alunos.innerHTML = ''
             for(let i=0; i<pageData.alunos.length; i++){
+                pageScreen.querySelector('#cmbTipos').value = pageData.alunos[i].id_aula
                 addRow(pageData.alunos[i])
             }
         })
@@ -129,7 +132,6 @@
                 const opt = document.createElement('option')
                 opt.value = json[i].id
                 opt.innerHTML = json[i].descricao+' - '+json[i].clube
-                opt.selected = pageData.access == json[i].id
                 opt.data = json[i]
                 cmb.appendChild(opt)
             }

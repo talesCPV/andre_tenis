@@ -48,7 +48,8 @@
         return myPromisse.then((resolve)=>{
             pageData.aulas = JSON.parse(resolve)
             for(let i=0; i<pageData.aulas.length; i++){
-                const line =  pageScreen.querySelector('#row-'+pageData.aulas[i].day_time.padStart(2,0)) 
+                const line =  pageScreen.querySelector('#row-'+pageData.aulas[i].hora.padStart(2,0))
+                line.data = pageData.aulas.filter(x => x.hora === pageData.aulas[i].hora)        
                 line.querySelector('td').innerHTML = pageData.aulas[i].aula
                 line.classList.add('have_class')
             }
@@ -62,7 +63,7 @@
                 pageData.agenda = []
                 for(let i=0; i<7; i++){
                     const obj = new Object
-                    obj.dia = i//agd[i].dia
+                    obj.dia = i
                     obj.aulas = []
                     try{
                         const index =  agd.findIndex(x => x.dia ===i.toString());
@@ -125,7 +126,6 @@
             line.id = 'row-'+hora.substr(0,2)
             line.data = []
 
-//            const aulas = pageData.agenda[day.getDay()].aulas.filter(x => x.hora === hora)
             for(let x=0; x<2; x++){            
                 const cell = document.createElement(y>=0 & x>0 ? 'td' : 'th')
                 cell.innerHTML =  y>=0 ? (x==0 ? hora : '') : (x>0 ? (y==-2 ? day.getWeekDay() : day.getFormatBR()) : '')
