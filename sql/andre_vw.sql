@@ -54,4 +54,16 @@ SELECT * FROM vw_agenda;
 		GROUP BY dia
 		ORDER BY dia,hora;
         
-SELECT * FROM vw_agenda_dia;        
+SELECT * FROM vw_agenda_dia;
+
+	DROP VIEW IF EXISTS vw_aula_dada;
+ 	CREATE VIEW vw_aula_dada AS
+		SELECT AUD.*, (DAYOFWEEK(AUD.data_hora)-1) AS day_week, HOUR(AUD.data_hora) AS day_time,
+		AUL.descricao AS aula, ALN.nome AS aluno
+		FROM tb_aula_dada AS AUD
+		INNER JOIN tb_aula AS AUL
+		INNER JOIN tb_aluno AS ALN
+		ON AUD.id_aula = AUL.id
+		AND AUD.id_aluno = ALN.id;
+		
+SELECT * FROM vw_aula_dada;        

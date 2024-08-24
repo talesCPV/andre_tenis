@@ -268,3 +268,10 @@
 24/08/2024 06:45 andre@teste.com.br : Aula Efetuada Andre Torres dia 23/08/2024 as 08:00
 24/08/2024 06:47 andre@teste.com.br : Aula Efetuada Aluno Teste 2 dia 23/08/2024 as 12:00
 24/08/2024 06:47 andre@teste.com.br : Aula Efetuada Aluno Teste 2 dia 23/08/2024 as 12:00
+24/08/2024 19:57 andre@teste.com.br : Aula Efetuada Tales dia 21/08/2024 as 11:00
+24/08/2024 19:59 andre@teste.com.br : Aula Efetuada Tales dia 23/08/2024 as 10:00
+24/08/2024 20:10 andre@teste.com.br : Aula Efetuada Tales dia 23/08/2024 as 08:00
+24/08/2024 20:10 andre@teste.com.br : Aula Efetuada Aluno Teste 2 dia 23/08/2024 as 08:00
+24/08/2024 20:12 andre@teste.com.br : Aula Efetuada Tales dia 23/08/2024 as 08:00
+24/08/2024 20:12 andre@teste.com.br : Aula Efetuada Aluno Teste 2 dia 23/08/2024 as 08:00
+24/08/2024 20:14 andre@teste.com.br : Aula Efetuada Andre Torres dia 19/08/2024 as 08:00

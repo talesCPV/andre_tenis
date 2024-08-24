@@ -563,4 +563,22 @@ DELIMITER $$
 			END IF;
 		END IF;
 	END $$
-DELIMITER ;    
+DELIMITER ;
+
+	DROP PROCEDURE IF EXISTS sp_view_aula_dada;
+DELIMITER $$
+    CREATE PROCEDURE sp_view_aula_dada(
+		IN Iallow varchar(80),
+		IN Ihash varchar(64),
+		IN IdtIn datetime,
+        IN Idtout datetime
+    )
+	BEGIN
+		CALL sp_allow(Iallow,Ihash);
+		IF(@allow)THEN
+			SET @id_call = (SELECT IFNULL(id,0) FROM tb_usuario WHERE hash COLLATE utf8_general_ci = Ihash COLLATE utf8_general_ci LIMIT 1);
+			SELECT * FROM vw_aula_dada 
+            WHERE data_hora >= IdtIn AND data_hora <= Idtout AND id_usuario=@id_call;
+        END IF;
+	END $$
+	DELIMITER ;   
