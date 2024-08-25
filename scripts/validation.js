@@ -348,7 +348,6 @@ function horario(edt){
 }
 
 function phone(param){
-    param.inputMode = 'decimal'
     param.value = getFone(param.value)
 }
 

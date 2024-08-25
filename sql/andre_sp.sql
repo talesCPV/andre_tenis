@@ -349,8 +349,21 @@ DELIMITER $$
                     VALUES (@id_call,Inome,Irua,Inum,Icidade,Ibairro,Iuf,Icep);
 				ELSE
 					IF(Inome = "")THEN
-						DELETE FROM tb_clube 
-                        WHERE id=Iid;
+						DELETE AGD.* 
+							FROM tb_agenda AS AGD
+							INNER JOIN tb_aula AS AUL
+							ON AGD.id_aula = AUL.id
+							WHERE AUL.id_clube = Iid;
+                    
+						DELETE AUD.* 
+							FROM tb_aula_dada AS AUD
+							INNER JOIN tb_aula AS AUL
+							ON AUD.id_aula = AUL.id
+							WHERE AUL.id_clube = Iid;
+                    
+						DELETE FROM tb_aluno WHERE id_clube=Iid;
+                        DELETE FROM tb_aula  WHERE id_clube=Iid;
+						DELETE FROM tb_clube WHERE id=Iid;
                     ELSE
 						UPDATE tb_clube SET nome=Inome, rua=Irua,num=Inum,cidade=Icidade,bairro=Ibairro,uf=Iuf,cep=Icep
                         WHERE id=Iid; 
@@ -418,8 +431,9 @@ DELIMITER $$
                     VALUES (@id_call,Iid_clube,Inome,Irua,Inum,Icidade,Ibairro,Iuf,Icep,Idata_adm,Icel,Iemail,Iobs);
 				ELSE
 					IF(Inome = "")THEN
-						DELETE FROM tb_aluno 
-                        WHERE id=Iid;
+						DELETE FROM tb_agenda WHERE id_aluno=Iid;
+                        DELETE FROM tb_aula_dada WHERE id_aluno=Iid;
+						DELETE FROM tb_aluno WHERE id=Iid;
                     ELSE
 						UPDATE tb_aluno SET nome=Inome,email=Iemail,rua=Irua,num=Inum,cidade=Icidade,bairro=Ibairro,uf=Iuf,
                         cep=Icep,data_adm=Idata_adm,cel=Icel,obs=Iobs,ativo=Iativo

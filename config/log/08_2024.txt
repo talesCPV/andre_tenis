@@ -290,3 +290,32 @@
 24/08/2024 22:27 andre@teste.com.br : Aula Efetuada Andre Torres dia 23/08/2024 as 08:00
 24/08/2024 22:27 andre@teste.com.br : Aula Efetuada Tales dia 23/08/2024 as 16:00
 24/08/2024 22:27 andre@teste.com.br : Aula Efetuada Tales dia 24/08/2024 as 10:00
+25/08/2024 02:56 admin@backhand.com.br : Aula Cadastrada Aluno Teste 1 dia Qua as 06:00
+25/08/2024 02:56 admin@backhand.com.br : Aula Cadastrada Aluno Teste 1 dia Qua as 06:00
+25/08/2024 02:59 admin@backhand.com.br : Insercao de novo usuarios, email:undefined -> prof@teste.com.br, acesso:undefined -> 1
+25/08/2024 03:00 prof@teste.com.br : CLUBE Cadastrado  -> Tenis Clube Tubate
+25/08/2024 03:00 prof@teste.com.br : Aluno Cadastrado  -> Aluno 1
+25/08/2024 03:01 prof@teste.com.br : Aluno Cadastrado  -> Aluno 2
+25/08/2024 03:01 prof@teste.com.br : Aluno Cadastrado  -> Aluno 3
+25/08/2024 03:01 prof@teste.com.br : CLUBE Cadastrado  -> Clube 2
+25/08/2024 03:03 prof@teste.com.br : Valor Aula Cadastrado  Beach Tenis - 1 aluno R$100
+25/08/2024 03:03 prof@teste.com.br : Valor Aula Cadastrado  Beach Tenis 2 alunos R$80
+25/08/2024 03:03 prof@teste.com.br : Valor Aula Cadastrado  Beach Tenis 3 alunos R$75.00
+25/08/2024 03:04 prof@teste.com.br : Valor Aula Editado undefined -> Beach Tenis 1 aluno R$100.00
+25/08/2024 03:04 prof@teste.com.br : Valor Aula Cadastrado  Beach Tenis 4 alunos R$75.00
+25/08/2024 03:04 prof@teste.com.br : Valor Aula Cadastrado  Quadra R$100
+25/08/2024 03:04 prof@teste.com.br : Valor Aula Editado undefined -> Beach Tenis 4 alunos R$50
+25/08/2024 03:05 prof@teste.com.br : Aula Cadastrada Aluno 1 dia Ter as 06:00
+25/08/2024 03:05 prof@teste.com.br : Aula Cadastrada Aluno 2 dia Ter as 06:00
+25/08/2024 03:05 prof@teste.com.br : Aula Cadastrada Aluno 3 dia Ter as 07:00
+25/08/2024 03:05 prof@teste.com.br : Aula Cadastrada Aluno 3 dia Ter as 07:00
+25/08/2024 03:05 prof@teste.com.br : Aula Cadastrada Aluno 3 dia Qua as 07:00
+25/08/2024 03:06 prof@teste.com.br : Aula Cadastrada Aluno 3 dia Qui as 06:00
+25/08/2024 03:06 prof@teste.com.br : Aula Cadastrada Aluno 3 dia Qui as 07:00
+25/08/2024 03:07 prof@teste.com.br : Aula Cadastrada Aluno 1 dia Qua as 08:00
+25/08/2024 03:47 prof@teste.com.br : Aula Cadastrada Aluno 1 dia Qua as 06:00
+25/08/2024 03:47 prof@teste.com.br : Aula Cadastrada Aluno 1 dia Ter as 08:00
+25/08/2024 03:47 prof@teste.com.br : Aula Cadastrada Aluno 1 dia Ter as 08:00
+25/08/2024 03:48 prof@teste.com.br : Aula Efetuada Aluno 1 dia 20/08/2024 as 08:00
+25/08/2024 03:49 prof@teste.com.br : Aluno Deletado Aluno 1 -> 
+25/08/2024 04:04 prof@teste.com.br : CLUBE Deletado Clube 2 -> 

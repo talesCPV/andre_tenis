@@ -67,9 +67,9 @@
             <label for="edtBairro">Bairro</label>
             <input type="text" class="only-view" id="edtBairro" maxlength="50" disabled>
             <label for="edtCEP">CEP</label>
-            <input type="text" class="only-view" id="edtCEP" maxlength="10" onkeyup="valCEP(this)" style="width: 180px;" disabled>
+            <input type="text" class="only-view" id="edtCEP" maxlength="10" inputmode="numeric" onkeyup="valCEP(this)" style="width: 180px;" disabled>
             <label for="edtCel">Cel</label>
-            <input type="text" class="only-view" id="edtCel" onkeyup="phone(this)" maxlength="15" style="width: 220px;" disabled>            
+            <input type="text" class="only-view" id="edtCel" inputmode="tel" onkeyup="phone(this)" maxlength="15" style="width: 220px;" disabled>            
         </div>
         <div class="inline">
             <label for="edtEmail">Email</label>
@@ -198,7 +198,7 @@
     })
 
     pageScreen.querySelector('#btnDel').addEventListener('click',()=>{
-        if(confirm('Deseja realmente deletar este Acervo?')){
+        if(confirm('Deseja realmente deletar este Aluno e todas as suas aulas?')){
             pageFunc.setAluno(1)
         }
     })
