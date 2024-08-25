@@ -1,0 +1,109 @@
+<template>
+    <style>
+
+        #tblAnaFrota, #fdsRelat{
+            display: none;
+        }
+
+    </style>
+
+    <fieldset class="fds-busca fecha">
+        <legend>Filtro</legend>
+        <div class="inline">
+            <label for="edtBusca">Aluno</label>
+            <input type="text" id="edtBusca" onkeypress="return getEnter(event, 'btnBusca')">
+            <button id="btnBusca" class="btn-round" ><span class="mdi mdi-magnify"></span></button>
+        </div>
+        <div class="inline fdata">
+            <label for="ckbData">entre:</label>
+            <input type="checkbox" id="ckbData" checked>
+            <input type="date" id="edtIni" onkeypress="return getEnter(event, 'btnBusca')">
+            <input type="date" id="edtFin" onkeypress="return getEnter(event, 'btnBusca')">
+        </div>
+    </fieldset>  
+    <table id="tblFechaAula"></table>
+</template>
+<script>
+
+    const pageData = main_data.fin_fecha_aula.data
+    const pageFunc = main_data.fin_fecha_aula.func
+    const pageScreen = document.querySelector('#card-fin_fecha_aula')
+
+
+    pageFunc.pageStart = ()=>{
+        pageScreen.querySelector('#edtIni').value = today.iniMonth()
+        pageScreen.querySelector('#edtFin').value = today.finMonth()
+    }
+
+/*    
+    function getDate(){
+        return (pageScreen.querySelector('#edtIni').value.length > 0 && pageScreen.querySelector('#edtFin').value.length > 0) || !document.getElementById('ckbData').checked
+    }
+
+    pageFunc.fillServExec = ()=>{     
+        if(getDate()){
+            const tbl = pageScreen.querySelector('#tblServExec')
+            tbl.innerHTML = ''
+            const query = getVal('analise')
+            const params = new Object;
+                params.field = query[0]
+                params.signal = query[1]
+                params.value = query[2]
+                params.ini = pageScreen.querySelector('#ckbData').checked ? pageScreen.querySelector('#edtIni').value : '0000-00-00'
+                params.fin = pageScreen.querySelector('#ckbData').checked ? pageScreen.querySelector('#edtFin').value : '9999-12-31'
+            const myPromisse = queryDB(params,'SERV-0');
+            myPromisse.then((resolve)=>{
+                const json = JSON.parse(resolve)
+                tbl.style.display = json.length > 0 ? 'inline-table' : 'none'
+                pageScreen.querySelector('#fdsRelat').style.display = json.length > 0 ? 'inline-table' : 'none'
+                tbl.head('Cod.,Data,Cliente,Carro,NF,Valor')               
+                for(let i=0; i<json.length;i++){
+                    tbl.plot(json[i],'id,data_exec,empresa,num_carro,nf,valor','str,dat,Upp,str,str,R$.')
+                }         
+            });
+        }else{
+            alert('Favor preencher as datas corretamente.')
+        }
+    }
+
+    pageScreen.querySelector('#btnBusca').addEventListener('click',()=>{
+        pageFunc.fillServExec()
+    })
+
+    pageScreen.querySelector('#btnNovo').addEventListener('click',()=>{
+        openHTML('oper_view_serv_exec.html','pop-up','Cadastro - Serviço Executado',{'id':0})
+    })
+
+    pageScreen.querySelector('#tblServExec').addEventListener('click',(e)=>{
+        data = e.target.parentNode.data
+        openHTML('oper_view_serv_exec.html','pop-up','Cadastro - Serviço Executado',data)
+    })
+
+    pageFunc.print = (relat)=>{
+        pageData.org = 'Serviço'
+        pageData.relatorio = relat
+        pageData.titulo = pageScreen.querySelector('#edtTitle').value.trim()
+        pageData.desc = parseFloat(pageScreen.querySelector('#edtDesc').value)
+        pageData.cor = pageScreen.querySelector('#edtCor').value
+        pageData.objeto = pageScreen.querySelector('#edtObj').value
+        pageData.rodape = pageScreen.querySelector('#edtRodape').value
+        pageData.fontsize = parseFloat(pageScreen.querySelector('#edtFont').value)
+        pageData.showdata = pageScreen.querySelector('#ckbData').value
+        pageData.data_ini = pageScreen.querySelector('#edtIni').value
+        pageData.data_fin = pageScreen.querySelector('#edtFin').value
+        carrosRelat(pageScreen.querySelector('#tblServExec'),pageData )
+    }
+
+    pageScreen.querySelector('#btnRelat').addEventListener('click',()=>{
+        pageFunc.print(1)
+    })
+
+    pageScreen.querySelector('#btnOrc').addEventListener('click',()=>{
+        pageFunc.print(0)
+     
+    })
+*/
+
+    pageFunc.pageStart()
+
+</script>

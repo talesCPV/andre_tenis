@@ -319,3 +319,11 @@
 25/08/2024 03:48 prof@teste.com.br : Aula Efetuada Aluno 1 dia 20/08/2024 as 08:00
 25/08/2024 03:49 prof@teste.com.br : Aluno Deletado Aluno 1 -> 
 25/08/2024 04:04 prof@teste.com.br : CLUBE Deletado Clube 2 -> 
+25/08/2024 17:30 admin@backhand.com.br : Menu Incluido (Financeiro)
+25/08/2024 17:31 admin@backhand.com.br : Menu Alterado (Financeiro, menu, pop-up, )
+25/08/2024 17:32 admin@backhand.com.br : Menu Incluido (Fechar Aulas)
+25/08/2024 17:33 admin@backhand.com.br : Menu Alterado (Fechar Aulas, fin_fecha_aula.html, pop-up, Fechar Mes)
+25/08/2024 17:33 admin@backhand.com.br : Permissao alterada, Modulo: Sistema, Acesso:[[0]])
+25/08/2024 17:33 admin@backhand.com.br : Permissao alterada, Modulo: Cadastros, Acesso:[[0,1]])
+25/08/2024 17:33 admin@backhand.com.br : Permissao alterada, Modulo: Agenda, Acesso:[[0,1]])
+25/08/2024 17:33 admin@backhand.com.br : Permissao alterada, Modulo: Financeiro, Acesso:[[0,1]])
