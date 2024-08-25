@@ -327,3 +327,12 @@
 25/08/2024 17:33 admin@backhand.com.br : Permissao alterada, Modulo: Cadastros, Acesso:[[0,1]])
 25/08/2024 17:33 admin@backhand.com.br : Permissao alterada, Modulo: Agenda, Acesso:[[0,1]])
 25/08/2024 17:33 admin@backhand.com.br : Permissao alterada, Modulo: Financeiro, Acesso:[[0,1]])
+25/08/2024 20:37 prof@teste.com.br : Aula Efetuada Aluno 2 dia 25/08/2024 as 09:00
+25/08/2024 20:37 prof@teste.com.br : Aula Efetuada Aluno 2 dia 25/08/2024 as 07:00
+25/08/2024 20:37 prof@teste.com.br : Aula Efetuada Aluno 3 dia 25/08/2024 as 07:00
+25/08/2024 22:28 prof@teste.com.br : Aula Efetuada Aluno 2 dia 05/08/2024 as 07:00
+25/08/2024 22:29 prof@teste.com.br : Aula Efetuada Aluno 2 dia 07/08/2024 as 07:00
+25/08/2024 22:29 prof@teste.com.br : Aula Efetuada Aluno 2 dia 12/08/2024 as 07:00
+25/08/2024 22:29 prof@teste.com.br : Aula Efetuada Aluno 2 dia 14/08/2024 as 07:00
+25/08/2024 22:29 prof@teste.com.br : Aula Efetuada Aluno 3 dia 14/08/2024 as 12:00
+26/08/2024 01:25 prof@teste.com.br : Aluno Editado Aluno 2 -> Aluno 2

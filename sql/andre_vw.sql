@@ -88,9 +88,9 @@ SELECT * FROM vw_aula_dada;
 	GROUP_CONCAT(DISTINCT CONCAT(AGD.id_aluno,"|",AGD.nome,"|",AGD.id_aula,"|", AGD.descricao,"|",AGD.id_clube,"|",AGD.clube) SEPARATOR "*#*") AS aulas,
     0 AS exec
 	FROM vw_agenda AS AGD
-    GROUP BY AGD.id_usuario,AGD.dia,AGD.hora)
+    GROUP BY AGD.id_usuario,AGD.dia,AGD.hora);
     
-    UNION ALL
+--    UNION ALL
     
 (SELECT AUD.dia,AUD.hora, AUD.id_usuario AS id_professor, AUD.id_call,
 	GROUP_CONCAT(DISTINCT CONCAT(AUD.id_aluno,"|",AUD.aluno,"|",AUD.id_aula,"|", AUD.aula,"|",AUD.id_clube,"|",AUD.clube) SEPARATOR "*#*") AS aulas,

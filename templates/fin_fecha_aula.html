@@ -1,27 +1,47 @@
 <template>
     <style>
 
-        #tblAnaFrota, #fdsRelat{
+        .wide{
+            width: 100%;
+        }
+
+        #fds-aulas,#fds-resumo{
             display: none;
         }
 
+        .lbl-tot,.lbl-totval{
+            font-weight: bold;
+        }
+
+        .lbl-tot{
+            text-align: right;
+            font-weight: bold;
+        }
     </style>
 
-    <fieldset class="fds-busca fecha">
+    <fieldset class="fds-busca">
         <legend>Filtro</legend>
         <div class="inline">
-            <label for="edtBusca">Aluno</label>
-            <input type="text" id="edtBusca" onkeypress="return getEnter(event, 'btnBusca')">
+            <label for="edtAluno">Aluno</label>
+            <input type="text" id="edtAluno" onkeypress="return getEnter(event, 'btnBusca')">
             <button id="btnBusca" class="btn-round" ><span class="mdi mdi-magnify"></span></button>
         </div>
         <div class="inline fdata">
-            <label for="ckbData">entre:</label>
-            <input type="checkbox" id="ckbData" checked>
+            <label for="ckbAb">em aberto:</label>
+            <input type="checkbox" id="ckbAb" checked>
             <input type="date" id="edtIni" onkeypress="return getEnter(event, 'btnBusca')">
             <input type="date" id="edtFin" onkeypress="return getEnter(event, 'btnBusca')">
         </div>
     </fieldset>  
-    <table id="tblFechaAula"></table>
+    <fieldset id="fds-aulas">
+        <legend>Aulas</legend>
+        <table id="tblFechaAula"></table>
+    </fieldset>
+
+    <fieldset id="fds-resumo">
+        <legend>Pgto em haver</legend>
+        <table id="tblEmAberto"></table>
+    </fieldset>
 </template>
 <script>
 
@@ -29,80 +49,76 @@
     const pageFunc = main_data.fin_fecha_aula.func
     const pageScreen = document.querySelector('#card-fin_fecha_aula')
 
-
     pageFunc.pageStart = ()=>{
         pageScreen.querySelector('#edtIni').value = today.iniMonth()
         pageScreen.querySelector('#edtFin').value = today.finMonth()
     }
 
-/*    
-    function getDate(){
-        return (pageScreen.querySelector('#edtIni').value.length > 0 && pageScreen.querySelector('#edtFin').value.length > 0) || !document.getElementById('ckbData').checked
-    }
-
-    pageFunc.fillServExec = ()=>{     
-        if(getDate()){
-            const tbl = pageScreen.querySelector('#tblServExec')
+    pageFunc.fillAulas = ()=>{     
+        const dtIn = pageScreen.querySelector('#edtIni').value+' 00:00:00'
+        const dtOut = pageScreen.querySelector('#edtFin').value+' 23:59:59'
+        if(dtIn.length > 0 && dtOut.length > 0){
+            const tbl = pageScreen.querySelector('#tblFechaAula')
             tbl.innerHTML = ''
-            const query = getVal('analise')
             const params = new Object;
-                params.field = query[0]
-                params.signal = query[1]
-                params.value = query[2]
-                params.ini = pageScreen.querySelector('#ckbData').checked ? pageScreen.querySelector('#edtIni').value : '0000-00-00'
-                params.fin = pageScreen.querySelector('#ckbData').checked ? pageScreen.querySelector('#edtFin').value : '9999-12-31'
-            const myPromisse = queryDB(params,'SERV-0');
+                params.aluno = pageScreen.querySelector('#edtAluno').value
+                params.ini = dtIn
+                params.fin = dtOut
+                params.aberto = pageScreen.querySelector('#ckbAb').checked ? 1 : 0
+            const myPromisse = queryDB(params,'FIN-0');
             myPromisse.then((resolve)=>{
-                const json = JSON.parse(resolve)
-                tbl.style.display = json.length > 0 ? 'inline-table' : 'none'
-                pageScreen.querySelector('#fdsRelat').style.display = json.length > 0 ? 'inline-table' : 'none'
-                tbl.head('Cod.,Data,Cliente,Carro,NF,Valor')               
-                for(let i=0; i<json.length;i++){
-                    tbl.plot(json[i],'id,data_exec,empresa,num_carro,nf,valor','str,dat,Upp,str,str,R$.')
-                }         
-            });
+                const json = JSON.parse(resolve)                
+                pageScreen.querySelector('#fds-aulas').style.display = json.length > 0 ? 'block' : 'none'
+                tbl.head('Data,Hora,Aluno,Aula|mob-hide,Clube|mob-hide,Valor,PG')
+                for(let i=0; i<json.length;i++){                    
+                    tbl.plot(json[i],'DATA,HORARIO,aluno,aula|mob-hide,clube|mob-hide,valor,pg','str,str,Upp,Upp,Upp,R$.,cha 0=NÂO 1=✔')
+                }
+                queryDB(params,'FIN-1')
+                .then((resume)=>{
+                    const json2 = JSON.parse(resume)
+                    pageScreen.querySelector('#fds-resumo').style.display = json2.length > 0 ? 'block' : 'none'
+                    const tbl2 = pageScreen.querySelector('#tblEmAberto')
+                    tbl2.style.display = json.length > 0 ? 'inline-table' : 'none'
+                    tbl2.head('Aluno,Valor|lbl-tot')
+                    let tot = 0
+                    for(let i=0; i<json2.length;i++){                    
+                        tbl2.plot(json2[i],'aluno|wide,valor|lbl-tot','Upp,R$.')
+                        tot+=parseFloat(json2[i].valor)
+                    }
+                    tbl2.plot({'l':'Total','v':tot},'l|lbl-tot,v|lbl-totval','str,R$.')
+                })
+            })
         }else{
             alert('Favor preencher as datas corretamente.')
         }
     }
 
     pageScreen.querySelector('#btnBusca').addEventListener('click',()=>{
-        pageFunc.fillServExec()
+        pageFunc.fillAulas()
     })
 
-    pageScreen.querySelector('#btnNovo').addEventListener('click',()=>{
-        openHTML('oper_view_serv_exec.html','pop-up','Cadastro - Serviço Executado',{'id':0})
+    pageScreen.querySelector('#tblFechaAula').addEventListener('click',(e)=>{
+        try{
+            data = e.target.parentNode.data
+            data.org = 'aula'
+            openHTML('fin_baixa_aula.html','pop-up','Fechamento Financeiro',data)
+        }catch{
+            console.error('clique fora da base de dados da tabela')
+        }
+
     })
 
-    pageScreen.querySelector('#tblServExec').addEventListener('click',(e)=>{
-        data = e.target.parentNode.data
-        openHTML('oper_view_serv_exec.html','pop-up','Cadastro - Serviço Executado',data)
+    pageScreen.querySelector('#tblEmAberto').addEventListener('click',(e)=>{
+        try{
+            data = e.target.parentNode.data
+            data.org = 'aluno'
+            openHTML('fin_baixa_aula.html','pop-up','Fechamento Financeiro',data)
+        }catch{
+            console.error('clique fora da base de dados da tabela')
+        }
+
     })
 
-    pageFunc.print = (relat)=>{
-        pageData.org = 'Serviço'
-        pageData.relatorio = relat
-        pageData.titulo = pageScreen.querySelector('#edtTitle').value.trim()
-        pageData.desc = parseFloat(pageScreen.querySelector('#edtDesc').value)
-        pageData.cor = pageScreen.querySelector('#edtCor').value
-        pageData.objeto = pageScreen.querySelector('#edtObj').value
-        pageData.rodape = pageScreen.querySelector('#edtRodape').value
-        pageData.fontsize = parseFloat(pageScreen.querySelector('#edtFont').value)
-        pageData.showdata = pageScreen.querySelector('#ckbData').value
-        pageData.data_ini = pageScreen.querySelector('#edtIni').value
-        pageData.data_fin = pageScreen.querySelector('#edtFin').value
-        carrosRelat(pageScreen.querySelector('#tblServExec'),pageData )
-    }
-
-    pageScreen.querySelector('#btnRelat').addEventListener('click',()=>{
-        pageFunc.print(1)
-    })
-
-    pageScreen.querySelector('#btnOrc').addEventListener('click',()=>{
-        pageFunc.print(0)
-     
-    })
-*/
 
     pageFunc.pageStart()
 

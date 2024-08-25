@@ -595,4 +595,84 @@ DELIMITER $$
             WHERE data_hora >= IdtIn AND data_hora <= Idtout AND id_usuario=@id_call;
         END IF;
 	END $$
-	DELIMITER ;   
+	DELIMITER ;
+    
+/* FINANCEIRO */
+
+	DROP PROCEDURE IF EXISTS sp_view_fecha_aula;
+DELIMITER $$
+    CREATE PROCEDURE sp_view_fecha_aula(
+		IN Iallow varchar(80),
+		IN Ihash varchar(64),
+		IN Ialuno varchar(70),
+		IN IdtIn datetime,
+        IN Idtout datetime,
+        IN Iaberto boolean
+    )
+	BEGIN
+		CALL sp_allow(Iallow,Ihash);
+		IF(@allow)THEN
+			SET @id_call = (SELECT IFNULL(id,0) FROM tb_usuario WHERE hash COLLATE utf8_general_ci = Ihash COLLATE utf8_general_ci LIMIT 1);
+			IF(Iaberto)THEN
+				SET @quer =CONCAT('SELECT *,
+					CONCAT(LPAD(DAY(data_hora),2,0),"/",LPAD(MONTH(data_hora),2,0),"/",YEAR(data_hora)) AS DATA,
+					CONCAT(LPAD(HOUR(data_hora),2,0),":00") AS HORARIO 
+					FROM vw_aula_dada 
+                    WHERE aluno LIKE "%',Ialuno,'%"
+                    AND pg=0 
+                    AND id_usuario = ', @id_call,'
+                    AND data_hora >= "', IdtIn,'"
+                    AND data_hora <= "', Idtout,'"
+                    ORDER BY data_hora;');
+            ELSE
+				SET @quer =CONCAT('SELECT *,
+					CONCAT(LPAD(DAY(data_hora),2,0),"/",LPAD(MONTH(data_hora),2,0),"/",YEAR(data_hora)) AS DATA,
+					CONCAT(LPAD(HOUR(data_hora),2,0),":00") AS HORARIO 
+					FROM vw_aula_dada 
+                    WHERE aluno LIKE "%',Ialuno,'%" 
+                    AND id_usuario = ', @id_call,'
+                    AND data_hora >= "', IdtIn,'"
+                    AND data_hora <= "', Idtout,'"
+                    ORDER BY data_hora;');
+            END IF;
+           
+			PREPARE stmt1 FROM @quer;
+			EXECUTE stmt1;
+      
+        END IF;
+	END $$
+	DELIMITER ;    
+    
+	DROP PROCEDURE IF EXISTS sp_view_saldo_devedor;
+DELIMITER $$
+    CREATE PROCEDURE sp_view_saldo_devedor(
+		IN Iallow varchar(80),
+		IN Ihash varchar(64),
+		IN Ialuno varchar(70),   
+		IN IdtIn datetime,
+        IN Idtout datetime
+    )
+	BEGIN
+		CALL sp_allow(Iallow,Ihash);
+		IF(@allow)THEN
+			SET @id_call = (SELECT IFNULL(id,0) FROM tb_usuario WHERE hash COLLATE utf8_general_ci = Ihash COLLATE utf8_general_ci LIMIT 1);
+			SET @quer =CONCAT('
+                SELECT ALD.id_usuario,ALD.id_aluno, ALD.aluno,ALN.cel,ALN.email, ROUND(SUM(ALD.valor),2) AS valor,
+				GROUP_CONCAT(DISTINCT CONCAT(ALD.data_hora,"|",ALD.valor) SEPARATOR ",") AS aulas
+				FROM vw_aula_dada AS ALD
+				INNER JOIN tb_aluno AS ALN
+				ON ALD.id_aluno = ALN.id
+				WHERE ALD.pg=0
+				AND ALD.aluno LIKE "%',Ialuno,'%"
+				AND ALD.id_usuario = ', @id_call,'
+				AND ALD.data_hora >= "', IdtIn,'"
+				AND ALD.data_hora <= "', Idtout,'"
+				GROUP BY ALD.id_aluno
+				ORDER BY ALD.aluno;
+			');
+			PREPARE stmt1 FROM @quer;
+			EXECUTE stmt1;
+        END IF;
+	END $$
+	DELIMITER ; 
+    
