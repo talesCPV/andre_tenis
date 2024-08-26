@@ -337,3 +337,14 @@
 25/08/2024 22:29 prof@teste.com.br : Aula Efetuada Aluno 3 dia 14/08/2024 as 12:00
 26/08/2024 01:25 prof@teste.com.br : Aluno Editado Aluno 2 -> Aluno 2
 26/08/2024 04:34 prof@teste.com.br : Aluno Editado Aluno 2 -> Aluno 2
+26/08/2024 15:22 admin@backhand.com.br : Menu Alterado (Config., none, pop-up, )
+26/08/2024 15:23 admin@backhand.com.br : Menu Alterado (Aulas, none, pop-up, )
+26/08/2024 15:24 admin@backhand.com.br : Menu Incluido (Config)
+26/08/2024 15:25 admin@backhand.com.br : Menu Incluido (Mensagem)
+26/08/2024 15:25 admin@backhand.com.br : Menu Alterado (Config, menu, pop-up, )
+26/08/2024 15:25 admin@backhand.com.br : Permissao alterada, Modulo: Sistema, Acesso:[[0]])
+26/08/2024 15:25 admin@backhand.com.br : Permissao alterada, Modulo: Aulas, Acesso:[[0,1]])
+26/08/2024 15:25 admin@backhand.com.br : Permissao alterada, Modulo: Agenda, Acesso:[[0,1]])
+26/08/2024 15:25 admin@backhand.com.br : Permissao alterada, Modulo: Financeiro, Acesso:[[0,1]])
+26/08/2024 15:25 admin@backhand.com.br : Permissao alterada, Modulo: Config, Acesso:[[0,1]])
+26/08/2024 15:26 admin@backhand.com.br : Menu Alterado (Mensagem, tool_mensagem.html, pop-up, Mensagem Padrao)

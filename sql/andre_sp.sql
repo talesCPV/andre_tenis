@@ -349,21 +349,8 @@ DELIMITER $$
                     VALUES (@id_call,Inome,Irua,Inum,Icidade,Ibairro,Iuf,Icep);
 				ELSE
 					IF(Inome = "")THEN
-						DELETE AGD.* 
-							FROM tb_agenda AS AGD
-							INNER JOIN tb_aula AS AUL
-							ON AGD.id_aula = AUL.id
-							WHERE AUL.id_clube = Iid;
-                    
-						DELETE AUD.* 
-							FROM tb_aula_dada AS AUD
-							INNER JOIN tb_aula AS AUL
-							ON AUD.id_aula = AUL.id
-							WHERE AUL.id_clube = Iid;
-                    
-						DELETE FROM tb_aluno WHERE id_clube=Iid;
-                        DELETE FROM tb_aula  WHERE id_clube=Iid;
-						DELETE FROM tb_clube WHERE id=Iid;
+						DELETE FROM tb_clube 
+                        WHERE id=Iid;
                     ELSE
 						UPDATE tb_clube SET nome=Inome, rua=Irua,num=Inum,cidade=Icidade,bairro=Ibairro,uf=Iuf,cep=Icep
                         WHERE id=Iid; 
@@ -431,9 +418,8 @@ DELIMITER $$
                     VALUES (@id_call,Iid_clube,Inome,Irua,Inum,Icidade,Ibairro,Iuf,Icep,Idata_adm,Icel,Iemail,Iobs);
 				ELSE
 					IF(Inome = "")THEN
-						DELETE FROM tb_agenda WHERE id_aluno=Iid;
-                        DELETE FROM tb_aula_dada WHERE id_aluno=Iid;
-						DELETE FROM tb_aluno WHERE id=Iid;
+						DELETE FROM tb_aluno 
+                        WHERE id=Iid;
                     ELSE
 						UPDATE tb_aluno SET nome=Inome,email=Iemail,rua=Irua,num=Inum,cidade=Icidade,bairro=Ibairro,uf=Iuf,
                         cep=Icep,data_adm=Idata_adm,cel=Icel,obs=Iobs,ativo=Iativo
@@ -518,7 +504,7 @@ DELIMITER $$
 		IN Iid_aula int(11),
 		IN Idia int,
 		IN Ihora int,
-        IN del boolean
+        IN del bool
     )
 	BEGIN    
 		CALL sp_allow(Iallow,Ihash);
@@ -548,137 +534,3 @@ DELIMITER $$
 		SELECT * FROM vw_agenda_dia WHERE id_usuario = @id_call;
 	END $$
 	DELIMITER ;
-    
- DROP PROCEDURE IF EXISTS sp_set_aula_dada;
-DELIMITER $$
-	CREATE PROCEDURE sp_set_aula_dada(	
-		IN Iallow varchar(80),
-		IN Ihash varchar(64),
-        IN Iid_aluno int(11),
-		IN Iid_aula int(11),
-		IN Idata_hora datetime,
-		IN Ivalor double,
-        IN Ipg boolean,
-        IN del boolean
-    )
-	BEGIN    
-		CALL sp_allow(Iallow,Ihash);
-		IF(@allow)THEN
-			SET @id_call = (SELECT IFNULL(id,0) FROM tb_usuario WHERE hash COLLATE utf8_general_ci = Ihash COLLATE utf8_general_ci LIMIT 1);
-			IF(@id_call >0)THEN
-				IF(del)THEN
-					DELETE FROM tb_aula_dada 
-					WHERE id_usuario=@id_call AND id_aluno=Iid_aluno AND data_hora=Idata_hora;
-				ELSE
-					INSERT INTO tb_aula_dada (id_usuario,id_aluno,id_aula,data_hora,valor) 
-                    VALUES (@id_call,Iid_aluno,Iid_aula,Idata_hora,Ivalor)
-                    ON DUPLICATE KEY UPDATE id_aula = Iid_aula, valor=Ivalor, pg=Ipg;
-                END IF;
-			END IF;
-		END IF;
-	END $$
-DELIMITER ;
-
-	DROP PROCEDURE IF EXISTS sp_view_aula_dada;
-DELIMITER $$
-    CREATE PROCEDURE sp_view_aula_dada(
-		IN Iallow varchar(80),
-		IN Ihash varchar(64),
-		IN IdtIn datetime,
-        IN Idtout datetime
-    )
-	BEGIN
-		CALL sp_allow(Iallow,Ihash);
-		IF(@allow)THEN
-			SET @id_call = (SELECT IFNULL(id,0) FROM tb_usuario WHERE hash COLLATE utf8_general_ci = Ihash COLLATE utf8_general_ci LIMIT 1);
-			SELECT * FROM vw_aula_dada 
-            WHERE data_hora >= IdtIn AND data_hora <= Idtout AND id_usuario=@id_call;
-        END IF;
-	END $$
-	DELIMITER ;
-    
-/* FINANCEIRO */
-
-	DROP PROCEDURE IF EXISTS sp_view_fecha_aula;
-DELIMITER $$
-    CREATE PROCEDURE sp_view_fecha_aula(
-		IN Iallow varchar(80),
-		IN Ihash varchar(64),
-		IN Ialuno varchar(70),
-		IN IdtIn datetime,
-        IN Idtout datetime,
-        IN Iaberto boolean
-    )
-	BEGIN
-		CALL sp_allow(Iallow,Ihash);
-		IF(@allow)THEN
-			SET @id_call = (SELECT IFNULL(id,0) FROM tb_usuario WHERE hash COLLATE utf8_general_ci = Ihash COLLATE utf8_general_ci LIMIT 1);
-			IF(Iaberto)THEN
-				SET @quer =CONCAT('
-                	SELECT ALD.*,ALN.cel,ALN.email,
-					CONCAT(LPAD(DAY(ALD.data_hora),2,0),"/",LPAD(MONTH(ALD.data_hora),2,0),"/",YEAR(ALD.data_hora)) AS DATA,
-					CONCAT(LPAD(HOUR(ALD.data_hora),2,0),":00") AS HORARIO 
-					FROM vw_aula_dada AS ALD
-					INNER JOIN tb_aluno AS ALN
-					ON ALD.id_aluno = ALN.id    
-					WHERE ALD.aluno LIKE "%',Ialuno,'%"
-					AND ALD.pg=0 
-					AND ALD.id_usuario = ', @id_call,'
-					AND ALD.data_hora >= "', IdtIn,'"
-					AND ALD.data_hora <= "', Idtout,'"
-					ORDER BY ALD.data_hora;');
-            ELSE
-				SET @quer =CONCAT('
-					SELECT ALD.*,ALN.cel,ALN.email,
-					CONCAT(LPAD(DAY(ALD.data_hora),2,0),"/",LPAD(MONTH(ALD.data_hora),2,0),"/",YEAR(ALD.data_hora)) AS DATA,
-					CONCAT(LPAD(HOUR(ALD.data_hora),2,0),":00") AS HORARIO 
-					FROM vw_aula_dada AS ALD
-					INNER JOIN tb_aluno AS ALN
-					ON ALD.id_aluno = ALN.id    
-					WHERE ALD.aluno LIKE "%',Ialuno,'%"
-					AND ALD.id_usuario = ', @id_call,'
-					AND ALD.data_hora >= "', IdtIn,'"
-					AND ALD.data_hora <= "', Idtout,'"
-					ORDER BY ALD.data_hora;');
-            END IF;
-           
-			PREPARE stmt1 FROM @quer;
-			EXECUTE stmt1;
-      
-        END IF;
-	END $$
-	DELIMITER ;    
-    
-	DROP PROCEDURE IF EXISTS sp_view_saldo_devedor;
-DELIMITER $$
-    CREATE PROCEDURE sp_view_saldo_devedor(
-		IN Iallow varchar(80),
-		IN Ihash varchar(64),
-		IN Ialuno varchar(70),   
-		IN IdtIn datetime,
-        IN Idtout datetime
-    )
-	BEGIN
-		CALL sp_allow(Iallow,Ihash);
-		IF(@allow)THEN
-			SET @id_call = (SELECT IFNULL(id,0) FROM tb_usuario WHERE hash COLLATE utf8_general_ci = Ihash COLLATE utf8_general_ci LIMIT 1);
-			SET @quer =CONCAT('
-                SELECT ALD.id_usuario,ALD.id_aluno, ALD.aluno,ALN.cel,ALN.email, ROUND(SUM(ALD.valor),2) AS valor,
-				GROUP_CONCAT(DISTINCT CONCAT(ALD.data_hora,"|",ALD.valor) SEPARATOR ",") AS aulas
-				FROM vw_aula_dada AS ALD
-				INNER JOIN tb_aluno AS ALN
-				ON ALD.id_aluno = ALN.id
-				WHERE ALD.pg=0
-				AND ALD.aluno LIKE "%',Ialuno,'%"
-				AND ALD.id_usuario = ', @id_call,'
-				AND ALD.data_hora >= "', IdtIn,'"
-				AND ALD.data_hora <= "', Idtout,'"
-				GROUP BY ALD.id_aluno
-				ORDER BY ALD.aluno, ALD.data_hora;
-			');
-			PREPARE stmt1 FROM @quer;
-			EXECUTE stmt1;
-        END IF;
-	END $$
-	DELIMITER ; 
-    

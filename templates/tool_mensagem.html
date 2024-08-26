@@ -1,0 +1,65 @@
+<template>
+    <style>
+        .legenda{
+            display: flex;
+            flex-direction: column;
+            padding-left: 20px;
+        }
+
+        .legenda > div{
+            display: flex;
+            flex-direction: row;
+            gap: 15px;
+        }
+
+    </style>
+
+    <fieldset>
+        <legend>Mensagem Padrão</legend>
+        <div class="inline">
+            <label for="edtMsg">Texto</label>
+            <textarea id="edtMsg" rows="10"></textarea>
+        </div>
+        <div class="line">
+            <button id="btnSave">Salvar</button>
+        </div>
+    </fieldset>
+
+    <div class="legenda">        
+        <div>
+            <label>#aluno</label>
+            <label>-  Nome do Aluno</label>
+        </div>
+
+        <div>
+            <label>#aulas</label>
+            <label>-  Lista de Aulas (Data, Hora e Valor)</label>
+        </div>
+        <p> *Usar os caracteres especiais acima onde eles serão substituídos na mensagem final pelos dados do aluno</p>
+
+    </div>
+
+</template>
+<script>
+
+    const pageData = main_data.tool_mensagem.data
+    const pageFunc = main_data.tool_mensagem.func
+    const pageScreen = document.querySelector('#card-tool_mensagem')
+
+    pageFunc.pageStart = ()=>{
+
+        getTxt('/../config/texto/whatsapp.txt').then((txt)=>{
+            pageScreen.querySelector('#edtMsg').value = txt.substr(1,txt.length-2)
+        })
+
+    }
+
+
+    pageScreen.querySelector('#btnSave').addEventListener('click',()=>{
+        const txt = pageScreen.querySelector('#edtMsg').value.trim()
+        saveFile(txt,'../config/texto/whatsapp.txt')
+    })
+
+    pageFunc.pageStart()
+
+</script>

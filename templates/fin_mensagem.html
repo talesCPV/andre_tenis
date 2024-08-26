@@ -4,9 +4,9 @@
         #btnWhats{
             font-size: 3em;
         }
-     
+
     </style>
-  
+
     <fieldset>
         <legend id="lgd-aluno"></legend>
         <div class="inline">
@@ -29,6 +29,7 @@
     console.log(pageData)
 
     pageFunc.pageStart = ()=>{
+        pageScreen.querySelector('#lgd-aluno').innerHTML = pageData.aluno
         const txt = pageScreen.querySelector('#edtTexto')
         txt.value = `Bom dia ${pageData.aluno}, tudo bem?
         Segue abaixo a lista de aulas do último mês:\n
