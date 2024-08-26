@@ -58,8 +58,14 @@
         const dtIn = pageScreen.querySelector('#edtIni').value+' 00:00:00'
         const dtOut = pageScreen.querySelector('#edtFin').value+' 23:59:59'
         if(dtIn.length > 0 && dtOut.length > 0){
-            const tbl = pageScreen.querySelector('#tblFechaAula')
-            tbl.innerHTML = ''
+            const fds1 = pageScreen.querySelector('#fds-aulas')
+            fds1.style.display = 'none'
+            const tbl1 = pageScreen.querySelector('#tblFechaAula')
+            tbl1.innerHTML = ''
+            const fds2 = pageScreen.querySelector('#fds-resumo')
+            fds2.style.display = 'none'
+            const tbl2 = pageScreen.querySelector('#tblEmAberto')
+            tbl2.innerHTML = ''
             const params = new Object;
                 params.aluno = pageScreen.querySelector('#edtAluno').value
                 params.ini = dtIn
@@ -68,20 +74,18 @@
             const myPromisse = queryDB(params,'FIN-0');
             myPromisse.then((resolve)=>{
                 const json = JSON.parse(resolve)                
-                pageScreen.querySelector('#fds-aulas').style.display = json.length > 0 ? 'block' : 'none'
-                tbl.head('Data,Hora,Aluno,Aula|mob-hide,Clube|mob-hide,Valor,PG')
-                for(let i=0; i<json.length;i++){                    
-                    tbl.plot(json[i],'DATA,HORARIO,aluno,aula|mob-hide,clube|mob-hide,valor,pg','str,str,Upp,Upp,Upp,R$.,cha 0=NÂO 1=✔')
+                tbl1.head('Data,Hora,Aluno,Aula|mob-hide,Clube|mob-hide,Valor,PG')
+                for(let i=0; i<json.length;i++){ 
+                    fds1.style.display = 'block'                   
+                    tbl1.plot(json[i],'DATA,HORARIO,aluno,aula|mob-hide,clube|mob-hide,valor,pg','str,str,Upp,Upp,Upp,R$.,cha 0=NÂO 1=✔')
                 }
                 queryDB(params,'FIN-1')
                 .then((resume)=>{
                     const json2 = JSON.parse(resume)
-                    pageScreen.querySelector('#fds-resumo').style.display = json2.length > 0 ? 'block' : 'none'
-                    const tbl2 = pageScreen.querySelector('#tblEmAberto')
-                    tbl2.style.display = json.length > 0 ? 'inline-table' : 'none'
                     tbl2.head('Aluno,Valor|lbl-tot')
                     let tot = 0
-                    for(let i=0; i<json2.length;i++){                    
+                    for(let i=0; i<json2.length;i++){
+                        fds2.style.display = 'block'
                         tbl2.plot(json2[i],'aluno|wide,valor|lbl-tot','Upp,R$.')
                         tot+=parseFloat(json2[i].valor)
                     }

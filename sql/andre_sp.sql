@@ -614,26 +614,32 @@ DELIMITER $$
 		IF(@allow)THEN
 			SET @id_call = (SELECT IFNULL(id,0) FROM tb_usuario WHERE hash COLLATE utf8_general_ci = Ihash COLLATE utf8_general_ci LIMIT 1);
 			IF(Iaberto)THEN
-				SET @quer =CONCAT('SELECT *,
-					CONCAT(LPAD(DAY(data_hora),2,0),"/",LPAD(MONTH(data_hora),2,0),"/",YEAR(data_hora)) AS DATA,
-					CONCAT(LPAD(HOUR(data_hora),2,0),":00") AS HORARIO 
-					FROM vw_aula_dada 
-                    WHERE aluno LIKE "%',Ialuno,'%"
-                    AND pg=0 
-                    AND id_usuario = ', @id_call,'
-                    AND data_hora >= "', IdtIn,'"
-                    AND data_hora <= "', Idtout,'"
-                    ORDER BY data_hora;');
+				SET @quer =CONCAT('
+                	SELECT ALD.*,ALN.cel,ALN.email,
+					CONCAT(LPAD(DAY(ALD.data_hora),2,0),"/",LPAD(MONTH(ALD.data_hora),2,0),"/",YEAR(ALD.data_hora)) AS DATA,
+					CONCAT(LPAD(HOUR(ALD.data_hora),2,0),":00") AS HORARIO 
+					FROM vw_aula_dada AS ALD
+					INNER JOIN tb_aluno AS ALN
+					ON ALD.id_aluno = ALN.id    
+					WHERE ALD.aluno LIKE "%',Ialuno,'%"
+					AND ALD.pg=0 
+					AND ALD.id_usuario = ', @id_call,'
+					AND ALD.data_hora >= "', IdtIn,'"
+					AND ALD.data_hora <= "', Idtout,'"
+					ORDER BY ALD.data_hora;');
             ELSE
-				SET @quer =CONCAT('SELECT *,
-					CONCAT(LPAD(DAY(data_hora),2,0),"/",LPAD(MONTH(data_hora),2,0),"/",YEAR(data_hora)) AS DATA,
-					CONCAT(LPAD(HOUR(data_hora),2,0),":00") AS HORARIO 
-					FROM vw_aula_dada 
-                    WHERE aluno LIKE "%',Ialuno,'%" 
-                    AND id_usuario = ', @id_call,'
-                    AND data_hora >= "', IdtIn,'"
-                    AND data_hora <= "', Idtout,'"
-                    ORDER BY data_hora;');
+				SET @quer =CONCAT('
+					SELECT ALD.*,ALN.cel,ALN.email,
+					CONCAT(LPAD(DAY(ALD.data_hora),2,0),"/",LPAD(MONTH(ALD.data_hora),2,0),"/",YEAR(ALD.data_hora)) AS DATA,
+					CONCAT(LPAD(HOUR(ALD.data_hora),2,0),":00") AS HORARIO 
+					FROM vw_aula_dada AS ALD
+					INNER JOIN tb_aluno AS ALN
+					ON ALD.id_aluno = ALN.id    
+					WHERE ALD.aluno LIKE "%',Ialuno,'%"
+					AND ALD.id_usuario = ', @id_call,'
+					AND ALD.data_hora >= "', IdtIn,'"
+					AND ALD.data_hora <= "', Idtout,'"
+					ORDER BY ALD.data_hora;');
             END IF;
            
 			PREPARE stmt1 FROM @quer;
@@ -668,7 +674,7 @@ DELIMITER $$
 				AND ALD.data_hora >= "', IdtIn,'"
 				AND ALD.data_hora <= "', Idtout,'"
 				GROUP BY ALD.id_aluno
-				ORDER BY ALD.aluno;
+				ORDER BY ALD.aluno, ALD.data_hora;
 			');
 			PREPARE stmt1 FROM @quer;
 			EXECUTE stmt1;

@@ -1,0 +1,63 @@
+<template>
+    <style>
+
+        #btnWhats{
+            font-size: 3em;
+        }
+     
+    </style>
+  
+    <fieldset>
+        <legend id="lgd-aluno"></legend>
+        <div class="inline">
+            <label for="edtTexto">Mensagem</label>
+            <textarea id="edtTexto" rows="10"></textarea>
+        </div>
+        <div class="line">
+            <button id="btnWhats" class="btn-round"><span class="mdi mdi-whatsapp"></span></button>
+        </div>
+    </fieldset>
+
+
+</template>
+<script>
+
+    const pageData = main_data.fin_mensagem.data
+    const pageFunc = main_data.fin_mensagem.func
+    const pageScreen = document.querySelector('#card-fin_mensagem')
+
+    console.log(pageData)
+
+    pageFunc.pageStart = ()=>{
+        const txt = pageScreen.querySelector('#edtTexto')
+        txt.value = `Bom dia ${pageData.aluno}, tudo bem?
+        Segue abaixo a lista de aulas do último mês:\n
+
+        #$#%
+
+        Fazer pgto pelo pix: XXXXXXXXXXXXXXX
+        Tamo junto!!!
+        `
+        let lista = ''
+        let total = 0
+        for(let i=0; i<pageData.aula_aberta.length; i++){
+            total += parseFloat(pageData.aula_aberta[i].valor)
+            lista += `${pageData.aula_aberta[i].data} as ${pageData.aula_aberta[i].hora} R$${parseFloat(pageData.aula_aberta[i].valor).toFixed(2)}\n        `
+        }
+        lista += `\n        Total R$${total.toFixed(2)}`
+
+        txt.value = txt.value.replace('#$#',lista)
+
+
+    }
+
+    pageScreen.querySelector('#btnWhats').addEventListener('click',()=>{
+//        alert(pageScreen.querySelector('#edtTexto').value.replaceAll('\n','%0a'))
+        window.open(`https://wa.me/55${pageData.cel}?text=${pageScreen.querySelector('#edtTexto').value.replaceAll('\n','%0a')}`, '_whats').focus()
+    })
+
+// https://wa.me/whatsappphonenumber?text=urlencodedtext
+
+
+    pageFunc.pageStart()
+</script>
