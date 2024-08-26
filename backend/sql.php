@@ -43,6 +43,7 @@
         /* FINANCEIRO */
         "FIN-0" => 'CALL sp_view_fecha_aula(@access,@hash,"x00","x01","x02",x03);', // Nome Aluno, DtIn, DtOut,Aberto
         "FIN-1" => 'CALL sp_view_saldo_devedor(@access,@hash,"x00","x01","x02");', // Nome Aluno, DtIn, DtOut
+        "FIN-2" => 'CALL sp_set_baixa_aula(@access,@hash,x00,"x01",x02);', // id_aluno,data_hora,pg
         
     );
 

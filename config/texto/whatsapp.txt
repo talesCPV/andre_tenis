@@ -1,3 +1,1 @@
-Teste de Whatsapp
-
-233
+{"text":"Bom dia #aluno\nSegue abaixo o fechamento do último mês:\n\n#aulas\n\nChave Pix: xxxxxxxxxxxxxxx\n\nDesde já agradeço a preferência\nBons Treinos"}

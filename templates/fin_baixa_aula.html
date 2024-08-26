@@ -96,7 +96,9 @@
             baixa.innerHTML = 'Baixar Aula'
             baixa.addEventListener('click',(e)=>{
                 const index = parseInt(e.target.parentNode.aula)
-                console.log(pageData.aula_aberta[index])
+                if(confirm(`Baixar a aula do dia ${pageData.aula_aberta[index].data} as ${pageData.aula_aberta[index].hora}?`)){
+                    pageFunc.baixaAula(i)
+                }
             })
             baixa.disabled = pageData.aula_aberta[i].pg
             row.appendChild(baixa)
@@ -105,8 +107,32 @@
         }
     }
 
+    pageFunc.baixaAula = (index,pg=1)=>{
+        data_hora = pageData.aula_aberta[index].data_hora
+        const params = new Object;
+            params.id_aluno = pageData.id_aluno
+            params.data_hora = data_hora
+            params.pg = pg
+        const myPromisse = queryDB(params,'FIN-2');
+        return myPromisse.then((resolve)=>{
+            pageData.aula_aberta[index].pg = pg
+            main_data.fin_fecha_aula.func.fillAulas()
+            fillAula()
+        })
+    }
+
     pageScreen.querySelector('#btnMessage').addEventListener('click',()=>{
         openHTML('fin_mensagem.html','pop-up','Enviar Mensagem',pageData,800)
+    })
+
+    pageScreen.querySelector('#btnAll').addEventListener('click',()=>{
+        if(confirm('Deseja baixar todas as aulas listadas acima?')){
+            for(let i=0; i<pageData.aula_aberta.length; i++){
+                pageFunc.baixaAula(i).then(()=>{
+                    closeModal('fin_baixa_aula')
+                })
+            }
+        }
     })
 
     pageFunc.pageStart()

@@ -39,7 +39,7 @@
     </fieldset>
 
     <fieldset id="fds-resumo">
-        <legend>Pgto em haver</legend>
+        <legend>Pgto em aberto</legend>
         <table id="tblEmAberto"></table>
     </fieldset>
 </template>
@@ -75,10 +75,13 @@
             myPromisse.then((resolve)=>{
                 const json = JSON.parse(resolve)                
                 tbl1.head('Data,Hora,Aluno,Aula|mob-hide,Clube|mob-hide,Valor,PG')
+                let tot = 0
                 for(let i=0; i<json.length;i++){ 
                     fds1.style.display = 'block'                   
                     tbl1.plot(json[i],'DATA,HORARIO,aluno,aula|mob-hide,clube|mob-hide,valor,pg','str,str,Upp,Upp,Upp,R$.,cha 0=NÂO 1=✔')
+                    tot += parseFloat(json[i].valor)
                 }
+                tbl1.plot({'b':'','l':'Total','v':tot},'b,b,b,b,b,l|lbl-tot,v|lbl-totval','str,str,str,str,str,str,R$.')
                 queryDB(params,'FIN-1')
                 .then((resume)=>{
                     const json2 = JSON.parse(resume)

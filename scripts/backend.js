@@ -227,6 +227,7 @@ function saveFile(file,path){
     const data = new URLSearchParams();
         data.append("file", JSON.stringify(file));
         data.append("path", path);
+
     const myRequest = new Request("backend/saveFile.php",{
         method : "POST",
         body : data

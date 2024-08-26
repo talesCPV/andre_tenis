@@ -25,16 +25,12 @@
         </div>
     </fieldset>
 
-    <div class="legenda">        
-        <div>
-            <label>#aluno</label>
-            <label>-  Nome do Aluno</label>
-        </div>
-
-        <div>
-            <label>#aulas</label>
-            <label>-  Lista de Aulas (Data, Hora e Valor)</label>
-        </div>
+    <div class="legenda">      
+        
+        <p><span>#aluno</span> - Nome do Aluno</p>
+        <p><span>#aulas</span> - Lista de Aulas (Data, Hora e Valor)</p>
+        <p><span>#total</span> - Valor total das aulas (R$XXX,XX)</p>
+        <br>
         <p> *Usar os caracteres especiais acima onde eles serão substituídos na mensagem final pelos dados do aluno</p>
 
     </div>
@@ -47,17 +43,21 @@
     const pageScreen = document.querySelector('#card-tool_mensagem')
 
     pageFunc.pageStart = ()=>{
-
-        getTxt('/../config/texto/whatsapp.txt').then((txt)=>{
-            pageScreen.querySelector('#edtMsg').value = txt.substr(1,txt.length-2)
+        getFile(`/../config/user/${localStorage.getItem('id_user')}/whatsapp.json`).then((txt)=>{
+            console.log()
+            const mensagem = JSON.parse(txt)
+            pageScreen.querySelector('#edtMsg').value = mensagem.text === undefined ? '' : mensagem.text
         })
-
     }
 
 
-    pageScreen.querySelector('#btnSave').addEventListener('click',()=>{
-        const txt = pageScreen.querySelector('#edtMsg').value.trim()
-        saveFile(txt,'../config/texto/whatsapp.txt')
+    pageScreen.querySelector('#btnSave').addEventListener('click',()=>{       
+        if(confirm('Salvar a mensagem acima como pedrão?')){
+            const out =  new Object
+            out.text = pageScreen.querySelector('#edtMsg').value.trim()
+            saveFile(JSON.stringify(out),`/../config/user/${localStorage.getItem('id_user')}/whatsapp.json`)
+            closeModal('tool_mensagem')
+        }
     })
 
     pageFunc.pageStart()
