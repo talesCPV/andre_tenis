@@ -132,13 +132,15 @@
                 cell.className = x==0 ? 'time' : 'cell'                
                 x>0 ? cell.id = `cell-${hora.substr(0,2)}` : null  
                 cell.addEventListener('click',(e)=>{
-                    const data = new Object
-                    data.dia = pageData.dia
-                    data.hora = y
-                    data.date = pageData.f_dia
-                    data.time = hora
-                    data.alunos = e.target.parentNode.data
-                    openHTML('agd_view_aula.html','pop-up','Confirmar Presença',data,800)
+                    if(e.target.nodeName == 'TD'){                    
+                        const data = new Object
+                        data.dia = pageData.dia
+                        data.hora = y
+                        data.date = pageData.f_dia
+                        data.time = hora
+                        data.alunos = e.target.parentNode.data
+                        openHTML('agd_view_aula.html','pop-up','Confirmar Presença',data,800)
+                    }
                 })
 
 

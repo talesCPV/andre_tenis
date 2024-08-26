@@ -105,23 +105,24 @@
     })
 
     pageScreen.querySelector('#tblFechaAula').addEventListener('click',(e)=>{
-        try{
+      
+        const r_index = e.target.parentNode.rowIndex
+        const t_size = e.target.parentNode.parentNode.rows.length
+        if(r_index >0 && r_index< t_size-1){   
             data = e.target.parentNode.data
             data.org = 'aula'
             openHTML('fin_baixa_aula.html','pop-up','Fechamento Financeiro',data)
-        }catch{
-            console.error('clique fora da base de dados da tabela')
         }
 
     })
 
     pageScreen.querySelector('#tblEmAberto').addEventListener('click',(e)=>{
-        try{
+        const r_index = e.target.parentNode.rowIndex
+        const t_size = e.target.parentNode.parentNode.rows.length
+        if(r_index >0 && r_index< t_size-1){   
             data = e.target.parentNode.data
             data.org = 'aluno'
             openHTML('fin_baixa_aula.html','pop-up','Fechamento Financeiro',data)
-        }catch{
-            console.error('clique fora da base de dados da tabela')
         }
 
     })

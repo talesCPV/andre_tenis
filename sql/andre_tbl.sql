@@ -56,6 +56,7 @@ CREATE TABLE tb_clube (
     bairro varchar(50) DEFAULT NULL,
     uf varchar(2) DEFAULT NULL,
     cep varchar(10) DEFAULT NULL,
+    UNIQUE (id_usuario,nome),
     FOREIGN KEY (id_usuario) REFERENCES tb_usuario(id),
     PRIMARY KEY (id)
 ) ENGINE=MyISAM AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
@@ -91,10 +92,13 @@ CREATE TABLE tb_aula (
     descricao varchar(70) NOT NULL,
     valor double NOT NULL DEFAULT 0,
     obs varchar(255) DEFAULT NULL,
+    UNIQUE (id_usuario,descricao),
     FOREIGN KEY (id_usuario) REFERENCES tb_usuario(id),
     FOREIGN KEY (id_clube) REFERENCES tb_clube(id),
     PRIMARY KEY (id)
 ) ENGINE=MyISAM AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
+
+ALTER TABLE tb_aula ADD UNIQUE (id_usuario,descricao);
 
  DROP TABLE IF EXISTS tb_agenda;
 CREATE TABLE tb_agenda (

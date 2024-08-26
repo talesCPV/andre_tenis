@@ -136,12 +136,14 @@
                 x>0 ? cell.id = `w-${x==7 ? 0 : x}-${y}` : null  
                 cell.data = []
                 cell.addEventListener('click',(e)=>{
-                    const obj = new Object
-                    obj.day = Number(e.target.id.substr(2,1))
-                    obj.time = Number(e.target.id.substr(4,2))
-                    obj.aulas = e.target.data
-                    closeModal('agd_view_grade')
-                    openHTML('agd_view_grade.html','pop-up','Edição de Agenda',obj,600)
+                    if(e.target.nodeName == 'TD'){
+                        const obj = new Object
+                        obj.day = Number(e.target.id.substr(2,1))
+                        obj.time = Number(e.target.id.substr(4,2))
+                        obj.aulas = e.target.data
+                        closeModal('agd_view_grade')
+                        openHTML('agd_view_grade.html','pop-up','Edição de Agenda',obj,600)
+                    }
                 })              
                 line.appendChild(cell)
 
