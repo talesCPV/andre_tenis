@@ -1,16 +1,16 @@
 <template>
     <style>
 
-        .row-aluno > div > input{
+        .row-aula > div > input{
             width: 150px;
         }
 
-        .row-aluno > div{
+        .row-aula > div{
             border-bottom: solid 1px #b5b4b4;
         }
 
         @media all and (max-width : 768px) {
-            .row-aluno > div > input{
+            .row-aula > div > input{
                 width: unset;
             }
         }
@@ -18,23 +18,8 @@
     </style>
   
     <fieldset>
-        <legend id="lgn"></legend>
-
-        <fieldset>
-            <legend>Tipo de Aula</legend>
-            <select id="cmbTipos"></select>
-        </fieldset>
-
-        <fieldset>
-            <legend>Alunos</legend>
-            <div class="row-aluno"></div>
-            <div class="line">
-                <button id="btnBuscaAluno"><span class="mdi mdi-plus"></span> Adicionar Aluno</button>
-                <button id="btnSave"><span class="mdi mdi-check-bold"></span> Confirmar</button>
-            </div>
-
-        </fieldset>
-
+        <legend id="lgd-aluno"></legend>
+        <div class="row-aula"></div>
     </fieldset>
 
 
@@ -44,8 +29,73 @@
     const pageData = main_data.fin_baixa_aula.data
     const pageFunc = main_data.fin_baixa_aula.func
     const pageScreen = document.querySelector('#card-fin_baixa_aula')
+    pageData.aula_aberta = []
 
 console.log(pageData)    
+
+    pageFunc.pageStart = ()=>{
+
+        pageScreen.querySelector('#lgd-aluno').innerHTML = pageData.aluno
+
+        if(pageData.org=='aula'){
+            const obj = new Object
+                obj.data_hora = pageData.data_hora
+                obj.data = pageData.DATA
+                obj.hora = pageData.HORARIO
+                obj.valor = parseFloat(pageData.valor)
+                obj.pg = parseInt(pageData.pg)
+            pageData.aula_aberta.push(obj)
+        }else{
+            const aulas = pageData.aulas.split(',')
+            for(let i=0; i<aulas.length; i++){
+                const hora_val = aulas[i].split('|')
+                const obj = new Object
+                    obj.data_hora = hora_val[0]
+                    obj.data = hora_val[0].viewDate()
+                    obj.hora = hora_val[0].time()
+                    obj.valor = parseFloat(hora_val[1])
+                    obj.pg = 0
+                pageData.aula_aberta.push(obj)
+            }
+        }
+
+        fillAula()
+    }
+
+    function fillAula(){
+        const tbl = pageScreen.querySelector('.row-aula')
+        tbl.innerHTML = ''
+        for(let i=0; i<pageData.aula_aberta.length; i++){
+            const row = document.createElement('div')
+            row.className = 'aula inline'
+            row.aula = i
+
+            const dt = document.createElement('label')
+//            dt.innerHTML = pageData.aula_aberta[i].data
+            dt.className = 'row-title'
+            dt.innerHTML = ` Aula dia ${pageData.aula_aberta[i].data} as ${pageData.aula_aberta[i].hora} valor R$${pageData.aula_aberta[i].valor.toFixed(2)}`
+            row.appendChild(dt)
+/*
+            const hr = document.createElement('label')
+            hr.innerHTML = pageData.aula_aberta[i].hora
+            row.appendChild(hr)
+
+            const val = document.createElement('label')
+            val.innerHTML = 'R$'+pageData.aula_aberta[i].valor.toFixed(2)
+            row.appendChild(val)
+*/
+
+            const baixa = document.createElement('button')
+            baixa.innerHTML = 'Baixar Aula'
+            baixa.addEventListener('click',(e)=>{
+                const index = parseInt(e.target.parentNode.aula)
+                console.log(pageData.aula_aberta[index])
+            })
+            row.appendChild(baixa)
+
+            tbl.appendChild(row)
+        }
+    }
 
 /*
     
@@ -106,19 +156,7 @@ console.log(pageData)
         }
     }
 
-    pageFunc.pageStart = ()=>{
-        pageScreen.querySelector('#lgn').innerHTML = pageData.date.viewDate()+' as '+pageData.time
 
-        pageFunc.fillAula()
-        .then((response)=>{
-            const alunos = pageScreen.querySelector('.row-aluno')
-            alunos.innerHTML = ''
-            for(let i=0; i<pageData.alunos.length; i++){
-                pageScreen.querySelector('#cmbTipos').value = pageData.alunos[i].id_aula
-                addRow(pageData.alunos[i])
-            }
-        })
-    }
 
     pageFunc.fillAula = ()=>{
 
@@ -174,7 +212,7 @@ console.log(pageData)
     pageScreen.querySelector('#cmbTipos').addEventListener('change',(e)=>{
         getValor(e.target)
     })
-
-    pageFunc.pageStart()
 */
+    pageFunc.pageStart()
+
 </script>
