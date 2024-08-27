@@ -9,10 +9,8 @@
             <div class="inline">
                 <label for="edtBusca">por:</label>
                 <select id="cmbBusca">
-                    <option value="id" signal="IN">Código</option>
                     <option value="nome" signal="LIKE" selected>Nome</option>
-                    <option value="pais" signal="LIKE" >País</option>
-                    <option value="uf" signal="LIKE">UF</option>
+                    <option value="clube" signal="LIKE" >Clube</option>
                     <option value="cidade" signal="LIKE">Cidade</option>
                 </select>
                 <input type="text" id="edtBusca" onkeypress="return getEnter(event, 'btnBusca')">
@@ -46,7 +44,7 @@
             params.value = query[2]
         const myPromisse = queryDB(params,'ADM-2');
         myPromisse.then((resolve)=>{
-            const json = JSON.parse(resolve)
+            const json = JSON.parse(resolve)       
             tbl.style.display = json.length > 0 ? 'inline-table' : 'none'
             if(localStorage.getItem('access')=='0'){
                 tbl.head('Nome,Clube,Prof.')

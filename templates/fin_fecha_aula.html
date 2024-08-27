@@ -17,6 +17,35 @@
             text-align: right;
             font-weight: bold;
         }
+
+
+        @media all and (max-width : 768px) {
+
+            .fdata{
+                justify-content: start;
+            }
+
+            .fds-busca #btnBusca{
+                position: absolute;
+                right: 10px;
+                bottom: 10px;
+            }
+
+            .fdata label{
+               order: 3;
+            }
+
+            .fdata input[type="checkbox"]{
+               order: 4;
+            }
+
+            #edtIni,#edtFin{
+                order: 0;
+                width: calc(50% - 21px);
+            }
+        }
+
+
     </style>
 
     <fieldset class="fds-busca">

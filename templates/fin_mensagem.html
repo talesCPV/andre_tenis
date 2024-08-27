@@ -26,8 +26,6 @@
     const pageFunc = main_data.fin_mensagem.func
     const pageScreen = document.querySelector('#card-fin_mensagem')
 
-    console.log(pageData)
-
     pageFunc.pageStart = ()=>{
         pageScreen.querySelector('#lgd-aluno').innerHTML = pageData.aluno
 
@@ -41,7 +39,6 @@
         total = `R$${total.toFixed(2)}`
 
         getFile(`/../config/user/${localStorage.getItem('id_user')}/whatsapp.json`).then((response)=>{
-            console.log()
             const mensagem = JSON.parse(response)
             txt = mensagem.text === undefined ? '' : mensagem.text
             txt = txt.replaceAll('#aluno',pageData.aluno)
