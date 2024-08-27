@@ -30,6 +30,11 @@
         <legend>Registro de Usuário</legend>
 
         <div class="inline">
+            <label for="edtNome">Nome</label>
+            <input type="text" id="edtNome" maxlength="30">
+        </div>
+
+        <div class="inline">
             <label for="edtEmail">Email</label>
             <input type="text" id="edtEmail" maxlength="70" onkeyup="validaEmail(this)">
         </div>
@@ -66,6 +71,7 @@
     pageFunc.fillData = ()=>{
         if(parseInt(pageData.id)>0){
             pageScreen.querySelector('#edtEmail').value = pageData.email
+            pageScreen.querySelector('#edtNome').value = pageData.nome
             pageScreen.querySelector('#cmbPerfil').value = pageData.access
             pageScreen.querySelector('#btnDelUser').style.display = 'block'
         }
@@ -74,9 +80,10 @@
     pageFunc.setUser = (id, email)=>{
 
         const message = email=='' ? 'Deleção de usuário' : id>0 ? 'Alteração de usuário' : 'Inserção de novo usuários' 
-
+        const nome = pageScreen.querySelector('#edtNome').value.trim()
         const params = new Object
             params.id = id
+            params.nome = nome == '' ? email.split('@')[0] : nome
             params.email = email
             params.pass = pageScreen.querySelector('#edtPass').value.trim()
             params.acesso = pageScreen.querySelector('#cmbPerfil').value

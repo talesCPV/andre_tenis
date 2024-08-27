@@ -6,8 +6,8 @@
 
         /* USERS */
         "USR-0"  => 'CALL sp_viewUser(@access,@hash,"x00","x01","x02");', // FIELD,SIGNAL, VALUE
-        "USR-1"  => 'CALL sp_setUser(@access,@hash,x00,"x01","x02","x03");', // ID, EMAIL, PASS, ACCESS
-        "USR-2"  => 'CALL sp_updatePass(@hash,"x00");', // PASS
+        "USR-1"  => 'CALL sp_setUser(@access,@hash,x00,"x01","x02","x03",x04);', // ID, NOME, EMAIL, PASS, ACCESS
+        "USR-2"  => 'CALL sp_updatePass(@hash,"x00","x01");', // NOME, PASS
         "USR-3"  => 'CALL sp_check_usr_mail(@hash);', //
 
         /* CALENDAR */

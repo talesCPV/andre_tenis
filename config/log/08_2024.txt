@@ -348,3 +348,15 @@
 26/08/2024 15:25 admin@backhand.com.br : Permissao alterada, Modulo: Financeiro, Acesso:[[0,1]])
 26/08/2024 15:25 admin@backhand.com.br : Permissao alterada, Modulo: Config, Acesso:[[0,1]])
 26/08/2024 15:26 admin@backhand.com.br : Menu Alterado (Mensagem, tool_mensagem.html, pop-up, Mensagem Padrao)
+27/08/2024 14:24 andre@teste.com.br :  Imagem Alterada -> Perfil Usuario: andre@teste.com.br
+27/08/2024 15:17  : prof@teste.com.br -> Senha alterada pelo usuario
+27/08/2024 15:18 prof@teste.com.br : prof@teste.com.br -> Senha alterada pelo usuario
+27/08/2024 15:32 admin@backhand.com.br : Insercao de novo usuarios, email:undefined -> teste@teste.com.br, acesso:undefined -> 1
+27/08/2024 15:35 admin@backhand.com.br : Alteracao de usuario, email:teste@teste.com.br -> teste@teste.com.br, acesso:1 -> 1
+27/08/2024 15:37  : teste@teste.com.br -> Senha alterada pelo usuario
+27/08/2024 15:39 prof@teste.com.br : Aula Cadastrada Aluno 3 dia Seg as 03:00
+27/08/2024 15:39 prof@teste.com.br : Aula Deletada Aluno 3 dia Seg as 03:00
+27/08/2024 15:39 prof@teste.com.br : Aula Cadastrada Aluno 3 dia Seg as 07:00
+27/08/2024 15:39 prof@teste.com.br : Aula Cadastrada Aluno 2 dia Seg as 07:00
+27/08/2024 15:40 prof@teste.com.br : Aula Efetuada Aluno 2 dia 26/08/2024 as 07:00
+27/08/2024 15:40 prof@teste.com.br : Aula Efetuada Aluno 3 dia 26/08/2024 as 07:00
