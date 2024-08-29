@@ -37,6 +37,7 @@ function openMenu(){
             menu.innerHTML = ''//usr_menu
             pushMenu(menu, menu_data)
             checkUserMail()
+            checkUserSchedule()
             addShortcut()
             document.querySelector('#user-name').innerHTML = localStorage.getItem('nome')
             document.querySelector('#user-email').innerHTML = localStorage.getItem('email')

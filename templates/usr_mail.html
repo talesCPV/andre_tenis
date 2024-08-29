@@ -186,11 +186,11 @@
             const mail = send ? pageScreen.querySelector('#cmbEntrada') : pageScreen.querySelector('#cmbSaida')
             mail.innerHTML = ''
 
-            for(let i=0; i<json.length; i++){        
+            for(let i=0; i<json.length; i++){
                 const opt = document.createElement('option')
                 opt.data = json[i]       
                 opt.style["font-weight"] = json[i].looked=='1' ? 'lighter' : 'bold'
-                opt.innerHTML = json[i].data.date()+' '+json[i].data.time()+' '+(send ? json[i].mail_from : json[i].mail_to) + ' - ' + json[i].message.substring(0,60)
+                opt.innerHTML = json[i].data.viewDate()+' '+json[i].data.time()+' '+(send ? json[i].mail_from : json[i].mail_to) + ' - ' + json[i].message.substring(0,60)
                 mail.appendChild(opt)
             }
             send ? checkUserMail() : null

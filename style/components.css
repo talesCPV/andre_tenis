@@ -121,6 +121,18 @@
         font-size: 1.5em;
     }
 
+/* AGENDA DO DIA */
+
+    .show-schedule{
+        position: relative;
+        background-color: rgb(248, 246, 147);;
+        left: 50vw;
+        top: 0;
+        padding: 10px;
+        border-radius: 10px;
+        border: solid 1px white;
+    }
+
 /* ATALHOS ICONES */
 
     .icone{

@@ -50,6 +50,42 @@ function pictab(e){
         })
     }
 
+ /* CHECK USER SCHEDULES */
+
+ function checkUserSchedule(){
+    const params = new Object;
+        params.hash = localStorage.getItem('hash')
+        params.dt_in = today.getFormatDate()
+        params.dt_out = today.getFormatDate()
+    const myPromisse = queryDB(params,'CAL-0');
+    myPromisse.then((resolve)=>{
+        const json = JSON.parse(resolve)
+
+        const old = document.querySelectorAll('.schedule')
+/*        
+        while(old.length > 0){
+            old[0].remove()
+        }
+*/
+        if(json.length>0){
+            const main = document.querySelector('#main-screen')
+            const div = document.createElement('div')
+            const label = document.createElement('p')
+            const txt = document.createElement('p')
+            div.className = 'show-schedule'
+            label.innerHTML = json[0].data_agd.viewDate()
+            div.appendChild(label)
+            txt.innerHTML = json[0].obs
+            div.appendChild(txt)
+            main.appendChild(div)
+        }
+
+
+//        const unread = json.new_mail
+//        document.querySelector('#mail-badge-lbl').innerHTML = unread!='0' ? unread : ''
+    })
+}
+
 /* IMAGE */
 
 function aspect_ratio(img,cvw=300, cvh=300){
