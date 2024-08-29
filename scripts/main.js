@@ -61,28 +61,30 @@ function pictab(e){
     myPromisse.then((resolve)=>{
         const json = JSON.parse(resolve)
 
-        const old = document.querySelectorAll('.schedule')
-/*        
-        while(old.length > 0){
-            old[0].remove()
+        if(document.contains(document.querySelector('.schedule'))){
+            document.querySelector('.schedule').remove()
         }
-*/
+
         if(json.length>0){
             const main = document.querySelector('#main-screen')
             const div = document.createElement('div')
             const label = document.createElement('p')
             const txt = document.createElement('p')
-            div.className = 'show-schedule'
+            div.className = 'schedule'
             label.innerHTML = json[0].data_agd.viewDate()
+            label.className = 'schedule-title'
             div.appendChild(label)
-            txt.innerHTML = json[0].obs
+            txt.innerHTML = json[0].obs.replaceAll('\n','<br>')
             div.appendChild(txt)
+            const x = document.createElement('p')
+            x.innerHTML = '×'
+            x.className = 'x-close'
+            x.addEventListener('click',()=>{
+                div.remove()
+            })
+            div.appendChild(x)
             main.appendChild(div)
         }
-
-
-//        const unread = json.new_mail
-//        document.querySelector('#mail-badge-lbl').innerHTML = unread!='0' ? unread : ''
     })
 }
 
