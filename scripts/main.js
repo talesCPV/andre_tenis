@@ -54,7 +54,6 @@ function pictab(e){
 
  function checkUserSchedule(){
     const params = new Object;
-        params.hash = localStorage.getItem('hash')
         params.dt_in = today.getFormatDate()
         params.dt_out = today.getFormatDate()
     const myPromisse = queryDB(params,'CAL-0');
@@ -68,6 +67,7 @@ function pictab(e){
         if(json.length>0){
             const main = document.querySelector('#main-screen')
             const div = document.createElement('div')
+            div.data = json[0]
             const label = document.createElement('p')
             const txt = document.createElement('p')
             div.className = 'schedule'
@@ -75,6 +75,7 @@ function pictab(e){
             label.className = 'schedule-title'
             div.appendChild(label)
             txt.innerHTML = json[0].obs.replaceAll('\n','<br>')
+            txt.className = 'schedule-txt'
             div.appendChild(txt)
             const x = document.createElement('p')
             x.innerHTML = '×'
@@ -83,6 +84,21 @@ function pictab(e){
                 div.remove()
             })
             div.appendChild(x)
+            const btn = document.createElement('button')
+            btn.innerHTML = 'Deletar'
+            btn.className = 'schedule-btn'
+            btn.addEventListener('click',()=>{
+                if(confirm('Remover definitivamente este lembrete?')){
+                    const params = new Object;
+                        params.data_agd = div.data.data_agd
+                        params.obs = ''
+                    const resp = queryDB(params,'CAL-1')
+                    resp.then(()=>{                    
+                        checkUserSchedule()
+                    })
+                }
+            })
+            div.appendChild(btn)
             main.appendChild(div)
         }
     })

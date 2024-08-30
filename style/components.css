@@ -124,6 +124,8 @@
 /* AGENDA DO DIA */
 
     .schedule{
+        display: flex;
+        flex-direction: column;
         position: absolute;
         background-color: rgb(248, 246, 147);;
         left: 40vw;
@@ -137,6 +139,23 @@
     .schedule-title{
         text-align: center;
         font-weight: bold;
+    }
+
+    .schedule-btn{
+        margin: auto;
+        background-color: #f8f693;
+        border: solid 1px;
+        border-radius: 5px;
+    }
+
+    .schedule-btn:hover{
+        background-color: #f0ee8e;
+    }
+
+    .schedule-txt{
+        max-height: 300px;
+        overflow: scroll;
+        padding-bottom: 20px;
     }
 
     .x-close{

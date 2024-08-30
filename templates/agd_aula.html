@@ -79,7 +79,8 @@
                                 aluno.aula = aula[4]
                                 aluno.id_clube = aula[5]
                                 aluno.clube = aula[6]
-                                
+                                aluno.valor = aula[7]
+                                aluno.agendado = 1
                                 obj.aulas.push(aluno)
                             }   
                         }
@@ -142,11 +143,9 @@
                         openHTML('agd_view_aula.html','pop-up','Confirmar Presença',data,800)
                     }
                 })
-
-
-
                 line.appendChild(cell)
             }
+
             week.appendChild(line)
         }
     }

@@ -59,20 +59,26 @@
             params.del = del          
         const myPromisse = queryDB(params,'AGD-3');
         return myPromisse.then((resolve)=>{
-            setLog(`Aula ${del ? 'Deletada' : 'Efetuada'} ${obj.aluno} dia ${pageData.date.viewDate()} as ${pageData.time}`)
-            main_data.agd_aula.func.getAulas()
-            closeModal('agd_view_aula')
+            setLog(`Aula ${del ? 'Deletada' : 'Efetuada'} ${obj.aluno} dia ${pageData.date.viewDate()} as ${pageData.time}`)            
+            main_data.agd_aula.func.pageStart()
+            if(!del){
+                closeModal('agd_view_aula')
+            }
         })
     }
 
-    function addRow(data){
+    function addRow(data,fill = 0){
         const alunos = pageScreen.querySelector('.row-aluno')
         if(alunos.querySelector(`.aln-${data.id_aluno}`)===null){
             const tipo_aula = pageScreen.querySelector('#cmbTipos')
             const row = document.createElement('div')
             row.className = `aluno inline aln-${data.id_aluno}`
             row.data = data
-            
+
+            if(fill){
+                row.classList.add((data.agendado==1) ? 'has_class': 'have_class')
+            }
+                        
             const lbl = document.createElement('label')
             lbl.innerHTML = data.aluno
             lbl.for = 'aluno-'+data.id_aluno
@@ -87,7 +93,7 @@
             valor.addEventListener('keyup',(e)=>{valFloat(e.target)})
             valor.addEventListener('focus',(e)=>{e.target.select()})
             valor.inputMode = 'decimal'
-            valor.value = parseFloat(tipo_aula.options[tipo_aula.selectedIndex].data.valor).toFixed(2)
+            valor.value = parseFloat(fill ? data.valor : tipo_aula.options[tipo_aula.selectedIndex].data.valor).toFixed(2)
             edt_btn.appendChild(valor)
 
             const btn = document.createElement('button')
@@ -115,7 +121,7 @@
             alunos.innerHTML = ''
             for(let i=0; i<pageData.alunos.length; i++){
                 pageScreen.querySelector('#cmbTipos').value = pageData.alunos[i].id_aula
-                addRow(pageData.alunos[i])
+                addRow(pageData.alunos[i],1)
             }
         })
     }
@@ -161,7 +167,6 @@
 
         }
     })
-
 
     function getValor(sel){
         const valor = parseFloat(sel.options[sel.selectedIndex].data.valor).toFixed(2)
