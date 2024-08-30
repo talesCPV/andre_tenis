@@ -16,11 +16,18 @@
             color: black;
         }
 
+        .legenda{
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+        }
+
         .line-lgd{
             display: flex;
             margin-left: 100px;            
             align-items: center;
             gap: 5px;
+            width: 200px;
         }
 
         .square{
@@ -40,12 +47,17 @@
 
         @media all and (max-width : 768px) {
 
+            .legenda{
+                flex-direction: column;
+            }
+
             tr{
                 display: inline-flex;
             }
 
             .line-lgd {
                 margin-left: 10px;
+                width: auto;
             }
 
             .time{

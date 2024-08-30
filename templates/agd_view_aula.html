@@ -60,7 +60,7 @@
         const myPromisse = queryDB(params,'AGD-3');
         return myPromisse.then((resolve)=>{
             setLog(`Aula ${del ? 'Deletada' : 'Efetuada'} ${obj.aluno} dia ${pageData.date.viewDate()} as ${pageData.time}`)            
-            main_data.agd_aula.func.pageStart()
+            main_data.agd_aula.func.resetGrid()
             if(!del){
                 closeModal('agd_view_aula')
             }

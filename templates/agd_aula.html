@@ -104,13 +104,17 @@
         pageFunc.getAulas()
     }
 
-    pageFunc.pageStart = ()=>{
-        pageScreen.querySelector('#edtCal').value = today.getFormatDate()
+    pageFunc.resetGrid = ()=>{
         make_grid()
         getAgenda().then(()=>{
             pageFunc.fillAgenda()
         })
 
+    }
+
+    pageFunc.pageStart = ()=>{
+        pageScreen.querySelector('#edtCal').value = today.getFormatDate()
+        pageFunc.resetGrid()
     }
 
     function make_grid(){
