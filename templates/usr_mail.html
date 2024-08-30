@@ -11,6 +11,11 @@
 
         /* */
 
+        .f-rigth{
+            float: right;
+            margin-right: 20px;            
+        }
+
         .frm-mail{
             display: flex;
             flex-direction: row;
@@ -69,6 +74,12 @@
             .left-panel, .rigth-panel{
                 width: 100%;
             }
+
+
+            .f-rigth{
+                float: unset;
+                margin-right: unset;
+            }
         }
 
     </style>
@@ -122,15 +133,14 @@
                             <label for="cmbUser">Destinatário</label>
                             <select id="cmbUser"></select>
                         </div>
-                        <textarea id="edtMail" cols="30" rows="10" maxlength="1000"></textarea>
-                        <div class="line">
-                            <button id="btnEnviar">Enviar</button>
-                        </div>
+                        <textarea id="edtMail" cols="30" rows="10" maxlength="1000" autofocus></textarea>
+                        <button class="f-rigth" id="btnEnviar">Enviar</button>
                     </div>
                     <div class="tab-content">
                         <h3>Caixa de Entrada</h3>
                         <select id="cmbEntrada" class="cmbMail" size="10"></select>
                         <textarea id="edtViewEntrada" cols="30" rows="10" readonly></textarea>
+                        <button class="f-rigth" id="btnAnser" disabled>Responder</button>
                     </div>
                     <div class="tab-content">
                         <h3>Mensagens Enviadas</h3>
@@ -160,7 +170,9 @@
         if(cmb.selectedIndex >= 0){
             const data = cmb.options[cmb.selectedIndex].data
             txt.value = data.message
-
+            if(send){
+                pageScreen.querySelector('#btnAnser').disabled = 0
+            }
             if(data.looked == '0' && send){
 
                 const params = new Object;
@@ -263,6 +275,7 @@
                     pageFunc.refreshMail()
                     pageScreen.querySelector('#edtViewEntrada').value = ''
                     pageScreen.querySelector('#edtViewSaida').value = ''
+                    pageScreen.querySelector('#btnAnser').disabled = 1
                 })
             }
         }
@@ -288,6 +301,19 @@
 
     pageScreen.querySelector('#cmbSaida').addEventListener('dblclick',()=>{
         pageFunc.delMail(pageScreen.querySelector('#cmbSaida'))
+    })
+
+    pageScreen.querySelector('#btnAnser').addEventListener('click',()=>{
+        const sel = pageScreen.querySelector('#cmbEntrada')
+        const to = sel.options[sel.selectedIndex].innerHTML.split(' ')[2]
+        const user = pageScreen.querySelector('#cmbUser').options
+
+        for(let i=0; i<user.length; i++){
+            user[i].selected = user[i].innerHTML == to ? 1 : 0
+        }
+
+        pageScreen.querySelector('#edtMail').focus()
+        pageScreen.querySelector('#tab-1').checked = 1
     })
 
     pageFunc.fillUsers()
