@@ -34,18 +34,31 @@
         border-radius: 50%;
         width: 40px;
         height: 40px;
-        min-width: unset !important;
+        min-width: 40px !important;
         font-size: 1.4em;
         display: flex;
         align-items: center;
         justify-content: center;
       }
       
-      .btn-round:hover{
+      .btn-round:hover, .sel-round:hover{
         border: solid 2px #16a083;
         color: #16a083;
         background-color: #ffffff;
       }
+
+      .sel-round{
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        -webkit-appearance: none;
+        font-size: 1.3em;
+        font-weight: bolder;
+        padding-left: 10px;
+        padding-top: 3px;
+    }
+
+
 /* Edit + Button */
 
       .edtbtn{

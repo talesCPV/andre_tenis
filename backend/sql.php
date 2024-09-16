@@ -37,7 +37,7 @@
         "AGD-0" => 'CALL sp_view_agenda(@hash);',
         "AGD-1" => 'CALL sp_set_agenda(@access,@hash,x00,x01,x02,x03,x04);', // id_aluno, id_aula, dia, hora, del
         "AGD-2" => 'CALL sp_view_agenda_dia(@hash);',
-        "AGD-3" => 'CALL sp_set_aula_dada(@access,@hash,x00,x01,"x02","x03",x04,x05);', // id_aluno,id_aula,data_hora,valor,pg,del
+        "AGD-3" => 'CALL sp_set_aula_dada(@access,@hash,x00,x01,"x02","x03","x04",x05,x06);', // id_aluno,id_aula,data_hora,valor,modo,pg,del
         "AGD-4" => 'CALL sp_view_aula_dada(@access,@hash,"x00","x01");',
 
         /* FINANCEIRO */

@@ -9,6 +9,7 @@
             border-bottom: solid 1px #b5b4b4;
         }
 
+
         @media all and (max-width : 768px) {
             .row-aluno > div > input{
                 width: unset;
@@ -55,6 +56,7 @@
             params.id_aula = pageScreen.querySelector('#cmbTipos').value
             params.data_hora = pageData.date+' '+pageData.time+':00'
             params.val = obj.valor
+            params.modo = obj.modo
             params.pg = 0
             params.del = del          
         const myPromisse = queryDB(params,'AGD-3');
@@ -97,16 +99,24 @@
             edt_btn.appendChild(valor)
 
             const btn = document.createElement('button')
-            btn.className = 'btn-round'
+            btn.className = 'btn-round eraser'
             btn.innerHTML = '<span class="mdi mdi-eraser"></span>'
             btn.addEventListener('click',(e)=>{
                 if(confirm('Remover este aluno desta aula?')){
                     const aula = e.target.parentNode.parentNode.parentNode.data
-                    e.target.parentNode.parentNode.parentNode.remove()
+                    e.target.parentNode.parentNode.parentNode.remove()                    
                      setAula(aula,1)                    
                 }
             })
             edt_btn.appendChild(btn)
+
+            const sel =  document.createElement('select')
+            sel.id = 'tipo-aula-'+data.id_aluno
+            sel.className = 'sel-round'
+            sel.innerHTML='<option value="P" selected>P</option><option value="F">F</option><option value="R">R</option>'
+            sel.value = fill ? data.modo : 'P'
+            edt_btn.appendChild(sel)
+
             row.appendChild(edt_btn)
             alunos.appendChild(row)
         }
@@ -158,10 +168,10 @@
     pageScreen.querySelector('#btnSave').addEventListener('click',()=>{
         const alunos = pageScreen.querySelectorAll('.aluno')
         for(let i=0; i<alunos.length; i++){
-            alunos[i].data.valor = alunos[i].querySelector(`#aluno-${alunos[i].data.id_aluno}`).value            
+            alunos[i].data.modo = alunos[i].querySelector(`#tipo-aula-${alunos[i].data.id_aluno}`).value
+            alunos[i].data.valor = alunos[i].data.modo=='R' ? 0 : alunos[i].querySelector(`#aluno-${alunos[i].data.id_aluno}`).value
             setAula(alunos[i].data)
             .then((response)=>{
-                
 //                closeModal('agd_view_aula')
             })
 
