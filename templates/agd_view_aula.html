@@ -6,12 +6,35 @@
         }
 
         .row-aluno > div{
-            border-bottom: solid 1px #b5b4b4;
+            border-bottom: solid 1px #757272;
         }
 
+        .val-aluno{
+            max-width: 130px;
+        }
+
+        .edtbtn{
+            justify-content: end;
+        }
 
         @media all and (max-width : 768px) {
             .row-aluno > div > input{
+                width: unset;
+            }
+
+            .edtbtn{
+                justify-content: center;
+            }
+
+            .val-aluno{
+                max-width: 100px;
+            }
+
+            .inline :first-child{
+                min-width: unset;
+            }
+
+            .inline label{
                 width: unset;
             }
         }
@@ -88,6 +111,11 @@
             
             const edt_btn = document.createElement('div')
             edt_btn.className = 'edtbtn'
+
+            const r = document.createElement('label')
+            r.for = 'aluno-'+data.id_aluno
+            r.innerHTML = 'R$'
+            edt_btn.appendChild(r)
 
             const valor = document.createElement('input')
             valor.id = 'aluno-'+data.id_aluno
