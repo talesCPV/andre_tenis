@@ -32,9 +32,9 @@
         let txt = ''
         let total = 0
         let aula = ''
-        for(let i=0; i<pageData.aula_aberta.length; i++){
+        for(let i=0; i<pageData.aula_aberta.length; i++){         
             total += parseFloat(pageData.aula_aberta[i].valor)
-            aula += `${pageData.aula_aberta[i].data} as ${pageData.aula_aberta[i].hora} R$${parseFloat(pageData.aula_aberta[i].valor).toFixed(2)}\n`
+            aula += `${pageData.aula_aberta[i].modo} - ${pageData.aula_aberta[i].data} as ${pageData.aula_aberta[i].hora} R$${parseFloat(pageData.aula_aberta[i].valor).toFixed(2)}\n`
         }
         total = `R$${total.toFixed(2)}`
 

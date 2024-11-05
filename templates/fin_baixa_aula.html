@@ -47,7 +47,6 @@
     const pageFunc = main_data.fin_baixa_aula.func
     const pageScreen = document.querySelector('#card-fin_baixa_aula')
     pageData.aula_aberta = []
-
     pageFunc.pageStart = ()=>{
 
         pageScreen.querySelector('#lblNome').innerHTML = pageData.aluno.toUpperCase()
@@ -61,6 +60,7 @@
                 obj.hora = pageData.HORARIO
                 obj.valor = parseFloat(pageData.valor)
                 obj.pg = parseInt(pageData.pg)
+                obj.modo = pageData.modo == 'P' ? 'PRESENÇA' : pageData.modo == 'R' ? 'REPOSIÇÃO' : 'FALTA'
             pageData.aula_aberta.push(obj)
         }else{
             const aulas = pageData.aulas.split(',')
@@ -72,7 +72,8 @@
                     obj.hora = hora_val[0].time()
                     obj.valor = parseFloat(hora_val[1])
                     obj.pg = 0
-                pageData.aula_aberta.push(obj)
+                    obj.modo = hora_val[2] == 'P' ? 'PRESENÇA' : hora_val[2] == 'R' ? 'REPOSIÇÃO' : 'FALTA'
+                    pageData.aula_aberta.push(obj)
             }
         }
 
@@ -86,10 +87,9 @@
             const row = document.createElement('div')
             row.className = 'aula inline'
             row.aula = i
-
             const dt = document.createElement('label')
             dt.className = 'row-title'
-            dt.innerHTML = ` ${pageData.aula_aberta[i].data} as ${pageData.aula_aberta[i].hora} valor R$${pageData.aula_aberta[i].valor.toFixed(2)}`
+            dt.innerHTML = `${pageData.aula_aberta[i].modo} - ${pageData.aula_aberta[i].data} as ${pageData.aula_aberta[i].hora} valor R$${pageData.aula_aberta[i].valor.toFixed(2)}`
             row.appendChild(dt)
 
             const baixa = document.createElement('button')

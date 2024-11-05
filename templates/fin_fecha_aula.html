@@ -102,7 +102,7 @@
                 params.aberto = pageScreen.querySelector('#ckbAb').checked ? 1 : 0
             const myPromisse = queryDB(params,'FIN-0');
             myPromisse.then((resolve)=>{
-                const json = JSON.parse(resolve)   
+                const json = JSON.parse(resolve)
                 tbl1.head('Data,Hora,Aluno,Aula|mob-hide,P,Clube|mob-hide,Valor,PG')
                 let tot = 0
                 for(let i=0; i<json.length;i++){ 
