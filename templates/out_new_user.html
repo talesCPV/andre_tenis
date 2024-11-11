@@ -1,0 +1,40 @@
+<template>
+    <style></style>
+
+    <fieldset>
+        <legend>Novo Usuário</legend>
+        <div class="inline">
+            <label for="edtNome">Nome</label>
+            <input type="text" id="edtNome">            
+        </div>
+        <div class="inline">
+            <label for="edtEmail">Email</label>
+            <input type="email" id="edtEmail"  onkeyup="validaEmail(this)">            
+        </div>
+        <div class="inline">
+            <label for="edtCPF">CPF</label>
+            <input type="text" id="edtCPF" onkeyup="valCPF(this)" maxlength="14">
+        </div>
+        <div class="inline">
+            <label for="edtCel">Celular</label>
+            <input type="text" id="edtCel" onkeyup="valFone(this)" maxlength="15">
+        </div>
+        <div class="inline">
+            <label for="edtPass">Senha</label>
+            <input type="password" id="edtPass">            
+        </div>   
+        <div class="line">
+            <button id="btnSave">Criar Usuário</button>
+        </div>
+    </fieldset>
+
+    <div class="legenda">
+
+    </div>
+
+</template>
+<script>
+
+
+
+</script>

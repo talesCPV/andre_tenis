@@ -1,3 +1,10 @@
+@font-face {
+  font-family: 'Moscow Metro';
+  src: url('../assets/fonts/MoscowMetro.otf'), format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
 /* MODAL WINDOW*/
 
 :root{
@@ -29,7 +36,8 @@
   .modal-content {
     position: relative;
 /*    left: 20vw;*/
-    background-color: var(--white);
+    background-color: var(--win-back);
+    color: var(--win-font);
     border-radius: 10px;
     margin: 20px auto;
     border: 1px solid #888;
@@ -61,6 +69,8 @@
   }
 
   .close {
+    position: absolute;
+    right: 10px;
     padding-right: 10px;
     color: #acacac;
     font-size: 28px;

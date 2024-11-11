@@ -50,10 +50,6 @@
         </div>
     </nav>
 
-
-
-
-
     <div id="content-screen"></div>
     
 </template>
@@ -98,7 +94,7 @@
         document.querySelector('body').style['background-color'] = main_data.dashboard.data.wallpaper.color
     } 
 
-    pageFunc.setBarStyle = ()=>{
+    pageFunc.setBarStyle = ()=>{     
         styleSheet.setProperty('--top-bar', main_data.dashboard.data.colors.bar_back_color)
         styleSheet.setProperty('--top-bar-font', main_data.dashboard.data.colors.bar_font_color)
         styleSheet.setProperty('--top-bar-hover', main_data.dashboard.data.colors.bar_mouse_color)

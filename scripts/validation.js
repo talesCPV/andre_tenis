@@ -48,8 +48,16 @@ function valFloat(edt,dec=2){
     edt.value = getFloat(edt.value,dec)
 }
 
+function valFone(edt){
+    const color = (getNum(edt.value)).length >=10  ? 'green' : 'red'
+    edt.value = getFone(edt.value)
+    edt.style.color = color
+}
+
 function valCPF(edt){
+    const color = TestaCPF(getNum(edt.value)) ? 'green' : 'red'
     edt.value = getCPF(getNum(edt.value))
+    edt.style.color = color
 }
 
 function valCEP(edt){
@@ -83,8 +91,6 @@ function fillTime(edt){
 function valPlaca(edt){
     edt.value = getPlaca(edt.value)
 }
-
-
 
 function getFloat(text,dec=2){
     const ok_chr = ['1','2','3','4','5','6','7','8','9','0']
@@ -347,10 +353,6 @@ function horario(edt){
     edt.value = out;
 }
 
-function phone(param){
-    param.value = getFone(param.value)
-}
-
 function hideOrig(){
     if(document.querySelector('#cmbEntSai').value == 'ENTRADA'){
         document.querySelector('#cmbOrigem').disabled = true
@@ -376,4 +378,25 @@ function validaEmail(edt){
         return false
     }
 
+}
+
+function TestaCPF(strCPF) {
+    var Soma;
+    var Resto;
+    Soma = 0;
+  if (strCPF == "00000000000") return false;
+
+  for (i=1; i<=9; i++) Soma = Soma + parseInt(strCPF.substring(i-1, i)) * (11 - i);
+  Resto = (Soma * 10) % 11;
+
+    if ((Resto == 10) || (Resto == 11))  Resto = 0;
+    if (Resto != parseInt(strCPF.substring(9, 10)) ) return false;
+
+  Soma = 0;
+    for (i = 1; i <= 10; i++) Soma = Soma + parseInt(strCPF.substring(i-1, i)) * (12 - i);
+    Resto = (Soma * 10) % 11;
+
+    if ((Resto == 10) || (Resto == 11))  Resto = 0;
+    if (Resto != parseInt(strCPF.substring(10, 11) ) ) return false;
+    return true;
 }

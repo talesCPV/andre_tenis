@@ -3,14 +3,13 @@
     @import url(https://fonts.googleapis.com/css?family=Open+Sans);
     @import url(https://fonts.googleapis.com/css?family=Bree+Serif);
 
-
     :root{
         --top-bar : #8ff0a4f1;
         --top-bar-font : #000000FF;
         --top-bar-hover : #33d17af1;
         --top-font-hover : #000000FF;
     
-        --win-back : #f0fbe5f1;
+        --win-back : #f0f0f0f5;
         --win-font : #202c2aFF;
     }
 
