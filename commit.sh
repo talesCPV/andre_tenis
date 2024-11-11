@@ -20,6 +20,7 @@ then
     git add templates/
     git add index.html
     git add commit.sh
+    git add old_version.tar.gz
     
     git commit -m "by_script"
 
