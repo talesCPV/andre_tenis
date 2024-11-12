@@ -6,12 +6,16 @@ CREATE TABLE tb_usuario (
     nome varchar(30) NOT NULL DEFAULT "",
     token varchar(64) DEFAULT NULL,
     access int(11) DEFAULT -1,
+    asaas_id varchar(16) DEFAULT NULL,
+    cadastro TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    expira TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 	UNIQUE KEY (hash),
 	UNIQUE KEY (email),
     PRIMARY KEY (id)
 ) ENGINE=MyISAM AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
 
--- ALTER TABLE tb_usuario ADD nome varchar(30) NOT NULL DEFAULT ""; 
+-- ALTER TABLE tb_usuario ADD expira TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP;
+ 
 	INSERT INTO tb_usuario (email,hash,access)VALUES("admin@backhand.com.br","68c06055a0ec4b330ebd4a235603d67094d1b88b6bca5558309b436fdb595bb4",0);
 -- UPDATE tb_usuario SET nome="Tales C. Dantas" WHERE id=1;
 
@@ -125,4 +129,16 @@ CREATE TABLE tb_aula_dada (
     FOREIGN KEY (id_aluno) REFERENCES tb_aluno(id),
     FOREIGN KEY (id_aula) REFERENCES tb_aula(id),
     PRIMARY KEY (id_usuario,id_aluno,data_hora)
+) ENGINE=MyISAM AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
+
+/* CREDITOS */
+
+ DROP TABLE IF EXISTS tb_creditos;
+CREATE TABLE tb_creditos (
+    id_usuario int(11) NOT NULL,
+    credito int,
+    data_hora TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    valor double NOT NULL DEFAULT 0,
+    FOREIGN KEY (id_usuario) REFERENCES tb_usuario(id),
+    PRIMARY KEY (id_usuario,data_hora)
 ) ENGINE=MyISAM AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;

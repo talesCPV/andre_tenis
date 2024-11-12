@@ -41,6 +41,46 @@ DELIMITER ;
 
 /* USER */
 
+ DROP PROCEDURE IF EXISTS sp_newUser;
+DELIMITER $$
+	CREATE PROCEDURE sp_newUser(
+        IN Inome varchar(30),
+		IN Iemail varchar(80),
+		IN Isenha varchar(30),
+        IN Iasaas_id varchar(16)
+    )
+	BEGIN    
+		SET @hash = SHA2(CONCAT(Iemail, Isenha), 256);
+		INSERT INTO tb_usuario (nome,email,hash,asaas_id)VALUES(Inome,Iemail,@hash,Iasaas_id);
+        SELECT hash FROM tb_usuario WHERE id= (SELECT MAX(id) FROM tb_usuario);
+	END $$
+DELIMITER ;
+
+ DROP PROCEDURE IF EXISTS sp_confirma_email;
+DELIMITER $$
+	CREATE PROCEDURE sp_confirma_email(
+        IN Iasaas_id varchar(16)
+    )
+	BEGIN    
+		UPDATE tb_usuario SET access=1 WHERE asaas_id COLLATE utf8_general_ci = Iasaas_id COLLATE utf8_general_ci;
+        CALL sp_add_credit(Iasaas_id,3);
+	END $$
+DELIMITER ;
+
+ DROP PROCEDURE IF EXISTS sp_add_credit;
+DELIMITER $$
+	CREATE PROCEDURE sp_add_credit(
+        IN Iasaas_id varchar(16),
+        IN Imonth int
+    )
+	BEGIN
+        SET @id_user = (SELECT id FROM tb_usuario WHERE asaas_id COLLATE utf8_general_ci = Iasaas_id COLLATE utf8_general_ci);
+		SET @expira = (SELECT IF(expira<now(),now(),expira) FROM tb_usuario WHERE id = @id_user);
+ 		UPDATE tb_usuario SET expira = DATE_ADD(@expira, INTERVAL Imonth MONTH) WHERE id = @id_user;
+        INSERT INTO tb_creditos (id_usuario,credito) VALUES (@id_user,Imonth);
+	END $$
+DELIMITER ;
+
  DROP PROCEDURE IF EXISTS sp_setUser;
 DELIMITER $$
 	CREATE PROCEDURE sp_setUser(
