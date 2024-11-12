@@ -4,25 +4,30 @@
     <fieldset>
         <legend>Novo Usuário</legend>
         <div class="inline">
-            <label for="edtNome">Nome</label>
-            <input type="text" id="edtNome">            
+            <label for="name">Nome*</label>
+            <input type="text" class="asaas" onfocus="this.select();" id="name">            
         </div>
         <div class="inline">
-            <label for="edtEmail">Email</label>
-            <input type="email" id="edtEmail"  onkeyup="validaEmail(this)">            
+            <label for="email">Email*</label>
+            <input type="email" onfocus="this.select();" id="email" class="asaas"  onkeyup="validaEmail(this)">            
         </div>
         <div class="inline">
-            <label for="edtCPF">CPF</label>
-            <input type="text" id="edtCPF" onkeyup="valCPF(this)" maxlength="14">
+            <label for="cpfCnpj">CPF*</label>
+            <input type="text" onfocus="this.select();" inputmode="decimal" id="cpfCnpj" class="asaas" onkeyup="valCPF(this)" maxlength="14">
         </div>
         <div class="inline">
-            <label for="edtCel">Celular</label>
-            <input type="text" id="edtCel" onkeyup="valFone(this)" maxlength="15">
+            <label for="mobilePhone">Celular</label>
+            <input type="text" onfocus="this.select();" inputmode="decimal" id="mobilePhone" class="asaas" onkeyup="valFone(this)" maxlength="15">
         </div>
         <div class="inline">
-            <label for="edtPass">Senha</label>
-            <input type="password" id="edtPass">            
+            <label for="edtNewPass">Senha*</label>
+            <input type="password" onfocus="this.select();" id="edtNewPass">            
+        </div>
+        <div class="inline">
+            <label for="edtRePass">Repita a senha</label>
+            <input type="password" onfocus="this.select();" id="edtRePass">            
         </div>   
+
         <div class="line">
             <button id="btnSave">Criar Usuário</button>
         </div>
@@ -35,6 +40,54 @@
 </template>
 <script>
 
+    document.querySelector('#btnSave').addEventListener('click',()=>{
+
+        if(checkField(['name','email','cpfCnpj'])){
+            if(checkMinLength(['edtNewPass'],8)){
+                if(checkRepass(['edtNewPass','edtRePass'])){
+                    if(checkValidation(['email','cpfCnpj','mobilePhone'])){
+                        const asaas = document.querySelectorAll('.asaas')
+                        const body = {"notificationDisabled": true,"externalReference": "BACKHAND-NewUser"}
+                        for(let i=0; i<asaas.length; i++){
+                            if(asaas[i].value.length > 0){
+                                body[asaas[i].id] = asaas[i].value
+                            }
+                        }
+                        newCli(body).then((response)=>{
+                            response.text().then((txt)=>{
+                                const json = JSON.parse(txt)
+                                console.log(json)
+                                newUser(json.id)
+                            })
+                        })
+                    }
+                }
+            }
+        }      
+    })
+
+
+    function newUser(asaas_id){
+            const params = new Object;
+                params.nome = document.querySelector('#name').value.trim()
+                params.email = document.querySelector('#email').value.trim()
+                params.pass = document.querySelector('#edtNewPass').value
+                params.asaas_id = asaas_id
+            const myPromisse = queryDB(params,'USR-4');
+            myPromisse.then((resolve)=>{
+
+                console.log(resolve)
+
+                alert('Cadastro efetuado, verifique seu email para confirmar seu cadastro.')
+                closeModal('out_new_user')
+            })
+        }
+    
+        /*
+        
+        access=-1&hash=0&cod=%22USR-4&params=%7B%22nome%22%3A%22Tales+Cembraneli+Dantas%22%2C%22email%22%3A%22talescd%40gmail.com%22%2C%22pass%22%3A%22123456789%22%2C%22asaas_id%22%3A%22cus_000006346217%22%7D
+        
+        */
 
 
 </script>

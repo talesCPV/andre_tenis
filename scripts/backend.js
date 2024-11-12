@@ -308,3 +308,29 @@ function uploadFile(file,path,filename){
 
     return myPromisse
 }
+
+/* ENVIO DE EMAIL */
+function sendMail(para,assunto,mensagem){
+    //    addContact(message)
+        const data = new URLSearchParams()
+            data.append("para", para)
+            data.append("assunto", assunto)
+            data.append("mensagem", mensagem)
+    
+        const myRequest = new Request("backend/mail_pnt3.php",{
+            method : "POST",
+            body : data
+        });
+    
+        return new Promise((resolve,reject) =>{
+            fetch(myRequest)
+            .then(function (response){
+                if (response.status === 200) { 
+                    resolve(response.text())
+//                    alert('Mensagem enviada com sucesso!!! Obrigado pelo contato, aguarde que retornaremos o mais breve possível.')
+                } else { 
+                    reject(new Error("Houve algum erro na comunicação com o servidor"));
+                } 
+            });
+        }); 
+    }

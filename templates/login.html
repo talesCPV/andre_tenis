@@ -136,8 +136,9 @@
 
             <div class="risk"></div>
 
-            <div class="hide-btn" id="btn-newuser">
-                <p>Novo Usuário</p>
+            <div class="inline">
+                <p class="hide-btn"  id="btn-newuser">Novo Usuário</p>
+                <p class="hide-btn"  id="btn-forgot">Esqueci a senha</p>
             </div>
 
             <div class="risk"></div>
@@ -202,6 +203,10 @@
 
     document.querySelector('#btn-newuser').addEventListener('click',()=>{
         openHTML('out_new_user.html','pop-up','Bem Vindo ao Backhand')
+    })
+
+    document.querySelector('#btn-forgot').addEventListener('click',()=>{
+        openHTML('out_forgot.html','pop-up','Esqueci a senha')
     })
 
 </script>

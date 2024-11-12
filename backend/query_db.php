@@ -23,15 +23,17 @@
         $query = $query_db[$_POST["cod"]];
         $query = str_replace('@access','"('.$access.')"',$query); // put mod access allow
         $query = str_replace('@hash','"'.$hash.'"',$query); // put user hash value
-
         $i = 0;
+     
         foreach($params as $key => $val ){
+
             $y = 'y'.str_pad(strval($i), 2, "0", STR_PAD_LEFT);
             $x = 'x'.str_pad(strval($i), 2, "0", STR_PAD_LEFT);
 
             $query = str_replace($y, $key,$query); // fields
             $query = str_replace($x, $val,$query); // values
             $i++;
+          
         }
 
 //    echo $query; 

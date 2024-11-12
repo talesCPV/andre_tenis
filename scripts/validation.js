@@ -32,7 +32,33 @@ function checkRepass(fields){
     const check = document.getElementById(fields[0]).value
     for(let i=1; i<fields.length; i++){
         if(document.getElementById(fields[i]).value != check){
-            alert('Por favor, repita a senha digitada.')
+            alert('As senhas digitada não conferem, favor verificar.')
+            document.getElementById(fields[i]).focus()
+            return false
+        }
+    }
+    return true
+}
+
+function checkValidation(fields){
+    
+    for(let i=0; i< fields.length; i++){
+        const field = document.getElementById(fields[i])
+        if(field.style.color == 'red' && field.value.length > 0){
+            alert('Dado no formato incorreto, favor corrigir.')
+            document.getElementById(fields[i]).focus()
+            return false
+        }
+    }
+    return true
+}
+
+function checkMinLength(fields,minSize){
+    
+    for(let i=0; i< fields.length; i++){
+        const field = document.getElementById(fields[i])
+        if(field.value.length < minSize){
+            alert(`Este campo deve ter no mínimo ${minSize} caracteres.`)
             document.getElementById(fields[i]).focus()
             return false
         }
