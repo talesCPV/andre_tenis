@@ -75,9 +75,9 @@
                 params.asaas_id = asaas_id
             const myPromisse = queryDB(params,'USR-4');
             myPromisse.then((resolve)=>{
-
-                console.log(resolve)
-
+                const json = JSON.parse(resolve)
+                console.log(json)
+                confirmaUser(params.email,asaas_id)
                 alert('Cadastro efetuado, verifique seu email para confirmar seu cadastro.')
                 closeModal('out_new_user')
             })

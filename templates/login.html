@@ -185,14 +185,19 @@
             const myPromisse = queryDB(params,'LOG-0');
             myPromisse.then((resolve)=>{
                 const json = JSON.parse(resolve)
-                if(json.length>0){                    
-                    localStorage.setItem("id_user",json[0].id)
-                    localStorage.setItem("hash",json[0].hash)
-                    localStorage.setItem("access",json[0].access)
-                    localStorage.setItem("nome",json[0].nome)
-                    localStorage.setItem("email",json[0].email)
-                    openHTML('dashboard.html','main-screen')
-//                    document.documentElement.requestFullscreen();
+                if(json.length>0){
+                    if(Number(json[0].access) < 0){
+                        alert('Este cadastro ainda não foi confirmado, favor verificar em sua caixa de entrada nosso email de confirmação.')
+                        confirmaUser(json[0].email,json[0].asaas_id)
+                    }else{
+                        localStorage.setItem("id_user",json[0].id)
+                        localStorage.setItem("hash",json[0].hash)
+                        localStorage.setItem("access",json[0].access)
+                        localStorage.setItem("nome",json[0].nome)
+                        localStorage.setItem("email",json[0].email)
+                        openHTML('dashboard.html','main-screen')
+//                      document.documentElement.requestFullscreen();
+                    }
                 }else{
                     alert('Usuário ou Senha inválido!')
                     document.querySelector('#edtUser').focus()
