@@ -214,4 +214,15 @@
         openHTML('out_forgot.html','pop-up','Esqueci a senha')
     })
 
+    const parametros = window.location.search.substring(1,99999).split('&')
+    for(let i=0; i<parametros.length; i++){
+        const param = parametros[i].split('=')
+        if(param[0]=='email'){
+            document.querySelector('#edtUser').value = param[1]
+        }else if(param[0]=='pass'){
+            document.querySelector('#edtPass').value = param[1]
+        }
+    }
+
+
 </script>

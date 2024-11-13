@@ -9,7 +9,7 @@
         </div>
         <p class="line">Você receberá um email para resetar sua senha</p>
         <div class="line">
-            <button id="btnSave">Enviar</button>
+            <button id="btnSendMail">Enviar</button>
         </div>
     </fieldset>
 
@@ -20,6 +20,18 @@
 </template>
 <script>
 
-
+    document.querySelector('#btnSendMail').addEventListener('click',()=>{
+        const url = window.location+'backend/forgotPass.php?email='+document.querySelector('#edtEmail').value
+        fetch(url).then((response)=>{
+            response.text().then((txt)=>{
+                if(txt.length < 100){
+                    alert(txt)
+                }else{
+                    alert('Um email de recuperação de senha foi enviado para sua caixa de entrada.')
+                    window.location.reload();
+                }
+            })
+        })
+    })
 
 </script>

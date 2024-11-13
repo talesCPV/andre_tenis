@@ -1,6 +1,9 @@
 <?php 
 
     function sendMail($para,$assunto,$texto){
+
+//echo $para.$assunto.$texto;
+
         require("mail/PHPMailer.php"); 
         require("mail/SMTP.php"); 
         $mail = new PHPMailer\PHPMailer\PHPMailer();
@@ -21,15 +24,15 @@
         $mail->Body = $texto; 
         $mail->AddAddress($para); 
 
-        if(!$mail->Send()) { 
-            echo '{"send_mail" : 0}' ; 
+        if($mail->Send()) { 
+            return 1;            
         } else { 
-            echo '{"send_mail" : 1}' ; 
+            return 0;
         } 
     }
 
     if(isset($_POST['para']) &&isset($_POST['assunto']) && isset($_POST['mensagem'])){
-        sendMail($_POST['para'], $_POST['assunto'], $_POST['mensagem']);
+        echo '{"send_mail" : '.sendMail($_POST['para'], $_POST['assunto'], $_POST['mensagem']).'}';
     } 
 
-?> 
+?>
