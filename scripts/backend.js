@@ -381,3 +381,53 @@ function sendMail(para,assunto,mensagem){
         sendMail(email,'BACKHAND - Confirmação de Cadastro',mail)
 
     }
+
+    function resetaPass(email,asaas_id){
+
+        
+
+        const url = 'https://planet3.com.br/backhand/backend/confirmEmail.php?asaas_id='+asaas_id
+        const mail = `
+            <style>
+                body{
+                    display: flex;
+                    flex-direction: column;
+                }
+
+                .head, .middle{
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                }
+
+                .button{
+                    padding: 15px;
+                    background-color: #84ecb2;
+                    border: solid 1px;
+                    border-radius: 10px;
+                    text-decoration: none
+                }
+
+                .button:hover{
+                    background-color: #519972;
+                    color: aliceblue;
+                }
+
+            </style>
+
+
+            <div class="head">
+                <h2>Seja muito bem vindo ao BACKHAND</h2>
+                <h4>o maior portal gerenciador de aulas de tênis do Brasil</h4>    
+            </div>
+
+            <div class="middle">
+                <p>Clique no botão abaixo para finalizar seu cadastro e ganhe 3 meses grátis em nossa plataforma</p>
+
+                <a href="${url}" class="button">CONFIRMAR CADASTRO</a>
+            </div>`
+
+        sendMail(email,'BACKHAND - Confirmação de Cadastro',mail)
+
+    }
