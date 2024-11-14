@@ -31,3 +31,6 @@
 14/11/2024 16:06 admin@backhand.com.br : Menu Alterado (Mensagens, usr_mail.html, pop-up, Comunicacao Interna)
 14/11/2024 16:06 admin@backhand.com.br : Menu Incluido (Aparencia)
 14/11/2024 16:08 admin@backhand.com.br : Menu Alterado (Skins, usr_config.html, pop-up, Skins do sistema)
+14/11/2024 19:25 admin@backhand.com.br : PLANO Editado 3 Meses -> 3 Meses
+14/11/2024 19:26 admin@backhand.com.br : PLANO Editado 1 Ano -> 1 Ano
+14/11/2024 19:28 admin@backhand.com.br : PLANO Editado 3 Meses -> 3 Meses
