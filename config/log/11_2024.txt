@@ -1,2 +1,33 @@
 12/11/2024 20:58 admin@backhand.com.br : Menu Incluido (Creditos)
 12/11/2024 21:00 admin@backhand.com.br : Menu Alterado (Creditos, menu, pop-up, Creditos)
+14/11/2024 12:23 admin@backhand.com.br : Menu Alterado (Creditos, pn3_creditos.html, pop-up, Creditos)
+14/11/2024 13:01 admin@backhand.com.br : Permissao alterada, Modulo: Sistema, Acesso:[[0]])
+14/11/2024 13:01 admin@backhand.com.br : Permissao alterada, Modulo: Aulas, Acesso:[[0,1]])
+14/11/2024 13:01 admin@backhand.com.br : Permissao alterada, Modulo: Agenda, Acesso:[[0,1]])
+14/11/2024 13:01 admin@backhand.com.br : Permissao alterada, Modulo: Financeiro, Acesso:[[0,1]])
+14/11/2024 13:01 admin@backhand.com.br : Permissao alterada, Modulo: Uteis, Acesso:[[0,1]])
+14/11/2024 14:57 admin@backhand.com.br : Menu Incluido (Config)
+14/11/2024 14:58 admin@backhand.com.br : Menu Incluido (Planos)
+14/11/2024 14:59 admin@backhand.com.br : Menu Alterado (Planos, cred_planos.html, pop-up, Planos)
+14/11/2024 15:00 admin@backhand.com.br : Menu Alterado (Config, menu, pop-up, )
+14/11/2024 15:01 admin@backhand.com.br : Menu Alterado (Planos, pn3_planos.html, pop-up, Planos)
+14/11/2024 15:28 admin@backhand.com.br : PLANO Cadastrado  -> 1 mes
+14/11/2024 15:29 admin@backhand.com.br : PLANO Cadastrado  -> 3 Meses
+14/11/2024 15:30 admin@backhand.com.br : PLANO Cadastrado  -> 6 Meses
+14/11/2024 15:31 admin@backhand.com.br : PLANO Cadastrado  -> 1 Ano
+14/11/2024 15:40 admin@backhand.com.br : PLANO Editado 6 Meses -> 6 Meses
+14/11/2024 15:40 admin@backhand.com.br : PLANO Editado 6 Meses -> 6 Meses
+14/11/2024 15:43 admin@backhand.com.br : Menu Incluido (Creditos)
+14/11/2024 15:44 admin@backhand.com.br : Menu Alterado (Creditos, pn3_creditos.html, pop-up, Creditos)
+14/11/2024 15:45 admin@backhand.com.br : Permissao alterada, Modulo: Sistema, Acesso:[[0]])
+14/11/2024 15:45 admin@backhand.com.br : Permissao alterada, Modulo: Aulas, Acesso:[[0,1]])
+14/11/2024 15:45 admin@backhand.com.br : Permissao alterada, Modulo: Financeiro, Acesso:[[0,1]])
+14/11/2024 15:45 admin@backhand.com.br : Permissao alterada, Modulo: Agenda, Acesso:[[0,1]])
+14/11/2024 15:45 admin@backhand.com.br : Permissao alterada, Modulo: Uteis, Acesso:[[0,1]])
+14/11/2024 15:45 admin@backhand.com.br : Permissao alterada, Modulo: Config, Acesso:[[0,1]])
+14/11/2024 15:45 admin@backhand.com.br : Menu Deletado (RAIZera)
+14/11/2024 15:45 admin@backhand.com.br : Menu Alterado (Config, menu, pop-up, )
+14/11/2024 16:05 admin@backhand.com.br : Menu Alterado (Lembretes, usr_agenda.html, pop-up, Compromissos)
+14/11/2024 16:06 admin@backhand.com.br : Menu Alterado (Mensagens, usr_mail.html, pop-up, Comunicacao Interna)
+14/11/2024 16:06 admin@backhand.com.br : Menu Incluido (Aparencia)
+14/11/2024 16:08 admin@backhand.com.br : Menu Alterado (Skins, usr_config.html, pop-up, Skins do sistema)

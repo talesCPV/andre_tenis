@@ -1,8 +1,13 @@
 /* CLIENTES */
 
-function buscaCli(){
+function buscaCli(asaas_id=''){
+
+    const data = new URLSearchParams()
+        data.append("asaas_id", asaas_id)
+
     const myRequest = new Request("backend/asaas/buscaCliente.php",{
-        method : "POST"
+        method : "POST",
+        body : data
     }) 
 
     return fetch(myRequest)

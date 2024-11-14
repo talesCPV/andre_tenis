@@ -11,6 +11,21 @@
         ],
     ]);
 
-    echo $response->getBody();
+    $out = '{"OK":0}';
+
+    if($_POST['asaas_id']==''){
+        $out = $response->getBody();
+    }else{
+
+        $data = json_decode($response->getBody())->data;
+
+        for ($i=0; $i<count($data); $i++) {
+            if($data[$i]->id == $_POST['asaas_id']){
+                $out = $data[$i];
+            }
+        }
+    }
+
+    print json_encode($out);
 
 ?>

@@ -10,7 +10,6 @@
         "USR-2"  => 'CALL sp_updatePass(@hash,"x00","x01");', // NOME, PASS
         "USR-3"  => 'CALL sp_check_usr_mail(@hash);', //
         "USR-4"  => 'CALL sp_newUser("x00","x01","x02","x03");', // NOME,EMAIL, PASS, ASAAS_ID
-        "USR-5"  => 'CALL sp_add_credit("x00",x01);', // ASAAS_ID, MESES
 
         /* CALENDAR */
         "CAL-0"  => 'CALL sp_view_calendar(@hash,"x00","x01");', // DT_INI, DT_FIN
@@ -46,7 +45,12 @@
         "FIN-0" => 'CALL sp_view_fecha_aula(@access,@hash,"x00","x01","x02",x03);', // Nome Aluno, DtIn, DtOut,Aberto
         "FIN-1" => 'CALL sp_view_saldo_devedor(@access,@hash,"x00","x01","x02");', // Nome Aluno, DtIn, DtOut
         "FIN-2" => 'CALL sp_set_baixa_aula(@access,@hash,x00,"x01",x02);', // id_aluno,data_hora,pg
-        
+      
+        /* CREDITOS */
+        "CRED-0" => 'SELECT * FROM tb_planos;', 
+        "CRED-1" => 'CALL sp_set_plano(@access,@hash,x00,"x01","x02","x03",x04)', // id,nome,sobre,valor,credito
+        "CRED-2" => 'CALL sp_add_credit("x00",x01);', // ASAAS_ID, MESES
+        "CRED-3" => 'CALL sp_view_credit(@hash);', 
     );
 
 ?>

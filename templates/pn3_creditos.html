@@ -1,0 +1,65 @@
+<template>
+    <style>
+        #lgd-user{
+            text-align: center;
+            font-weight: bold;
+            padding: 20px;
+        }
+
+
+    </style>
+
+    <fieldset>
+        <legend id="lgd-email"></legend>
+        <p id="lgd-user"></p>
+        <div class="line">
+            <button id="btnAddCredit">Comprar Créditos</button>
+        </div>
+    </fieldset>
+
+
+    <fieldset>
+        <legend>Extrato</legend>
+        <table id="tbl-creditos"></table>
+    </fieldset>
+    
+    <div class="legenda">
+
+    </div>
+
+</template>
+<script>
+    const pageData = main_data.pn3_creditos.data
+    const pageFunc = main_data.pn3_creditos.func
+    const pageScreen = document.querySelector('#card-pn3_creditos')
+    let asaas = new Object
+
+    function pageStart(){
+        buscaCli(localStorage.getItem('asaas_id')).then((response)=>{
+            response.text().then((txt)=>{
+                asaas = JSON.parse(txt)
+                pageScreen.querySelector('#lgd-email').innerHTML = asaas.email
+                console.log(asaas)
+            })
+        })
+        pageFunc.fillCredits()
+    }
+
+    pageFunc.fillCredits = ()=>{
+        queryDB({},'CRED-3').then((resolve)=>{
+            const json = JSON.parse(resolve)
+            const tbl = pageScreen.querySelector('#tbl-creditos')
+            tbl.head('Data,+Meses,Valor,Val. Até')
+            for(let i=0; i<json.length; i++){
+                tbl.plot(json[i],'data_hora,credito,valor,expira_em','dat,int,R$.,dat')
+            }
+            pageScreen.querySelector('#lgd-user').innerHTML = json.length >0 ? `Seus créditos expiram em ${json[0].expira.viewDate()}` : 'Nenhum registro encontrado'
+        })
+    }
+
+    pageScreen.querySelector('#btnAddCredit').addEventListener('click',()=>{
+        openHTML('pn3_add_cred.html','pop-up','Adicione Créditos ao seu acesso',{},600)
+    })
+
+    pageStart()
+</script>

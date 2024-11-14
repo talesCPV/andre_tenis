@@ -1,0 +1,39 @@
+<template>
+    <style></style>
+
+    <div class="panel"></div>
+
+
+</template>
+<script>
+    const pageData = main_data.pn3_add_cred.data
+    const pageFunc = main_data.pn3_add_cred.func
+    const pageScreen = document.querySelector('#card-pn3_add_cred')
+
+
+    function pageStart(){
+
+        pageFunc.fillPlanos()
+
+    }
+
+    pageFunc.fillPlanos = ()=>{
+        queryDB({},'CRED-0').then((resolve)=>{
+            const json = JSON.parse(resolve)
+            const panel = pageScreen.querySelector('.panel')
+            panel.innerHTML = ''
+            for(let i=0; i<json.length; i++){
+                const div = document.createElement('div')
+                div.className = 'show-plano'
+                div.innerHTML = `<h4>${json[i].nome}</h4>`
+
+                panel.appendChild(div)
+
+
+                console.log(json[i])
+            }
+        })
+    }
+
+    pageStart()
+</script>
