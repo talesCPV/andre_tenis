@@ -4,7 +4,7 @@
 
     $client = new \GuzzleHttp\Client();
 
-    $response = $client->request('GET', 'https://sandbox.asaas.com/api/v3/customers', [
+    $response = $client->request('GET', asaas_api.'/customers', [
         'headers' => [
             'accept' => 'application/json',
             'access_token' => access_token,

@@ -84,3 +84,16 @@ function newCob(body){
     
     return fetch(myRequest)
 }
+
+function addCred(asaas_id,valor){
+    const data = new URLSearchParams()
+        data.append("asaas_id", asaas_id)
+        data.append("value", valor)
+
+    const myRequest = new Request("backend/asaas/addCredito.php",{
+        method : "POST",
+        body : data
+    })    
+    
+    return fetch(myRequest)
+}

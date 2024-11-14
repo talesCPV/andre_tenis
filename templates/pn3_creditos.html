@@ -13,7 +13,7 @@
         <legend id="lgd-email"></legend>
         <p id="lgd-user"></p>
         <div class="line">
-            <button id="btnAddCredit">Comprar Créditos</button>
+            <button id="btnAddCredit" disabled>Comprar Créditos</button>
         </div>
     </fieldset>
 
@@ -39,7 +39,7 @@
             response.text().then((txt)=>{
                 asaas = JSON.parse(txt)
                 pageScreen.querySelector('#lgd-email').innerHTML = asaas.email
-                console.log(asaas)
+                pageScreen.querySelector('#btnAddCredit').disabled = 0;
             })
         })
         pageFunc.fillCredits()
@@ -58,7 +58,7 @@
     }
 
     pageScreen.querySelector('#btnAddCredit').addEventListener('click',()=>{
-        openHTML('pn3_add_cred.html','pop-up','Adicione Créditos ao seu acesso',{},800)
+        openHTML('pn3_add_cred.html','pop-up','Adicione Créditos ao seu acesso',asaas,800)
     })
 
     pageStart()

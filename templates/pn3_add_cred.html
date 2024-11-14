@@ -73,9 +73,7 @@
 
 
     function pageStart(){
-
         pageFunc.fillPlanos()
-
     }
 
     pageFunc.fillPlanos = ()=>{
@@ -95,7 +93,9 @@
 
                 const btn = addComp('button','ADD CRÉDITO','plano-btn')
                 btn.addEventListener('click',()=>{
-                    alert(json[i].valor)
+                    if(confirm(`Confirmar a compra de ${json[i].credito} ${json[i].credito=='1'?'mês':'meses'} por R$${Number(json[i].valor).toFixed(2)}?`)){
+                        addCred(pageData.id,Number(json[i].valor).toFixed(2))
+                    }
                 })
 
                 div.appendChild(btn)
