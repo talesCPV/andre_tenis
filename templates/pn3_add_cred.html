@@ -93,7 +93,14 @@
                 const btn = addComp('button','ADD CRÉDITO','plano-btn')
                 btn.addEventListener('click',()=>{
                     if(confirm(`Confirmar a compra de ${json[i].credito} ${json[i].credito=='1'?'mês':'meses'} por R$${Number(json[i].valor).toFixed(2)}?`)){
-                        addCred(pageData.id,Number(json[i].valor).toFixed(2))
+                        addCred(pageData.custumer.id,Number(json[i].valor).toFixed(2)).then(()=>{
+                            try{
+                                main_data.pn3_creditos.func.fillPgtos()
+                            }catch{
+                                null
+                            }
+                            closeModal('pn3_add_cred')
+                        })
                     }
                 })
 
@@ -102,8 +109,6 @@
 
                 panel.appendChild(div)
 
-
-                console.log(json[i])
             }
         })
     }

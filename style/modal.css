@@ -11,9 +11,11 @@
   background-color: #fdfdfd;
   border-radius: 15px;
   border: solid 2px;
+  max-width: 95%;
 }
 
 .web-title{
+  text-align: center;
   display: flex;
   font-weight: 600;
   color: black;

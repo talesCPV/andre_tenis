@@ -1,7 +1,6 @@
 /* CLIENTES */
 
 function buscaCli(asaas_id=''){
-
     const data = new URLSearchParams()
         data.append("asaas_id", asaas_id)
 
@@ -65,9 +64,13 @@ function extrato(){
 
 /* COBRANÇAS */
 
-function buscaCob(){
+function buscaCob(asaas_id=''){
+    const data = new URLSearchParams()
+        data.append("asaas_id", asaas_id)
+
     const myRequest = new Request("backend/asaas/buscaCobranca.php",{
-        method : "POST"
+        method : "POST",
+        body : data
     }) 
 
     return fetch(myRequest)
