@@ -32,7 +32,16 @@
     }
 
     function receivePayment($payment) {
-        saveFile("Pagamento Efetuado: ID ".$payment->id."\r\nCLIENTE ID:".$payment->payment->customer."\r\nVALOR R$".$payment->payment->value."\r\n");
+        $asaas_id = $payment->payment->customer;
+        $valor = $payment->payment->value;
+        require_once('../connect.php');
+        $query = 'CALL sp_add_credit("'.$asaas_id.'","'. getMonth($valor).'","'.$valor.'");';
+        $result = mysqli_query($conexao, $query);
+        if(is_object($result)){
+            saveFile('Credito adicionado!');
+        }
+        $conexao->close();
+        saveFile("Pagamento Efetuado: ID ".$payment->id."\r\nCLIENTE ID:".$asaas_id."\r\nVALOR R$".$valor."\r\n");
     }
 
     function checkoutPayment($payment) {
@@ -53,6 +62,25 @@
         $fp = fopen($path, "a");
         fwrite($fp,$txt."\r\n");
         fclose($fp);
+    }
+
+    function getMonth($valor){
+        $out = 0;
+        switch($valor){
+            case 100:
+                $out = 1;
+                break;
+            case 270:
+                $out = 3;
+                break;
+            case 480:
+                $out = 6;
+                break;
+            case 840:
+                $out = 12;
+                break;
+        }
+        return $out;
     }
 
 //     http_response_code(200);

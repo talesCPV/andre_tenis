@@ -739,3 +739,19 @@ DELIMITER $$
 		END IF;
 	END $$
 DELIMITER ;
+ /* CREDITOS */
+ 
+ 	DROP PROCEDURE IF EXISTS sp_add_credit;
+DELIMITER $$
+	CREATE PROCEDURE sp_add_credit(	
+        IN Iasaas_id varchar(16),
+        IN Imonth int,
+        IN Ivalor double
+    )
+	BEGIN
+        SET @id_user = (SELECT id FROM tb_usuario WHERE asaas_id COLLATE utf8_general_ci = Iasaas_id COLLATE utf8_general_ci);
+		SET @expira = (SELECT IF(expira<now(),now(),expira) FROM tb_usuario WHERE id = @id_user);
+ 		UPDATE tb_usuario SET expira = DATE_ADD(@expira, INTERVAL Imonth MONTH) WHERE id = @id_user;
+        INSERT INTO tb_creditos (id_usuario,credito,valor,expira_em) VALUES (@id_user,Imonth,Ivalor,@expira);
+	END $$
+DELIMITER ;
