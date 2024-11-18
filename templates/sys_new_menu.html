@@ -42,6 +42,11 @@
         </div>
 
         <div class="line">
+            <label for="ckbAss">Requer Assinatura</label>
+            <input type="checkbox" id="ckbAss" checked>
+        </div>
+
+        <div class="line">
             <button id="btnDelMenu" class="btn">Deletar</button>
             <button id="btnAddItem" class="btn">Novo Ítem</button>
             <button id="btnSaveMenu" class="btn">Salvar</button>
@@ -119,6 +124,7 @@
             const janela = pageScreen.querySelector('#cmbJanela').value
             const label = pageScreen.querySelector('#edtLabel').value
             const icone = pageScreen.querySelector('#edtIcon').value
+            const ass = pageScreen.querySelector('#ckbAss').checked
             let width = pageScreen.querySelector('#edtLargura').value.trim()
 
             width = width != 'auto' ? parseInt(width) : 'auto'
@@ -135,6 +141,7 @@
             obj.janela = janela
             obj.label = label
             obj.icone = icone
+            obj.pg = ass
             obj.width = width
             saveMenu()
             setLog(`Menu Alterado (${modulo}, ${link}, ${janela}, ${label})`)

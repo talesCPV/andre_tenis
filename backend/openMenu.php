@@ -5,7 +5,7 @@ ini_set('error_reporting', E_ALL );
 define('WP_DEBUG', false);
 define('WP_DEBUG_DISPLAY', false);
 
-function addItem($access,$obj){
+function addItem($access,$obj,$expirado = true){
   $menu = [];
 
   for($i = 0; $i< count($obj); $i++){  
@@ -28,12 +28,13 @@ function addItem($access,$obj){
         $item->href = $obj[$i]->href;
       }  
 //      property_exists($obj[$i], 'id') ? $item->id = $obj[$i]->id : 0;
-//      property_exists($obj[$i], 'class') ? $item->class = $obj[$i]->class : 0;
+      $item->pg = property_exists($obj[$i], 'pg') ? $obj[$i]->pg : false;
+      $item->expirado = $expirado;
       $item->access = crip(json_encode($obj[$i]->access));
       $item->itens = [];
 
       if(count($obj[$i]->itens) > 0){
-          array_push($item->itens, addItem($access, $obj[$i]->itens));          
+          array_push($item->itens, addItem($access, $obj[$i]->itens, $expirado));          
       } 
       array_push($menu, $item);
     }       
@@ -53,7 +54,7 @@ function addItem($access,$obj){
     include_once "connect.php";
     include_once "crip.php";
 
-    $query = "SELECT access FROM tb_usuario WHERE hash=\"$hash\";";
+    $query = "SELECT access, expira FROM tb_usuario WHERE hash=\"$hash\";";
 
 // echo $query;    
 
@@ -64,7 +65,8 @@ function addItem($access,$obj){
       $row = $result->fetch_assoc();
 //      var_dump($row);
       $access = $row["access"];
-
+      $expirado = strtotime($row["expira"]) < strtotime(date("Y-m-d H:i:s")) ? 1 : 0;
+      
 		}
 	    $conexao->close();  
 
@@ -76,7 +78,7 @@ function addItem($access,$obj){
           }
           fclose($fp);
           $json = json_decode($resp);
-          $out = addItem($access,$json->itens);
+          $out = addItem($access,$json->itens,$expirado);
       }            
 
   }

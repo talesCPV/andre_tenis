@@ -83,6 +83,14 @@ SELECT * FROM vw_agenda_dia;
 		
 SELECT * FROM vw_aula_dada;        
 
+DROP VIEW IF EXISTS vw_credito;
+CREATE VIEW vw_credito AS
+	SELECT USR.nome, USR.email, USR.expira, CRED.*
+    FROM tb_creditos AS CRED
+    INNER JOIN tb_usuario AS USR
+    ON CRED.id_usuario = USR.id;
+
+SELECT * FROM vw_credito; 
 
 (SELECT AGD.dia,AGD.hora, AGD.id_usuario AS id_professor, AGD.id_call,
 	GROUP_CONCAT(DISTINCT CONCAT(AGD.id_aluno,"|",AGD.nome,"|",AGD.id_aula,"|", AGD.descricao,"|",AGD.id_clube,"|",AGD.clube) SEPARATOR "*#*") AS aulas,

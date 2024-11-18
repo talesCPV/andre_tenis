@@ -50,12 +50,15 @@ function openMenu(){
     })
 
     function pushMenu(menu, obj){
-        for( let i=0; i<obj.length; i++){      
+        for( let i=0; i<obj.length; i++){
             main_data.dashboard.data.access = obj[i].access 
             const li = document.createElement('li')
             li.className = 'side-item'
             const label = document.createElement('label')
 
+            li.classList.add(obj[i].expirado && obj[i].pg ? 'disabled' : 'enabled') 
+
+console.log(obj[i].modulo,obj[i].expirado && obj[i].pg)
             
             if(obj[i].hasOwnProperty('class')){
                 li.classList.add(obj[i].class)
@@ -82,7 +85,6 @@ function openMenu(){
                 desc.appendChild(arrow)
 
                 lbl.appendChild(desc)
-
 
                 li.appendChild(lbl)
                 

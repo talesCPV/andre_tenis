@@ -26,6 +26,11 @@ ul>li>label>span, #logout_btn {
     font-size: 1.5em;
 }
 
+.disabled {
+    pointer-events:none;
+    opacity:0.6;
+}
+
 #sidebar {
     display: flex;
     flex-direction: column;

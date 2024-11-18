@@ -2,12 +2,12 @@
 # Upload files to Github - git@github.com:talesCPV/andre_tenis
 .git
 
-read -p "Are you sure to commit andre_tenis 1.0 to GitHub ? (Y/n)" -n 1 -r
+read -p "Are you sure to commit backhand 1.0 to GitHub ? (Y/n)" -n 1 -r
 echo    # (optional) move to a new line
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
 
-    cp ~/Documentos/SQL/andre/*.sql sql/
+    cp ~/Documentos/SQL/backhand/*.sql sql/
 
     git init
 

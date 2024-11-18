@@ -56,6 +56,17 @@ DELIMITER $$
 	END $$
 DELIMITER ;
 
+ DROP PROCEDURE IF EXISTS sp_reseta_pass;
+DELIMITER $$
+	CREATE PROCEDURE sp_reseta_pass(
+        IN Iemail varchar(80)
+    )
+	BEGIN    
+		UPDATE tb_usuario SET access=1 WHERE asaas_id COLLATE utf8_general_ci = Iasaas_id COLLATE utf8_general_ci;
+        CALL sp_add_credit(Iasaas_id,3,0);
+	END $$
+DELIMITER ;
+
  DROP PROCEDURE IF EXISTS sp_confirma_email;
 DELIMITER $$
 	CREATE PROCEDURE sp_confirma_email(
@@ -64,20 +75,6 @@ DELIMITER $$
 	BEGIN    
 		UPDATE tb_usuario SET access=1 WHERE asaas_id COLLATE utf8_general_ci = Iasaas_id COLLATE utf8_general_ci;
         CALL sp_add_credit(Iasaas_id,3);
-	END $$
-DELIMITER ;
-
- DROP PROCEDURE IF EXISTS sp_add_credit;
-DELIMITER $$
-	CREATE PROCEDURE sp_add_credit(
-        IN Iasaas_id varchar(16),
-        IN Imonth int
-    )
-	BEGIN
-        SET @id_user = (SELECT id FROM tb_usuario WHERE asaas_id COLLATE utf8_general_ci = Iasaas_id COLLATE utf8_general_ci);
-		SET @expira = (SELECT IF(expira<now(),now(),expira) FROM tb_usuario WHERE id = @id_user);
- 		UPDATE tb_usuario SET expira = DATE_ADD(@expira, INTERVAL Imonth MONTH) WHERE id = @id_user;
-        INSERT INTO tb_creditos (id_usuario,credito) VALUES (@id_user,Imonth);
 	END $$
 DELIMITER ;
 
@@ -741,9 +738,42 @@ DELIMITER $$
 DELIMITER ;
  /* CREDITOS */
  
- 	DROP PROCEDURE IF EXISTS sp_add_credit;
+  DROP PROCEDURE IF EXISTS sp_set_plano;
 DELIMITER $$
-	CREATE PROCEDURE sp_add_credit(	
+	CREATE PROCEDURE sp_set_plano(	
+		IN Iallow varchar(80),
+		IN Ihash varchar(64),
+        IN Iid int(11),
+        IN Inome varchar(50),
+		IN Isobre varchar(512),
+		IN Ivalor double,
+		IN Icredito int
+    )
+	BEGIN    
+		CALL sp_allow(Iallow,Ihash);
+		IF(@allow)THEN
+			SET @id_call = (SELECT IFNULL(id,0) FROM tb_usuario WHERE hash COLLATE utf8_general_ci = Ihash COLLATE utf8_general_ci LIMIT 1);
+			IF(@id_call >0)THEN
+				IF(Iid=0)THEN
+					INSERT INTO tb_planos (nome,sobre,valor,credito) 
+                    VALUES (Inome,Isobre,Ivalor,Icredito);
+				ELSE
+					IF(Inome = "")THEN
+						DELETE FROM tb_planos WHERE id=Iid;
+                    ELSE
+						UPDATE tb_planos 
+                        SET nome=Inome,sobre=Isobre, valor=Ivalor,credito=Icredito
+                        WHERE id=Iid; 
+                    END IF;
+                END IF;
+			END IF;
+		END IF;
+	END $$
+DELIMITER ;
+ 
+ DROP PROCEDURE IF EXISTS sp_add_credit;
+DELIMITER $$
+	CREATE PROCEDURE sp_add_credit(
         IN Iasaas_id varchar(16),
         IN Imonth int,
         IN Ivalor double
@@ -753,5 +783,16 @@ DELIMITER $$
 		SET @expira = (SELECT IF(expira<now(),now(),expira) FROM tb_usuario WHERE id = @id_user);
  		UPDATE tb_usuario SET expira = DATE_ADD(@expira, INTERVAL Imonth MONTH) WHERE id = @id_user;
         INSERT INTO tb_creditos (id_usuario,credito,valor,expira_em) VALUES (@id_user,Imonth,Ivalor,@expira);
+	END $$
+DELIMITER ;
+
+ DROP PROCEDURE IF EXISTS sp_view_credit;
+DELIMITER $$
+	CREATE PROCEDURE sp_view_credit(
+		IN Ihash varchar(64)
+    )
+	BEGIN
+		SET @id_call = (SELECT IFNULL(id,0) FROM tb_usuario WHERE hash COLLATE utf8_general_ci = Ihash COLLATE utf8_general_ci LIMIT 1);
+		SELECT * FROM vw_credito WHERE id_usuario = @id_call ORDER BY data_hora;
 	END $$
 DELIMITER ;

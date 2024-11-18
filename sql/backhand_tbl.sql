@@ -133,12 +133,25 @@ CREATE TABLE tb_aula_dada (
 
 /* CREDITOS */
 
+ DROP TABLE IF EXISTS tb_planos;
+CREATE TABLE tb_planos (
+    id int(11) NOT NULL AUTO_INCREMENT,
+	nome varchar(50),
+	sobre varchar(512),
+    valor double NOT NULL DEFAULT 100,
+    credito int NOT NULL DEFAULT 1,
+    PRIMARY KEY (id)
+) ENGINE=MyISAM AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
+
  DROP TABLE IF EXISTS tb_creditos;
 CREATE TABLE tb_creditos (
     id_usuario int(11) NOT NULL,
     credito int,
     data_hora TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     valor double NOT NULL DEFAULT 0,
+    expira_em TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (id_usuario) REFERENCES tb_usuario(id),
     PRIMARY KEY (id_usuario,data_hora)
 ) ENGINE=MyISAM AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
+
+ALTER TABLE tb_creditos ADD COLUMN expira_em TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP;
