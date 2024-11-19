@@ -48,8 +48,10 @@
     const asaas = new Object
 
     function pageStart(){
+        pageScreen.querySelector('#lgd-user').innerHTML = `Seus créditos expiram em ${localStorage.getItem('expira')}`
+
         buscaCli(localStorage.getItem('asaas_id')).then((response)=>{
-            response.text().then((txt)=>{
+            response.text().then((txt)=>{              
                 asaas.custumer = JSON.parse(txt)
                 pageScreen.querySelector('#lgd-email').innerHTML = asaas.custumer.email
                 pageScreen.querySelector('#btnAddCredit').disabled = 0;
@@ -66,8 +68,9 @@
             for(let i=0; i<json.length; i++){
                 tbl.plot(json[i],'data_hora,credito,valor,expira_em','dat,int,R$.,dat')
             }
-            tbl.parentNode.style.display = asaas.payments.length ? 'block' : 'none'
-            pageScreen.querySelector('#lgd-user').innerHTML = json.length >0 ? `Seus créditos expiram em ${json[0].expira.viewDate()}` : 'Nenhum registro encontrado'
+
+            tbl.parentNode.style.display = json.length ? 'block' : 'none'
+            pageScreen.querySelector('#lgd-user').innerHTML = `Seus créditos expiram em ${json.length >0 ? json[0].expira.viewDate() : localStorage.getItem('expira')}`
         })
     }
 

@@ -1,6 +1,7 @@
 /* CLIENTES */
 
 function buscaCli(asaas_id=''){
+   
     const data = new URLSearchParams()
         data.append("asaas_id", asaas_id)
 
@@ -37,17 +38,19 @@ function edtCli(cust,body){
     return fetch(myRequest)
 }
 
+function delAsaasCust(asaas_id){
+    const data = new URLSearchParams()
+        data.append("cust", asaas_id)
+    const myRequest = new Request("backend/asaas/delCliente.php",{
+        method : "POST",
+        body : data
+    })
+    return fetch(myRequest)
+}
+
 function delCli(cust){
     if(confirm('Deseja deletar este Cliente?')){
-        const data = new URLSearchParams()
-            data.append("cust", cust.id)
-
-        const myRequest = new Request("backend/asaas/delCliente.php",{
-            method : "POST",
-            body : data
-        })    
-        
-        return fetch(myRequest)
+        return delAsaasCust(cust)
     }
 }
 

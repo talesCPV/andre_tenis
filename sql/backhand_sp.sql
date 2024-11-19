@@ -49,10 +49,16 @@ DELIMITER $$
 		IN Isenha varchar(30),
         IN Iasaas_id varchar(16)
     )
-	BEGIN    
-		SET @hash = SHA2(CONCAT(Iemail, Isenha), 256);
-		INSERT INTO tb_usuario (nome,email,hash,asaas_id)VALUES(Inome,Iemail,@hash,Iasaas_id);
-        SELECT hash FROM tb_usuario WHERE id= (SELECT MAX(id) FROM tb_usuario);
+	BEGIN
+		SET @has_user = (SELECT COUNT(*) FROM tb_usuario WHERE email COLLATE utf8_general_ci = Iemail COLLATE utf8_general_ci);
+		IF (@has_user = 0)THEN
+			SET @hash = SHA2(CONCAT(Iemail, Isenha), 256);
+			INSERT INTO tb_usuario (nome,email,hash,asaas_id)VALUES(Inome,Iemail,@hash,Iasaas_id);
+			CALL sp_add_credit(Iasaas_id,3,0);
+			SELECT hash FROM tb_usuario WHERE id= (SELECT MAX(id) FROM tb_usuario);
+        ELSE
+			SELECT 0 AS hash;
+        END IF;
 	END $$
 DELIMITER ;
 
@@ -63,7 +69,6 @@ DELIMITER $$
     )
 	BEGIN    
 		UPDATE tb_usuario SET access=1 WHERE asaas_id COLLATE utf8_general_ci = Iasaas_id COLLATE utf8_general_ci;
-        CALL sp_add_credit(Iasaas_id,3,0);
 	END $$
 DELIMITER ;
 
@@ -74,7 +79,6 @@ DELIMITER $$
     )
 	BEGIN    
 		UPDATE tb_usuario SET access=1 WHERE asaas_id COLLATE utf8_general_ci = Iasaas_id COLLATE utf8_general_ci;
-        CALL sp_add_credit(Iasaas_id,3);
 	END $$
 DELIMITER ;
 
@@ -84,6 +88,7 @@ DELIMITER $$
 		IN Iallow varchar(80),
 		IN Ihash varchar(64),
         IN Iid int(11),
+        IN Inome varchar(30),
 		IN Iemail varchar(80),
 		IN Isenha varchar(30),
         IN Iaccess int(11)
@@ -92,22 +97,23 @@ DELIMITER $$
 		CALL sp_allow(Iallow,Ihash);
 		IF(@allow)THEN
 			IF(Iemail="")THEN
-				DELETE FROM tb_mail WHERE de=Iid OR para=Iid;
-				DELETE FROM tb_credito WHERE id_usuario=Iid;
-				DELETE FROM tb_clube WHERE id_usuario=Iid;
-				DELETE FROM tb_aluno WHERE id_usuario=Iid;
-				DELETE FROM tb_aula WHERE id_usuario=Iid;
-				DELETE FROM tb_agenda WHERE id_usuario=Iid;
-				DELETE FROM tb_aula_dada WHERE id_usuario=Iid;
-				DELETE FROM tb_user WHERE id=Iid;
+				SET SQL_SAFE_UPDATES = 0;            
+				DELETE FROM tb_mail WHERE id_from=Iid OR id_to=Iid;
+ 				DELETE FROM tb_creditos WHERE id_usuario=Iid;
+ 				DELETE FROM tb_clube WHERE id_usuario=Iid;
+ 				DELETE FROM tb_aluno WHERE id_usuario=Iid;
+ 				DELETE FROM tb_aula WHERE id_usuario=Iid;
+ 				DELETE FROM tb_agenda WHERE id_usuario=Iid;
+ 				DELETE FROM tb_aula_dada WHERE id_usuario=Iid;
+				DELETE FROM tb_usuario WHERE id=Iid;
             ELSE			
 				IF(Iid=0)THEN
-					INSERT INTO tb_usuario (email,hash,access)VALUES(Iemail,SHA2(CONCAT(Iemail, Isenha), 256),Iaccess);            
+					INSERT INTO tb_usuario (email,hash,access,nome)VALUES(Iemail,SHA2(CONCAT(Iemail, Isenha), 256),Iaccess,Inome);            
                 ELSE
 					IF(Isenha="")THEN
-						UPDATE tb_usuario SET email=Iemail, access=Iaccess WHERE id=Iid;
+						UPDATE tb_usuario SET email=Iemail, access=Iaccess, nome=Inome WHERE id=Iid;
                     ELSE
-						UPDATE tb_usuario SET email=Iemail, hash=SHA2(CONCAT(Iemail, Isenha), 256), access=Iaccess WHERE id=Iid;
+						UPDATE tb_usuario SET email=Iemail, hash=SHA2(CONCAT(Iemail, Isenha), 256), access=Iaccess, nome=Inome WHERE id=Iid;
                     END IF;
                 END IF;
             END IF;

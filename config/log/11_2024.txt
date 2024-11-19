@@ -62,3 +62,8 @@
 18/11/2024 16:14 admin@backhand.com.br : Menu Alterado (Mensagens, usr_mail.html, pop-up, Comunicacao Interna)
 18/11/2024 16:14 admin@backhand.com.br : Menu Alterado (Lembretes, usr_agenda.html, pop-up, Compromissos)
 18/11/2024 16:15 admin@backhand.com.br : Menu Alterado (Skins, usr_config.html, pop-up, Skins do sistema)
+19/11/2024 19:59 admin@backhand.com.br : Delecao de usuario, email:talescd@gmail.com -> , acesso:-1 -> 1
+19/11/2024 19:59 admin@backhand.com.br : Delecao de usuario, email:tales@flexibus.com.br -> , acesso:-1 -> 1
+19/11/2024 20:14 admin@backhand.com.br : Delecao de usuario, email:talescd@gmail.com -> , acesso:-1 -> 1
+19/11/2024 20:14 admin@backhand.com.br : Delecao de usuario, email:tales@flexibus.com.br -> , acesso:-1 -> 1
+19/11/2024 20:32 admin@backhand.com.br : Delecao de usuario, email:talescd@gmail.com -> , acesso:-1 -> 1

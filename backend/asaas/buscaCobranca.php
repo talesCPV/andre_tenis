@@ -1,6 +1,7 @@
 <?php
 
     require_once('vendor/autoload.php');
+    require_once('../../access.php');
 
     $client = new \GuzzleHttp\Client();
     $endpoint = asaas_api.'/payments';

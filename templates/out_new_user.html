@@ -71,11 +71,17 @@
                 params.asaas_id = asaas_id
             const myPromisse = queryDB(params,'USR-4');
             myPromisse.then((resolve)=>{
-                const json = JSON.parse(resolve)
-                console.log(json)
-                confirmaUser(params.email,asaas_id)
-                alert('Cadastro efetuado, verifique seu email para confirmar seu cadastro.')
-                closeModal('out_new_user')
+                const hash = JSON.parse(resolve)[0].hash
+                if(hash == '0'){
+                    alert('Este email já esta cadastrado, caso não se lembra clique em "Esqueci a senha".')
+                    delAsaasCust(asaas_id).then(()=>{
+                        closeModal('out_new_user')
+                    })
+                }else{
+                    confirmaUser(params.email,asaas_id)
+                    alert('Verifique seu email para confirmar seu cadastro.')
+                    closeModal('out_new_user')
+                }
             })
         }
     
