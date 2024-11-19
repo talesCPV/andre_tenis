@@ -93,6 +93,12 @@ DELIMITER $$
 		IF(@allow)THEN
 			IF(Iemail="")THEN
 				DELETE FROM tb_mail WHERE de=Iid OR para=Iid;
+				DELETE FROM tb_credito WHERE id_usuario=Iid;
+				DELETE FROM tb_clube WHERE id_usuario=Iid;
+				DELETE FROM tb_aluno WHERE id_usuario=Iid;
+				DELETE FROM tb_aula WHERE id_usuario=Iid;
+				DELETE FROM tb_agenda WHERE id_usuario=Iid;
+				DELETE FROM tb_aula_dada WHERE id_usuario=Iid;
 				DELETE FROM tb_user WHERE id=Iid;
             ELSE			
 				IF(Iid=0)THEN

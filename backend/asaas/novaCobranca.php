@@ -1,10 +1,11 @@
 <?php
     require_once('vendor/autoload.php');
 
-    if(isset($_POST['body'])){
-
+    if(isset($_POST['body'])){      
       $client = new \GuzzleHttp\Client();
-      $response = $client->request('POST', 'https://sandbox.asaas.com/api/v3/payments', [
+      $endpoint = asaas_api.'/payments';
+      
+      $response = $client->request('POST', $endpoint, [
         'body' => $_POST['body'],
         'headers' => [
           'accept' => 'application/json',

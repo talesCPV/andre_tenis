@@ -33,15 +33,12 @@
         </div>
     </fieldset>
 
-    <div class="legenda">
-
-    </div>
+    <div class="legenda"></div>
 
 </template>
 <script>
 
     document.querySelector('#btnSave').addEventListener('click',()=>{
-
         if(checkField(['name','email','cpfCnpj'])){
             if(checkMinLength(['edtNewPass'],8)){
                 if(checkRepass(['edtNewPass','edtRePass'])){
@@ -65,7 +62,6 @@
             }
         }      
     })
-
 
     function newUser(asaas_id){
             const params = new Object;

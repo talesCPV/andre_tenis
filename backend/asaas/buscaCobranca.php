@@ -3,8 +3,9 @@
     require_once('vendor/autoload.php');
 
     $client = new \GuzzleHttp\Client();
+    $endpoint = asaas_api.'/payments';
 
-    $response = $client->request('GET',  asaas_api.'/payments', [
+    $response = $client->request('GET', $endpoint, [
         'headers' => [
             'accept' => 'application/json',
             'access_token' => access_token,

@@ -3,7 +3,9 @@
 
     if(isset($_POST['cust'])){ 
         $client = new \GuzzleHttp\Client();
-        $response = $client->request('DELETE', 'https://sandbox.asaas.com/api/v3/customers/'.$_POST['cust'], [
+        $endpoint = asaas_api.'/customers//'.$_POST['cust'];
+
+        $response = $client->request('DELETE', $endpoint, [
             'headers' => [
             'accept' => 'application/json',
             'access_token' => access_token,

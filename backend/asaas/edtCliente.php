@@ -3,7 +3,9 @@
 
     if(isset($_POST['cust']) && isset($_POST['body'])){    
         $client = new \GuzzleHttp\Client();
-        $response = $client->request('PUT', 'https://sandbox.asaas.com/api/v3/customers/'.$_POST['cust'], [
+        $endpoint = asaas_api.'/customers//'.$_POST['cust'];
+
+        $response = $client->request('PUT', $endpoint, [
           'body' => $_POST['body'],
           'headers' => [
             'accept' => 'application/json',

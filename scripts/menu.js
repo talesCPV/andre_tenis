@@ -57,8 +57,6 @@ function openMenu(){
             const label = document.createElement('label')
 
             li.classList.add(obj[i].expirado && obj[i].pg ? 'disabled' : 'enabled') 
-
-console.log(obj[i].modulo,obj[i].expirado && obj[i].pg)
             
             if(obj[i].hasOwnProperty('class')){
                 li.classList.add(obj[i].class)
