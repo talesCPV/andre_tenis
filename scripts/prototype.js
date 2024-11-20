@@ -167,7 +167,7 @@ HTMLTableElement.prototype.plot = function(obj, fields,type='',file=false, mark=
                         }
                     }
                     break; 
-                case 'ico': // Troca palavra escolhida por outra valor_original=valor_desejado
+                case 'ico':
                     op = type[i].split(' ')
                     html = ''
                     for(let j=1; j<op.length; j++){
@@ -179,6 +179,11 @@ HTMLTableElement.prototype.plot = function(obj, fields,type='',file=false, mark=
                 case 'ckb': // insere checkbox                      
                     html = `<input type="checkbox" id="tblCkb_${this.rows.length-1}" class="tbl-ckb" ${parseInt(obj[arr[0]])? '' : 'checked'}>`
                     break;
+                case '<p>': // insere elemento P 
+                    const cls = type[i].split('|')
+                    const txt = obj[arr[0]].trim().split('=')                                      
+                    html = `<p${cls.length>1 ? ' class="'+cls[1]+'"' : ''}>${txt[0]}</p>`
+                    break;                    
                 case 'cnp': // Formata CNPJ
                     html = obj[arr[0]] != null ? getCNPJ(obj[arr[0]].trim()) : ''
                     break;

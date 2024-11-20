@@ -62,17 +62,21 @@
     const pageScreen = document.querySelector('#card-sys_new_menu')
     const link = pageData.link
 
+
+    function pageStart(){
+        pageScreen.querySelector('#edtMod').value = pageData.innerHTML
+        pageScreen.querySelector('#edtLink').value = pageData.link
+        pageScreen.querySelector('#edtLabel').value = pageData.label
+        pageScreen.querySelector('#edtLargura').value = pageData.width 
+        pageScreen.querySelector('#edtIcon').value = pageData.icone 
+        pageScreen.querySelector('#ckbAss').checked = pageData.pg   
+    }
+
     function saveMenu(){
         main_data.sys_perm.func.refreshMenu()
         main_data.sys_perm.func.setMenu(JSON.stringify(main_data.sys_perm.data.json))
         closeModal('sys_new_menu')
     }
-
-    pageScreen.querySelector('#edtMod').value = pageData.innerHTML
-    pageScreen.querySelector('#edtLink').value = pageData.link
-    pageScreen.querySelector('#edtLabel').value = pageData.label
-    pageScreen.querySelector('#edtLargura').value = pageData.width 
-    pageScreen.querySelector('#edtIcon').value = pageData.icone 
 
     pageScreen.querySelector('#btnAddItem').addEventListener('click',()=>{
         const menu = new Object
@@ -152,4 +156,5 @@
         openHTML('sys_icons.html','pop-up','Busca de Icones',{},600)
     })
 
+    pageStart()
 </script>

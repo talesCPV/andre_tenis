@@ -8,6 +8,9 @@ function closeMenu(){
     }catch{null}
 }
 
+function expirado(){
+    return localStorage.getItem('access') !=0 && main_data.dashboard.data.expirado
+}
 
 function openMenu(){
 
@@ -52,12 +55,12 @@ function openMenu(){
     function pushMenu(menu, obj){
         for( let i=0; i<obj.length; i++){
             main_data.dashboard.data.access = obj[i].access 
+            main_data.dashboard.data.expirado = obj[i].expirado
+
             const li = document.createElement('li')
             li.className = 'side-item'
-            const label = document.createElement('label')
+            li.classList.add(expirado() && obj[i].pg ? 'disabled' : 'enabled')
 
-            li.classList.add(obj[i].expirado && obj[i].pg ? 'disabled' : 'enabled') 
-            
             if(obj[i].hasOwnProperty('class')){
                 li.classList.add(obj[i].class)
             }
@@ -140,6 +143,7 @@ function openMenu(){
                             shortcut.label = obj[i].label
                             shortcut.width = obj[i].width
                             shortcut.access = obj[i].access
+                            shortcut.expira = obj[i].pg
                             shortcut.x = 100
                             shortcut.y = 100
                             json.push(shortcut)
@@ -175,6 +179,7 @@ function addShortcut(){
             const div = document.createElement('div')
             const label = document.createElement('p')
             div.className = 'icone'
+            div.classList.add(expirado() && json[i].expira ? 'disabled' : 'enabled')
 
             label.innerHTML= json[i].name
             div.appendChild(label)

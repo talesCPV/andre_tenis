@@ -67,3 +67,10 @@
 19/11/2024 20:14 admin@backhand.com.br : Delecao de usuario, email:talescd@gmail.com -> , acesso:-1 -> 1
 19/11/2024 20:14 admin@backhand.com.br : Delecao de usuario, email:tales@flexibus.com.br -> , acesso:-1 -> 1
 19/11/2024 20:32 admin@backhand.com.br : Delecao de usuario, email:talescd@gmail.com -> , acesso:-1 -> 1
+20/11/2024 13:43 admin@backhand.com.br : Menu Alterado (Financeiro, menu, pop-up, )
+20/11/2024 13:43 admin@backhand.com.br : Menu Alterado (Fechar Aulas, fin_fecha_aula.html, pop-up, Fechar Mes)
+20/11/2024 13:48 admin@backhand.com.br : Menu Alterado (Creditos, menu, pop-up, )
+20/11/2024 13:48 admin@backhand.com.br : Menu Alterado (Adicionar Creditos, pn3_creditos.html, pop-up, Creditos)
+20/11/2024 13:48 admin@backhand.com.br : Menu Alterado (Creditos, menu, pop-up, )
+20/11/2024 13:57 admin@backhand.com.br : Menu Alterado (Adicionar Creditos, pn3_creditos.html, pop-up, Creditos)
+20/11/2024 15:37 admin@backhand.com.br : Delecao de usuario, email:talescd@gmail.com -> , acesso:1 -> 1

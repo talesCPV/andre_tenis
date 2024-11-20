@@ -134,6 +134,11 @@ function newModal(title, content, width, id,type='pop-up'){
                 document.onmousemove = null;
             }
         })
+/*
+        const img_resize = document.createElement('img')
+        img_resize.src = '../assets/icons/resize.png'
+        resize.appendChild(img_resize)
+*/
         mod_card.appendChild(resize)
 
         mod_title.addEventListener('mousedown',(e)=>{

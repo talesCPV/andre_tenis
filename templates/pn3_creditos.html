@@ -15,6 +15,45 @@
             padding-right: 15px;
         }
 
+        .center-text{
+            text-align: center;
+        }
+
+        td > button{
+            margin: 0;
+            padding: 6px;
+            width: 80px;
+            border: none;
+            background-color: #13ff1357;
+            border-radius: 5px;
+        }
+
+        td > button:hover{
+            background-color: #13ff13e1;
+        }
+
+        td > p{
+            text-align: center;
+            margin: auto;
+            border-radius: 5px;
+            max-width: 80px;
+            color: black;
+            font-size: 0.8em;
+        }
+
+        .RECEIVED{
+            background-color: #64f264b2;
+        }
+
+        .PENDING{
+            background-color: #ffff00ba;
+        }
+
+        .CANCELED{
+            background-color: #fb8484b2;
+        }
+
+
     </style>
 
     <fieldset>
@@ -37,7 +76,7 @@
     </fieldset>
 
     <div class="line">
-        <p>Dúvidas, sujestões ou reclamações pelo whatsapp (12)9 9711-3793</p>
+        <p>Dúvidas, sugestões ou reclamações pelo whatsapp (12)9 9711-3793</p>
     </div>
 
 </template>
@@ -64,9 +103,9 @@
         queryDB({},'CRED-3').then((resolve)=>{
             const json = JSON.parse(resolve)
             const tbl = pageScreen.querySelector('#tbl-creditos')
-            tbl.head('Data,+Meses,Valor,Val. Até')
+            tbl.head('Data,+Meses|center-text,Valor|center-text,Val. Até|center-text')
             for(let i=0; i<json.length; i++){
-                tbl.plot(json[i],'data_hora,credito,valor,expira_em','dat,int,R$.,dat')
+                tbl.plot(json[i],'data_hora,credito|center-text,valor|center-text,expira_em|center-text','dat,int,R$.,dat')
             }
 
             tbl.parentNode.style.display = json.length ? 'block' : 'none'
@@ -80,7 +119,7 @@
                 asaas.payments = JSON.parse(txt)
                 const tbl = pageScreen.querySelector('#tbl-pgtos')
                 tbl.innerHTML = ''
-                tbl.head('Data,Valor,Status')
+                tbl.head('Data,Valor|center-text,Status|center-text')
                 for(let i=0; i<asaas.payments.length; i++){
                     const due = new  Date(asaas.payments[i].dueDate+' 23:59:59')
                     const now = new Date()
@@ -88,7 +127,7 @@
                     if(asaas.payments[i].status== 'PENDING' && venc){
                         asaas.payments[i].status = 'CANCELED'
                     }
-                    tbl.plot(asaas.payments[i],'dateCreated,value,status,invoiceUrl|but','dat,R$.,Upp,btn Pagar')
+                    tbl.plot(asaas.payments[i],'dateCreated,value|center-text,status,invoiceUrl|but',`dat,R$.,<p>|${asaas.payments[i].status},btn Pagar`)
                     const btn = pageScreen.querySelector('#btn_'+i)
                     btn.addEventListener('click',()=>{
                         window.open(asaas.payments[i].invoiceUrl, '_blank').focus();
