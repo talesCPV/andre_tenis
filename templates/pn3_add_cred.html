@@ -92,7 +92,7 @@
 
                 const btn = addComp('button','ADD CRÉDITO','plano-btn')
                 btn.addEventListener('click',()=>{
-                    if(confirm(`Confirmar a compra de ${json[i].credito} ${json[i].credito=='1'?'mês':'meses'} por R$${Number(json[i].valor).toFixed(2)}?`)){
+                    if(confirm('Este pagamento estaŕa disponível por 48 horas, caso não seja efetuado ele será cancelado automaticamente.')){
                         addCred(pageData.custumer.id,Number(json[i].valor).toFixed(2)).then(()=>{
                             try{
                                 main_data.pn3_creditos.func.fillPgtos()

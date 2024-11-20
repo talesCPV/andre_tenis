@@ -104,7 +104,7 @@
         queryDB({},'CRED-3').then((resolve)=>{
             const json = JSON.parse(resolve)
             const tbl = pageScreen.querySelector('#tbl-creditos')
-            tbl.head('Data,+Meses|center-text,Valor|center-text,Val. Até|center-text')
+            tbl.head('Data,+Meses|center-text,Valor|center-text,Expira em|center-text')
             for(let i=0; i<json.length; i++){
                 tbl.plot(json[i],'data_hora,credito|center-text,valor|center-text,expira_em|center-text','dat,int,R$.,dat')
             }
