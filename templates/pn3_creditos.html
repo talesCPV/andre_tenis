@@ -24,8 +24,9 @@
             padding: 6px;
             width: 80px;
             border: none;
-            background-color: #13ff1357;
             border-radius: 5px;
+            background-color: #0735ec;
+            color: rgb(255, 255, 255);
         }
 
         td > button:hover{
@@ -132,7 +133,7 @@
                     btn.addEventListener('click',()=>{
                         window.open(asaas.payments[i].invoiceUrl, '_blank').focus();
                     })
-                    btn.disabled = asaas.payments[i].status == 'PENDING' ? 0 : 1
+                    btn.classList.add(asaas.payments[i].status == 'PENDING' ? 'enabled' : 'disabled')
                 }
                 tbl.parentNode.style.display = asaas.payments.length ? 'block' : 'none'
                 pageFunc.fillCredits()
