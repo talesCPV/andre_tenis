@@ -150,7 +150,12 @@
             for(let i=0; i<json.length;i++){               
                 addOpt(json[i].id,json[i].nome)
             }
-        });
+            if(json.length==0){
+                alert('Antes de cadastrar um aluno você precisa adicionar um clube!')
+                openHTML('adm_view_clube.html','pop-up','Novo Clube')
+                closeModal('adm_view_aluno')
+            }
+        })
     }
 
 

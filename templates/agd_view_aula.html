@@ -179,7 +179,12 @@
                 opt.data = json[i]
                 cmb.appendChild(opt)
             }
-        });
+            if(json.length==0){
+                alert('Você precisa cadastrar suas aulas antes de lançar na grade!')
+                openHTML('adm_valor.html','pop-up','Nova Aula')
+                closeModal('agd_view_aula')
+            }              
+        })
     }
 
     pageFunc.buscaAluno = (data)=>{

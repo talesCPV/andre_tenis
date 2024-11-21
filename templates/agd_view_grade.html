@@ -62,18 +62,7 @@
 
     pageFunc.pageStart = ()=>{
         pageScreen.querySelector('#lgn').innerHTML = `${week[pageData.day]} as ${pageData.time.toString().padStart(2,0)}:00`
-        pageFunc.fillValor().then((response)=>{
-            const alunos = pageScreen.querySelector('#cmbAluno')
-            alunos.innerHTML = ''
-            for(let i=0; i<pageData.aulas.length; i++){
-                pageScreen.querySelector('#cmbTipos').value = pageData.aulas[i].id_aula
-                const opt = document.createElement('option')
-                opt.value = pageData.aulas[i].id_aluno
-                opt.innerHTML = pageData.aulas[i].nome
-                opt.data = pageData.aulas[i]
-                alunos.appendChild(opt)
-            }
-        })
+        pageFunc.fillValor()
     }
 
     pageFunc.fillValor = ()=>{
@@ -92,7 +81,12 @@
                 opt.data = json[i]
                 cmb.appendChild(opt)
             }
-        });
+            if(json.length==0){
+                alert('Você precisa cadastrar suas aulas antes de lançar na grade!')
+                openHTML('adm_valor.html','pop-up','Nova Aula')
+                closeModal('agd_view_grade')
+            }
+        })
     }
 
     pageFunc.buscaAluno = (data)=>{

@@ -46,19 +46,11 @@
         myPromisse.then((resolve)=>{
             const json = JSON.parse(resolve)       
             tbl.style.display = json.length > 0 ? 'inline-table' : 'none'
-            if(localStorage.getItem('access')=='0'){
-                tbl.head('Nome,Clube,Prof.')
-            }else{
-                tbl.head('Nome,Clube')
-            }
+            tbl.head('Nome,Clube')
             for(let i=0; i<json.length;i++){
-                if(localStorage.getItem('access')=='0'){
-                    tbl.plot(json[i],'nome,clube,prof','Upp,Upp,Upp')
-                }else{
-                    tbl.plot(json[i],'nome,clube','Upp,Upp')
-                }
-            }         
-        });
+                tbl.plot(json[i],'nome,clube','Upp,Upp')
+            }
+        })
     }
 
     pageScreen.querySelector('#btnBusca').addEventListener('click',()=>{

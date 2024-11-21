@@ -41,12 +41,12 @@
     const pageData = main_data.tool_mensagem.data
     const pageFunc = main_data.tool_mensagem.func
     const pageScreen = document.querySelector('#card-tool_mensagem')
+    const padrao = 'Bom dia #aluno\r\n\r\nSegue abaixo o fechamento das aulas do último mês:\r\n\r\n#aula\r\n\----------------\r\n#total\r\n\r\nBons treinos !!!'
 
     pageFunc.pageStart = ()=>{
         getFile(`/../config/user/${localStorage.getItem('id_user')}/whatsapp.json`).then((txt)=>{
-            console.log()
             const mensagem = JSON.parse(txt)
-            pageScreen.querySelector('#edtMsg').value = mensagem.text === undefined ? '' : mensagem.text
+            pageScreen.querySelector('#edtMsg').value = mensagem.text === undefined ? padrao : mensagem.text
         })
     }
 
