@@ -23,6 +23,14 @@
             justify-content: center;
         }
 
+        .frm-mail select{
+            margin: 0;
+            width: 100%;
+            border-radius: 10px;
+            border: solid 1px;
+            padding: 10px;
+        }
+
         .left-panel, .rigth-panel{
             width: 100%;
             max-width: 584px;
@@ -52,6 +60,7 @@
 
         .tab-content textarea{
             height: 350px;
+            text-align: justify;
         }
 
         .hide{
@@ -68,6 +77,18 @@
         .tabbed [type="radio"]:nth-of-type(3):checked ~ .tab-content:nth-of-type(3),
         .tabbed [type="radio"]:nth-of-type(4):checked ~ .tab-content:nth-of-type(4) {
             display: block;
+        }
+
+        #edtViewEntrada, #edtViewSaida{
+            border: solid 1px;
+            padding: 10px;
+            border-radius: 10px;
+            background-color: white;
+            justify-content: center;
+            text-align: justify;
+            height: 300px;
+            width: 100%;
+            overflow-y: scroll;
         }
 
         @media all and (max-width : 768px) {
@@ -134,18 +155,22 @@
                             <select id="cmbUser"></select>
                         </div>
                         <textarea id="edtMail" cols="30" rows="10" maxlength="1000" autofocus></textarea>
-                        <button class="f-rigth" id="btnEnviar">Enviar</button>
+                        <div class="line">
+                            <button class="f-rigth" id="btnEnviar">Enviar</button>
+                        </div>
                     </div>
                     <div class="tab-content">
                         <h3>Caixa de Entrada</h3>
                         <select id="cmbEntrada" class="cmbMail" size="10"></select>
-                        <textarea id="edtViewEntrada" cols="30" rows="10" readonly></textarea>
-                        <button class="f-rigth" id="btnAnser" disabled>Responder</button>
+                        <div id="edtViewEntrada"></div>
+                        <div class="line">
+                            <button class="f-rigth" id="btnAnser" disabled>Responder</button>
+                        </div>
                     </div>
                     <div class="tab-content">
                         <h3>Mensagens Enviadas</h3>
                         <select id="cmbSaida" class="cmbMail" size="10"></select>
-                        <textarea id="edtViewSaida" cols="30" rows="10" readonly></textarea>
+                        <div id="edtViewSaida"></div>
                     </div>
     
                 </div>
@@ -168,8 +193,8 @@
         const cmb = send ? pageScreen.querySelector('#cmbEntrada') : pageScreen.querySelector('#cmbSaida')
         const txt = send ? pageScreen.querySelector('#edtViewEntrada') : pageScreen.querySelector('#edtViewSaida')
         if(cmb.selectedIndex >= 0){
-            const data = cmb.options[cmb.selectedIndex].data
-            txt.value = data.message
+            const data = cmb.options[cmb.selectedIndex].data         
+            txt.innerHTML = data.message
             if(send){
                 pageScreen.querySelector('#btnAnser').disabled = 0
             }
@@ -273,7 +298,7 @@
                 const myPromisse = queryDB(params,'MAIL-3');
                 myPromisse.then((resolve)=>{
                     pageFunc.refreshMail()
-                    pageScreen.querySelector('#edtViewEntrada').value = ''
+                    pageScreen.querySelector('#edtViewEntrada').innerHTML = ''
                     pageScreen.querySelector('#edtViewSaida').value = ''
                     pageScreen.querySelector('#btnAnser').disabled = 1
                 })

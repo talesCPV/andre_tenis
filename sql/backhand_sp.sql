@@ -77,8 +77,10 @@ DELIMITER $$
 	CREATE PROCEDURE sp_confirma_email(
         IN Iasaas_id varchar(16)
     )
-	BEGIN    
-		UPDATE tb_usuario SET access=1 WHERE asaas_id COLLATE utf8_general_ci = Iasaas_id COLLATE utf8_general_ci;
+	BEGIN
+		SET @id_user = (SELECT id FROM tb_usuario WHERE asaas_id COLLATE utf8_general_ci = Iasaas_id COLLATE utf8_general_ci);
+		UPDATE tb_usuario SET access=1 WHERE id = @id_user;
+        INSERT INTO tb_mail (id_from,id_to,message) VALUES(1,@id_user,"   Seja muito bem vindo ao <b>TenisApp</b>, seu melhor aplicativo para gerenciamento de suas aulas.<br>   Gostaríamos de lhe proporcionar a melhor experiência, portanto se sinta a vontade para dar sugestões ou fazer reclamações direto com o desenvolvedor de nosso projeto pelo whatsapp (12)9 9711-3793.<br><br>Muito obrigado por nos escolher!");
 	END $$
 DELIMITER ;
 

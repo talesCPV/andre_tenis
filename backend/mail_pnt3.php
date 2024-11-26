@@ -3,9 +3,10 @@
     function sendMail($para,$assunto,$texto){
 
 //echo $para.$assunto.$texto;
-
-        require("mail/PHPMailer.php"); 
-        require("mail/SMTP.php"); 
+        require_once('../access.php');
+        require_once("mail/PHPMailer.php"); 
+        require_once("mail/SMTP.php"); 
+        
         $mail = new PHPMailer\PHPMailer\PHPMailer();
         $mail->CharSet = "UTF-8";
         $mail->Encoding = 'base64';
@@ -13,12 +14,12 @@
         $mail->SMTPDebug = 0; // debugging: 1 = errors and messages, 2 = messages only 
         $mail->SMTPAuth = true; // authentication enabled 
         $mail->SMTPSecure = 'ssl'; // secure transfer enabled REQUIRED for Gmail 
-        $mail->Host = "smtp.titan.email "; 
+        $mail->Host = "smtp.titan.email"; 
         $mail->Port = 465; //465 or 587 
         $mail->IsHTML(true); 
-        $mail->Username = "tales@planet3.com.br"; 
-        $mail->Password = "@Xspider0"; 
-        $mail->From = 'tales@planet3.com.br';
+        $mail->Username = email_user; 
+        $mail->Password = email_pass; 
+        $mail->From = email_adress;
 
         $mail->Subject = $assunto; 
         $mail->Body = $texto; 

@@ -1,7 +1,8 @@
 <?php
 
-//    $conexao = new mysqli("108.167.132.56", "plan3411_developer", "Xspider@", "plan3411_museu");
-    $conexao = new mysqli("108.167.132.56", "plan3411_developer", "Xspider@", "plan3411_andretorres");
+    require_once('../access.php');
+
+    $conexao = new mysqli(db_ip,db_user,db_pass,db_name);
     if (!$conexao){
         die ("Erro de conexão com localhost, o seguinte erro ocorreu -> ".mysql_error());
     }    
