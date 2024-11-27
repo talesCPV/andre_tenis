@@ -47,7 +47,8 @@ SELECT * FROM vw_aula;
 	DROP VIEW IF EXISTS vw_agenda;
  	CREATE VIEW vw_agenda AS
 		SELECT AGD.*, ALN.nome, AUL.descricao, CLB.nome AS clube,
-        CLB.id AS id_clube, CONCAT("w-",AGD.dia,"-",AGD.hora) AS id_call
+        CLB.id AS id_clube, CONCAT("w-",AGD.dia,"-",AGD.hora) AS id_call,
+        AUL.valor as valor
 		FROM tb_agenda AS AGD
 		INNER JOIN tb_aluno AS ALN
 		INNER JOIN tb_aula AS AUL
@@ -58,9 +59,11 @@ SELECT * FROM vw_aula;
 		ORDER BY AGD.hora,AGD.dia;
         
 SELECT * FROM vw_agenda;
+SELECT * FROM tb_aula;
+
 
 	DROP VIEW IF EXISTS vw_agenda_dia;
- 	CREATE VIEW vw_agenda_dia AS
+-- 	CREATE VIEW vw_agenda_dia AS
 		SELECT id_usuario,dia, GROUP_CONCAT(DISTINCT CONCAT(hora,"|",id_aluno,"|",nome,"|",id_aula,"|", descricao,"|",id_clube,"|",clube) SEPARATOR "*#*") AS aulas  
 		FROM vw_agenda
 		GROUP BY dia, id_usuario

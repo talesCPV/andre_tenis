@@ -87,3 +87,9 @@
 26/11/2024 14:16 talescd@gmail.com : Valor Aula Deletado undefined ->  R$50.00
 26/11/2024 14:16 talescd@gmail.com : CLUBE Deletado Clube Recreativo Jequitiba -> 
 26/11/2024 14:18 admin@backhand.com.br : Menu Alterado (Configuracoes, menu, pop-up, )
+27/11/2024 19:54 talescd@gmail.com : CLUBE Cadastrado  -> Clube Recreativo Jequitiba
+27/11/2024 19:54 talescd@gmail.com : Aluno Cadastrado  -> Aluno 01
+27/11/2024 19:55 talescd@gmail.com : Valor Aula Cadastrado  Aula de Tenis individual R$80.00
+27/11/2024 19:56 talescd@gmail.com : Aula Cadastrada Aluno 01 dia Qua as 10:00
+27/11/2024 19:57 talescd@gmail.com : Valor Aula Editado undefined -> Aula de Tenis individual R$80
+27/11/2024 19:58 talescd@gmail.com : Valor Aula Cadastrado  Beach Tenis R$30

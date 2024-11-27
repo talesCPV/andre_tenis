@@ -71,8 +71,6 @@
     const pageScreen = document.querySelector('#card-agd_view_aula')
     const week = ['Dom','Seg','Ter','Qua','Qui','Sex','Sab']
 
-
-    
     function setAula(obj,del=0){
         const params = new Object;
             params.id_aluno = obj.id_aluno
@@ -141,7 +139,7 @@
             const sel =  document.createElement('select')
             sel.id = 'tipo-aula-'+data.id_aluno
             sel.className = 'sel-round'
-            sel.innerHTML='<option value="P" selected>P</option><option value="F">F</option><option value="R">R</option>'
+            sel.innerHTML='<option value="P" title="Presença" selected>Presença</option><option value="F"  title="Falta">Falta</option><option value="R"  title="Reposição">Reposição</option><option value="FER"  title="Feriado">Feriado</option><option value="CH"  title="Chuva">Chuva</option>'
             sel.value = fill ? data.modo : 'P'
             edt_btn.appendChild(sel)
 

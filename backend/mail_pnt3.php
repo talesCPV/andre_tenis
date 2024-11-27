@@ -6,7 +6,7 @@
         require_once('../access.php');
         require_once("mail/PHPMailer.php"); 
         require_once("mail/SMTP.php"); 
-        
+
         $mail = new PHPMailer\PHPMailer\PHPMailer();
         $mail->CharSet = "UTF-8";
         $mail->Encoding = 'base64';
@@ -14,7 +14,7 @@
         $mail->SMTPDebug = 0; // debugging: 1 = errors and messages, 2 = messages only 
         $mail->SMTPAuth = true; // authentication enabled 
         $mail->SMTPSecure = 'ssl'; // secure transfer enabled REQUIRED for Gmail 
-        $mail->Host = "smtp.titan.email"; 
+        $mail->Host = email_host; 
         $mail->Port = 465; //465 or 587 
         $mail->IsHTML(true); 
         $mail->Username = email_user; 
