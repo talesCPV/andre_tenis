@@ -53,14 +53,13 @@
                         newCli(body).then((response)=>{
                             response.text().then((txt)=>{
                                 const json = JSON.parse(txt)
-                                console.log(json)
                                 newUser(json.id)
                             })
                         })
                     }
                 }
             }
-        }      
+        }
     })
 
     function newUser(asaas_id){

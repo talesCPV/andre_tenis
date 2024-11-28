@@ -93,3 +93,7 @@
 27/11/2024 19:56 talescd@gmail.com : Aula Cadastrada Aluno 01 dia Qua as 10:00
 27/11/2024 19:57 talescd@gmail.com : Valor Aula Editado undefined -> Aula de Tenis individual R$80
 27/11/2024 19:58 talescd@gmail.com : Valor Aula Cadastrado  Beach Tenis R$30
+28/11/2024 19:58 tales@flexibus.com.br : Aula Efetuada Edson dia 28/11/2024 as 09:00
+28/11/2024 19:59 tales@flexibus.com.br : Aula Efetuada Edson dia 28/11/2024 as 09:00
+28/11/2024 20:02 tales@flexibus.com.br : Aula Efetuada Edson dia 28/11/2024 as 09:00
+28/11/2024 20:02 tales@flexibus.com.br : Aula Efetuada Edson dia 28/11/2024 as 09:00

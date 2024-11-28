@@ -336,7 +336,7 @@ function sendMail(para,assunto,mensagem){
     }
 
     function confirmaUser(email,asaas_id){
-        const url = 'https://planet3.com.br/backhand/backend/confirmEmail.php?asaas_id='+asaas_id
+        const url = 'https://www.tenis.app.br/backend/confirmEmail.php?asaas_id='+asaas_id
         const mail = `
             <style>
                 body{
@@ -368,7 +368,7 @@ function sendMail(para,assunto,mensagem){
 
 
             <div class="head">
-                <h2>Seja muito bem vindo ao BACKHAND</h2>
+                <h2>Seja muito bem vindo ao <a href="https://www.tenis.app.br">TenisApp</a></h2>
                 <h4>o maior portal gerenciador de aulas de tênis do Brasil</h4>    
             </div>
 
@@ -378,15 +378,12 @@ function sendMail(para,assunto,mensagem){
                 <a href="${url}" class="button">CONFIRMAR CADASTRO</a>
             </div>`
 
-        sendMail(email,'BACKHAND - Confirmação de Cadastro',mail)
-
+        sendMail(email,'TenisApp - Confirmação de Cadastro',mail)
     }
 
     function resetaPass(email,asaas_id){
 
-        
-
-        const url = 'https://planet3.com.br/backhand/backend/confirmEmail.php?asaas_id='+asaas_id
+        const url = 'https://www.tenis.app.br/backend/confirmEmail.php?asaas_id='+asaas_id
         const mail = `
             <style>
                 body{
@@ -416,9 +413,8 @@ function sendMail(para,assunto,mensagem){
 
             </style>
 
-
             <div class="head">
-                <h2>Seja muito bem vindo ao BACKHAND</h2>
+                <h2>Seja muito bem vindo ao <a href="https://www.tenis.app.br">TenisApp</a></h2>
                 <h4>o maior portal gerenciador de aulas de tênis do Brasil</h4>    
             </div>
 
@@ -428,6 +424,6 @@ function sendMail(para,assunto,mensagem){
                 <a href="${url}" class="button">CONFIRMAR CADASTRO</a>
             </div>`
 
-        sendMail(email,'BACKHAND - Confirmação de Cadastro',mail)
+        sendMail(email,'TenisApp - Confirmação de Cadastro',mail)
 
     }

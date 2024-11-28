@@ -154,9 +154,9 @@ DELIMITER $$
 		IN Isenha varchar(30)
     )
 	BEGIN    
-		SET @call_id = (SELECT IFNULL(id,0) FROM tb_user WHERE hash COLLATE utf8_general_ci = Ihash COLLATE utf8_general_ci LIMIT 1);
+		SET @call_id = (SELECT IFNULL(id,0) FROM tb_usuario WHERE hash COLLATE utf8_general_ci = Ihash COLLATE utf8_general_ci LIMIT 1);
 		IF(@call_id > 0)THEN
-			UPDATE tb_user SET hash = SHA2(CONCAT(email, Isenha), 256) WHERE id=@call_id;
+			UPDATE tb_usuario SET hash = SHA2(CONCAT(email, Isenha), 256) WHERE id=@call_id;
             SELECT 1 AS ok;
 		ELSE 
 			SELECT 0 AS ok;
@@ -609,6 +609,7 @@ DELIMITER $$
 		IN Iid_aula int(11),
 		IN Idata_hora datetime,
 		IN Ivalor double,
+        IN Imodo varchar(2),
         IN Ipg boolean,
         IN del boolean
     )

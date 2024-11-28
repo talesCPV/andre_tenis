@@ -4,7 +4,7 @@
     ini_set('display_startup_errors', 1);
     error_reporting(E_ALL);
 
-    require_once 'data.php';
+    require_once '../access.php';
     include_once "connect.php";
     include_once "mail_pnt3.php";
 
@@ -67,22 +67,22 @@
             </style>
 
             <div class="head">
-                <h2>BACKHAND</h2>
+                <h2>TenisApp</h2>
                 <h4>o maior portal gerenciador de aulas de tênis do Brasil</h4>    
             </div>
 
-            <form class="middle" target="_blank" action="'.SERVER_URL.'/backhand/backend/forgotPass.php" method="POST">
+            <form class="middle" target="_blank" action="'.SERVER_URL.'/backend/forgotPass.php" method="POST">
                 <p>Você acionou o sistema de recuperação de senha pelo nosso portal, clique no botão abaixo para escolher uma nova senha</p>
 
-                <a class="button" href="'.SERVER_URL.'/backhand/backend/forgotPass.php?email='.$_GET['email'].'&hash='.$hash.'">ALTERAR SENHA</a>
+                <a class="button" href="'.SERVER_URL.'/backend/forgotPass.php?email='.$_GET['email'].'&hash='.$hash.'">ALTERAR SENHA</a>
 
                 <p>Caso não tenha sido você, ignore este email</p>
             </form>
         ';
 
-        $send_it = $hash=='' ? 0 : sendMail($_GET['email'],'BACKHAND - Recuperação de Senha',$texto);
+        $send_it = $hash=='' ? 0 : sendMail($_GET['email'],'TenisApp - Recuperação de Senha',$texto);
         if($send_it){
-            header("Location:".SERVER_URL."/backhand/");
+            header("Location:".SERVER_URL."/");
         }else{
             print('Ocorreu algum erro no reenvio do email, tente novamente mais tarde.');
         }
@@ -131,11 +131,11 @@
             </style>
 
             <div class="head">
-                <h2>BACKHAND</h2>
+                <h2>TenisApp</h2>
                 <h4>o maior portal gerenciador de aulas de tênis do Brasil</h4>    
             </div>
 
-            <form class="middle" action="'.SERVER_URL.'/backhand/backend/forgotPass.php" method="POST">
+            <form class="middle" action="'.SERVER_URL.'/backend/forgotPass.php" method="POST">
                 <p>Você acionou o sistema de recuperação de senha pelo nosso portal, clique no botão abaixo para escolher uma nova senha</p>
 
                 <fieldset>
@@ -156,10 +156,10 @@
 
     }else if(isset($_POST['hash']) && isset($_POST['pass']) && isset($_POST['email'])){
         include_once "connect.php";
-        $query = 'CALL sp_updatePass("'.$_POST['hash'].'","'.$_POST['email'].'","'.$_POST['pass'].'");';
+        $query = 'CALL sp_updatePass("'.$_POST['hash'].'","'.$_POST['pass'].'");';            
         $result = mysqli_query($conexao, $query);
         $conexao->close();
-        header("Location:".SERVER_URL."/backhand/?email=".$_POST['email']);
+        header("Location:".SERVER_URL."/?email=".$_POST['email']);
     }
 
 ?>
